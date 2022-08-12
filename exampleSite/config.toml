@@ -1,6 +1,6 @@
 ######################## default configuration ####################
-baseURL = "https://demo.gethugothemes.com/godocs/site/style-4/"
-title = "Hugo documentation theme"
+baseURL = ""
+title = "Intelops docs"
 theme = "godocs-4"
 # google analytics
 googleAnalytics = "" # example : UA-123-45
@@ -56,7 +56,7 @@ link = "plugins/search/search-page.js"
 # site variables
 [params.variables]
 # Color Variables
-primary_color = "#FF0043"
+primary_color = "#F16F33"
 text_color = "#333"
 text_color_dark = "#222"
 text_color_light = "#999"
@@ -87,16 +87,16 @@ feedback_form_action = "#" # contact form works with https://formspree.io
 # logo
 [params.logo]
 main = "images/logo.png"
-favicon = "images/favicon.png"
-main_site_link = "https://examplesite.org"
+favicon = "images/favicon-intelops.png"
+main_site_link = "https://resplendent-seahorse-fa6e80.netlify.app/"
 logo_icon = "images/logo-icon.png"
-site_logo = "images/site-logo.png"
+site_logo = "images/logo-dark.png"
 docs_logo = "images/docs-logo.png"
 
 # Preloader
 [params.preloader]
-enable = false
-preloader = "" # use jpg, png, svg or gif format.
+enable = true
+preloader = "images/loader.png" # use jpg, png, svg or gif format.
 
 # Navigation button
 [[params.nav_button]]
