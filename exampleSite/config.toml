@@ -5,7 +5,7 @@ theme = "godocs-4"
 # google analytics
 googleAnalytics = "" # example : UA-123-45
 # disable language
-disableLanguages = [] # desable language from here
+disableLanguages = ["fr"] # desable language from here
 
 # hugo outputs
 [outputs]
