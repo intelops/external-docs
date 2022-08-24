@@ -51,6 +51,7 @@ sections:
   label: Test Topic
   create: all
   match: "**/*"
+  new_doc_ext: en.md
 - type: heading
   label: Configuration
 - type: document
