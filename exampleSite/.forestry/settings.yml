@@ -15,11 +15,6 @@ sections:
   create: all
   match: "**/*"
 - type: directory
-  path: exampleSite/content/our-features
-  label: Our features
-  create: all
-  match: "**/*"
-- type: directory
   path: exampleSite/content/faq
   label: Faq
   create: all
@@ -34,6 +29,8 @@ sections:
   label: Changelog
   create: all
   match: "**/*"
+- type: heading
+  label: Topics
 - type: directory
   path: exampleSite/content/basic-startup
   label: Basic startup
@@ -42,6 +39,11 @@ sections:
 - type: directory
   path: exampleSite/content/account-bill
   label: Account bill
+  create: all
+  match: "**/*"
+- type: directory
+  path: exampleSite/content/our-features
+  label: Our features
   create: all
   match: "**/*"
 - type: heading
