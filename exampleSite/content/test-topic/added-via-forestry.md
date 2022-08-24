@@ -8,4 +8,4 @@ type = "docs"
 * sample text
 * sample text 2
 
-![](/static/images/cta-illustration.jpg)
+![new image](/static/images/cta-illustration.jpg "Group image")
