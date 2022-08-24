@@ -28,7 +28,9 @@ fields:
 - name: type
   type: text
   config:
-    required: false
+    required: true
   label: Type
+  default: docs
+  description: always enter the value as "docs" without quote.
 pages:
 - exampleSite/content/test-topic/added-via-forestry.md
