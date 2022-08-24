@@ -34,3 +34,4 @@ fields:
   label: Draft
 pages:
 - exampleSite/content/basic-startup/Test section/testing.md
+- exampleSite/content/test-topic/new section/test-section.md
