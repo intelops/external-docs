@@ -46,6 +46,11 @@ sections:
   label: Our features
   create: all
   match: "**/*"
+- type: directory
+  path: exampleSite/content/test-topic
+  label: Test Topic
+  create: all
+  match: "**/*"
 - type: heading
   label: Configuration
 - type: document
