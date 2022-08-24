@@ -8,4 +8,4 @@ type = "docs"
 * sample text
 * sample text 2
 
-![new image](images/cta-illustration.jpg "Group image")
+![new image](dreamy-torte-db1a25.netlify.app/images/cta-illustration.jpg "Group image")
