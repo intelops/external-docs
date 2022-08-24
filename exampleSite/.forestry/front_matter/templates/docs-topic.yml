@@ -30,3 +30,5 @@ fields:
   config:
     required: false
   label: Type
+pages:
+- exampleSite/content/test-topic/added-via-forestry.md
