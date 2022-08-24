@@ -1,7 +1,7 @@
 ---
 new_page_extension: md
 auto_deploy: false
-admin_path: 
+admin_path: ''
 webhook_url: 
 sections:
 - type: directory
@@ -12,11 +12,6 @@ sections:
 - type: directory
   path: exampleSite/content/search
   label: Search
-  create: all
-  match: "**/*"
-- type: directory
-  path: exampleSite/content/our-features
-  label: Our features
   create: all
   match: "**/*"
 - type: directory
@@ -34,6 +29,8 @@ sections:
   label: Changelog
   create: all
   match: "**/*"
+- type: heading
+  label: Topics
 - type: directory
   path: exampleSite/content/basic-startup
   label: Basic startup
@@ -44,6 +41,16 @@ sections:
   label: Account bill
   create: all
   match: "**/*"
+- type: directory
+  path: exampleSite/content/our-features
+  label: Our features
+  create: all
+  match: "**/*"
+- type: heading
+  label: Configuration
+- type: document
+  path: exampleSite/config.toml
+  label: Configuration
 upload_dir: exampleSite/static
 public_path: "/static"
 front_matter_path: ''
