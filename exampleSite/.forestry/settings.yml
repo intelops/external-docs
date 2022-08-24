@@ -44,6 +44,12 @@ sections:
   label: Account bill
   create: all
   match: "**/*"
+- type: heading
+  label: Configuration
+- type: document
+  path: exampleSite/config.toml
+  label: Configuration
+  match: "**/*"
 upload_dir: exampleSite/static
 public_path: "/static"
 front_matter_path: ''
