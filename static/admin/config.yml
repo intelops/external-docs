@@ -1,0 +1,3 @@
+backend:
+  name: git-gateway
+  branch: non-prod # Branch to update (optional; defaults to master)
