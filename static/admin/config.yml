@@ -1,4 +1,0 @@
-backend:
-  name: git-gateway
-  branch: non-prod # Branch to update (optional; defaults to master)
-media_folder: "exampleSite/static/images" # Media files will be stored in the repo under exampleSite/static/images
