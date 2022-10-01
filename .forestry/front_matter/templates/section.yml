@@ -32,5 +32,3 @@ fields:
 - name: draft
   type: boolean
   label: Draft
-pages:
-- exampleSite/content/basic-startup/Test section/testing.md
