@@ -52,6 +52,12 @@ sections:
   create: all
   match: "**/*"
   new_doc_ext: en.md
+- type: directory
+  path: content/optimizor
+  label: Optimizor
+  create: all
+  match: "**/*"
+  new_doc_ext: en.md
 - type: heading
   label: Configuration
 - type: document
