@@ -1,0 +1,113 @@
+[
+
+  {
+    "url": "https://docs.intelops.ai/test-topic/newsection/",
+    "title": "New section",
+    "description": "",
+    "content": "This is another section added to test\n"
+  },
+  {
+    "url": "https://docs.intelops.ai/test-topic/anothertopic/",
+    "title": "Sample topic",
+    "description": "",
+    "content": ""
+  },
+
+  {
+    "url": "https://docs.intelops.ai/basic-startup/requirments/",
+    "title": "Requirments",
+    "description": "",
+    "content": "Thanks to the simplicity of Hugo, this page is as empty as this theme needs requirements.\nJust download latest version of Hugo binary (\u0026gt; 0.60) for your OS (Windows, Linux, Mac) : it\u0026rsquo;s that simple.\n"
+  },
+  {
+    "url": "https://docs.intelops.ai/basic-startup/installation/",
+    "title": "Installation",
+    "description": "",
+    "content": "The following steps are here to help you initialize your new website. If you don\u0026rsquo;t know Hugo at all, we strongly suggest you learn more about it by following this great documentation for beginners.\nCreate your project Hugo provides a new command to create a new website.\nhugo new site \u0026lt;new_project\u0026gt; Install the theme Install the GoDocs theme by following this documentation\nThis theme\u0026rsquo;s repository is: https://github.com/themefisher/godocs.git\nAlternatively, you can download the theme as .zip file and extract it in the themes directory\nOr you can check this video documentation for installing this template: Basic configuration When building the website, you can set a theme by using --theme option. However, we suggest you modify the configuration file (config.toml) and set the theme as the default.\n# Change the default theme to be use when building the site with Hugo theme = \u0026#34;godocs\u0026#34; Create your first content pages Then, create content pages inside the previously created chapter. Here are two ways to create content in the chapter:\nhugo new installation/first-content.md hugo new installation/second-content/_index.md Feel free to edit thoses files by adding some sample content and replacing the title value in the beginning of the files.\nLaunching the website locally Launch by using the following command:\nhugo serve Go to http://localhost:1313\nBuild the website When your site is ready to deploy, run the following command:\nhugo A public folder will be generated, containing all static content and assets for your website. It can now be deployed on any web server.\nThis website can be automatically published and hosted with Netlify (Read more about Automated HUGO deployments with Netlify). Alternatively, you can use Github pages\n"
+  },
+  {
+    "url": "https://docs.intelops.ai/basic-startup/configuration/",
+    "title": "Configuration",
+    "description": "",
+    "content": "Global site parameters On top of Hugo global configuration, Dot lets you define the following parameters in your config.toml (here, values are default).\nNote that some of these parameters are explained in details in other sections of this documentation.\n# base URL place here baseURL = \u0026#34;https://examplesite.com\u0026#34; # this is your site title title = \u0026#34;Hugo documentation theme\u0026#34; # theme should be `godocs` theme = \u0026#34;godocs\u0026#34; # disable language from here disableLanguages = [\u0026#34;fr\u0026#34;] # now franch language is disabled # add css plugin [[params.plugins.css]] link = \u0026#34;define plugins path\u0026#34; # add js plugin [[params.plugins.js]] link = \u0026#34;define plugins path\u0026#34; # main menu [[menu.main]] name = \u0026#34;contact\u0026#34; url = \u0026#34;contact/\u0026#34; weight = 1 # Call to action is default enabled, if you want to disable it. just change the enable = false ####### Default parameters ########### [params] logo = \u0026#34;images/logo.png\u0026#34; # Meta data description = \u0026#34;This is meta description\u0026#34; author = \u0026#34;Themefisher\u0026#34; # contact form action contact_form_action = \u0026#34;#\u0026#34; # contact form works with https://formspree.io "
+  },
+  {
+    "url": "https://docs.intelops.ai/basic-startup/customization/",
+    "title": "Customization",
+    "description": "",
+    "content": "GoDocs has been built to be as configurable as possible.\nChange the logo In config.toml you will find a logo variable. you can change your logo there.\nlogo = \u0026#34;images/logo.png\u0026#34; The size of the logo will adapt automatically\nChange the favicon If your favicon is a png, just drop off your image in your local static/images/ folder and name it favicon.png\nIf you need to change this default behavior, create a new file in layouts/partials/ named head.html. Then write something like this:\n\u0026lt;link rel=\u0026#34;shortcut icon\u0026#34; href=\u0026#34;/images/favicon.png\u0026#34; type=\u0026#34;image/x-icon\u0026#34; /\u0026gt; Change default colors GoDocs support change color. You can change the colors from assets/scss/variables.scss. You can change the colors of the template as you want.\n/* Color Variables */ $primary-color: #FF0043; $text-color: #333; $text-color-dark: #222; $text-color-light: #999; $body-color: #fff; $border-color: #E2E2E2; $black: #000; $white: #fff; $light: #FBFBFB; /* Font Variables */ $font-primary: \u0026#39;Montserrat\u0026#39;, sans-serif; $icon-font: \u0026#39;themify\u0026#39;; "
+  },
+  {
+    "url": "https://docs.intelops.ai/basic-startup/elements/",
+    "title": "Elements",
+    "description": "",
+    "content": "Heading example Here is example of hedings. You can use this heading by following markdownify rules. For example: use # for heading 1 and use ###### for heading 6.\nHeading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 Emphasis Emphasis, aka italics, with asterisks or underscores.\nStrong emphasis, aka bold, with asterisks or underscores.\nCombined emphasis with asterisks and underscores.\nStrikethrough uses two tildes. Scratch this.\nLink I\u0026rsquo;m an inline-style link\nI\u0026rsquo;m an inline-style link with title\nI\u0026rsquo;m a reference-style link\nI\u0026rsquo;m a relative reference to a repository file\nYou can use numbers for reference-style link definitions\nOr leave it empty and use the link text itself.\nURLs and URLs in angle brackets will automatically get turned into links. http://www.example.com or http://www.example.com and sometimes example.com (but not on Github, for example).\nSome text to show that the reference links can follow later.\nParagraph Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam nihil enim maxime corporis cumque totam aliquid nam sint inventore optio modi neque laborum officiis necessitatibus, facilis placeat pariatur! Voluptatem, sed harum pariatur adipisci voluptates voluptatum cumque, porro sint minima similique magni perferendis fuga! Optio vel ipsum excepturi tempore reiciendis id quidem? Vel in, doloribus debitis nesciunt fugit sequi magnam accusantium modi neque quis, vitae velit, pariatur harum autem a! Velit impedit atque maiores animi possimus asperiores natus repellendus excepturi sint architecto eligendi non, omnis nihil. Facilis, doloremque illum. Fugit optio laborum minus debitis natus illo perspiciatis corporis voluptatum rerum laboriosam.\nOrdered List List item List item List item List item List item Unordered List List item List item List item List item List item Notice This is a simple note.\nThis is a simple tip.\nThis is a simple info.\nTab This is first tab this is second tab this is third tab Collapse collapse 1 This is a simple collapse collapse 2 This is a simple collapse collapse 3 This is a simple collapse Code and Syntax Highlighting Inline code has back-ticks around it.\nvar s = \u0026#34;JavaScript syntax highlighting\u0026#34;; alert(s); s = \u0026#34;Python syntax highlighting\u0026#34; print s No language indicated, so no syntax highlighting. But let\u0026#39;s throw in a \u0026lt;b\u0026gt;tag\u0026lt;/b\u0026gt;. Blockquote This is a blockquote example.\nInline HTML You can also use raw HTML in your Markdown, and it\u0026rsquo;ll mostly work pretty well.\nDefinition list Is something people use sometimes. Markdown in HTML Does *not* work **very** well. Use HTML tags. Tables Colons can be used to align columns.\nTables Are Cool col 3 is right-aligned $1600 col 2 is centered $12 zebra stripes are neat $1 There must be at least 3 dashes separating each header cell. The outer pipes (|) are optional, and you don\u0026rsquo;t need to make the raw Markdown line up prettily. You can also use inline Markdown.\nMarkdown Less Pretty Still renders nicely 1 2 3 Image Youtube video "
+  },
+  {
+    "url": "https://docs.intelops.ai/basic-startup/test-section/testing/",
+    "title": "Testing",
+    "description": "",
+    "content": "Heading example Tetsting via forestry. For example: using markdown.\nHeading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 "
+  },
+
+  {
+    "url": "https://docs.intelops.ai/account-bill/linux/",
+    "title": "Linux",
+    "description": "",
+    "content": "Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna turpis.\nEtiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet\nEtiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna, et dapibus turpis.Etiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna, et dapibus turpis.\n"
+  },
+  {
+    "url": "https://docs.intelops.ai/account-bill/mac/",
+    "title": "Mac OS",
+    "description": "",
+    "content": "Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna turpis.\nEtiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet\nEtiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna, et dapibus turpis.Etiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna, et dapibus turpis.\n"
+  },
+  {
+    "url": "https://docs.intelops.ai/account-bill/routing/",
+    "title": "Routing",
+    "description": "",
+    "content": "Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna turpis.\nEtiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet\nEtiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna, et dapibus turpis.Etiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna, et dapibus turpis.\n"
+  },
+  {
+    "url": "https://docs.intelops.ai/account-bill/ubuntu/",
+    "title": "Ubuntu",
+    "description": "",
+    "content": "Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna turpis.\nEtiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet\nEtiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna, et dapibus turpis.Etiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna, et dapibus turpis.\n"
+  },
+  {
+    "url": "https://docs.intelops.ai/account-bill/windows/",
+    "title": "Windows",
+    "description": "",
+    "content": "Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna turpis.\nEtiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet\nEtiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna, et dapibus turpis.Etiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna, et dapibus turpis.\n"
+  },
+
+  {
+    "url": "https://docs.intelops.ai/our-features/linux/",
+    "title": "Linux",
+    "description": "",
+    "content": "Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna turpis.\nEtiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet\nEtiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna, et dapibus turpis.Etiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna, et dapibus turpis.\n"
+  },
+  {
+    "url": "https://docs.intelops.ai/our-features/mac/",
+    "title": "Mac OS",
+    "description": "",
+    "content": "Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna turpis.\nEtiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet\nEtiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna, et dapibus turpis.Etiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna, et dapibus turpis.\n"
+  },
+  {
+    "url": "https://docs.intelops.ai/our-features/routing/",
+    "title": "Routing",
+    "description": "",
+    "content": "Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna turpis.\nEtiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet\nEtiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna, et dapibus turpis.Etiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna, et dapibus turpis.\n"
+  },
+  {
+    "url": "https://docs.intelops.ai/our-features/ubuntu/",
+    "title": "Ubuntu",
+    "description": "",
+    "content": "Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna turpis.\nEtiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet\nEtiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna, et dapibus turpis.Etiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna, et dapibus turpis.\n"
+  },
+  {
+    "url": "https://docs.intelops.ai/our-features/windows/",
+    "title": "Windows",
+    "description": "",
+    "content": "Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna turpis.\nEtiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet\nEtiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna, et dapibus turpis.Etiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum sed eget lectus. Quisque id dictum magna, et dapibus turpis.\n"
+  }]

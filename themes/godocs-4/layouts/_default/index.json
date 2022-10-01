@@ -1,0 +1,15 @@
+[{{ range $id, $el := site.Sections }}
+{{- if and $id (gt $id 0) -}},{{- end }}
+{{ range $index, $page := .Pages}}
+{{- if ne $page.Type "json" -}}
+{{- if and $index (gt $index 0) -}},{{- end }}
+  {
+    "url": "{{ $page.Permalink }}",
+    "title": "{{ htmlEscape $page.Title}}",
+    "description": "{{ htmlEscape .Description}}",
+    "content": {{$page.Plain | jsonify}}
+  }
+{{- end -}}
+{{- end -}}
+{{- end -}}
+]

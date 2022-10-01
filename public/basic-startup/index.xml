@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Basic Startup on Intelops docs</title>
+    <link>https://docs.intelops.ai/basic-startup/</link>
+    <description>Recent content in Basic Startup on Intelops docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright @ Intelops - 2022</copyright>
+    <lastBuildDate>Sat, 29 Dec 2018 11:02:05 +0600</lastBuildDate><atom:link href="https://docs.intelops.ai/basic-startup/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Testing</title>
+      <link>https://docs.intelops.ai/basic-startup/test-section/testing/</link>
+      <pubDate>Wed, 24 Aug 2022 18:30:00 +0000</pubDate>
+      
+      <guid>https://docs.intelops.ai/basic-startup/test-section/testing/</guid>
+      <description>Heading example Tetsting via forestry. For example: using markdown.
+Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 </description>
+    </item>
+    
+  </channel>
+</rss>
