@@ -32,5 +32,3 @@ fields:
 - name: draft
   type: boolean
   label: Draft
-pages:
-- content/new-directory/new-directory.en.md
