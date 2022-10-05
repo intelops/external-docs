@@ -88,7 +88,7 @@ feedback_form_action = "#" # contact form works with https://formspree.io
 [params.logo]
 main = "images/logo-dark.png"
 favicon = "images/favicon-intelops.png"
-main_site_link = "https://resplendent-seahorse-fa6e80.netlify.app/"
+main_site_link = "https://intelops.ai/"
 site_logo = "images/logo-dark.png"
 docs_logo = "images/docs-logo.png"
 
