@@ -76,8 +76,15 @@
   position: sticky;
   top: 95px;
   overflow-y: auto;
-  height: 80vh;
+  height: 90vh;
   user-select: none;
+  @media screen and (min-width: 1480px) {
+    max-width: 360px;
+  }
+  .menu {
+    height: 100%;
+    overflow-y: auto;
+  }
   @include tablet {
     position: fixed;
     width: 97%;
@@ -96,7 +103,6 @@
     }
     .menu {
       height: calc(100% - 74px);
-      overflow-y: auto;
     }
   }
   @include mobile {
