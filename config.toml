@@ -8,6 +8,10 @@ googleAnalytics = "" # example : UA-123-45
 disableLanguages = [] # desable language from here. ex: "fr"
 
 # hugo outputs
+[outputFormats]
+[outputFormats.JSON]
+isPlainText = false
+
 [outputs]
 home = ["HTML", "JSON"]
 

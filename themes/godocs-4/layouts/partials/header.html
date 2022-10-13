@@ -5,7 +5,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent justify-content-between">
 
       <div class="logo-wrapper order-1 mobile-view">
-        {{if not .IsHome }}
+        {{if and (not .IsHome) .IsSection }}
         <button type="button" class="bg-transparent border-0 p-0 mr-2 d-inline-block d-md-none" data-toggle="sidebar">
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -55,7 +55,7 @@
 
         <!-- Language List -->
         {{ if .IsTranslated }}
-        <select class="language-selector" onchange="location = this.value;">
+        <select class="language-selector mr-1 mr-lg-3" onchange="location = this.value;">
           {{ $siteLanguages := .Site.Languages}}
           {{ $pageLang := .Page.Lang}}
           {{ range .Page.AllTranslations }}

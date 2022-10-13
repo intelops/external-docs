@@ -7,9 +7,12 @@ draft: false
 
 The following steps are here to help you initialize your new website. If you don't know Hugo at all, we strongly suggest you learn more about it by following this [great documentation for beginners](https://gohugo.io/overview/quickstart/).
 
+Cypress, Jest, Selenium, Appium
+
 ### Create your project
 
-Hugo provides a `new` command to create a new website.
+Hugo provides a `new` command to create a new website.738
+
 
 ```
 hugo new site <new_project>
@@ -70,3 +73,5 @@ A `public` folder will be generated, containing all static content and assets fo
 {{< notice "info" >}}
 This website can be automatically published and hosted with [Netlify](https://www.netlify.com/) (Read more about [Automated HUGO deployments with Netlify](https://www.netlify.com/blog/2015/07/30/hosting-hugo-on-netlifyinsanely-fast-deploys/)). Alternatively, you can use [Github pages](https://gohugo.io/hosting-and-deployment/hosting-on-github/)
 {{< /notice >}}
+
+Objective

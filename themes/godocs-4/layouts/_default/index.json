@@ -7,7 +7,7 @@
     "url": "{{ $page.Permalink }}",
     "title": "{{ htmlEscape $page.Title}}",
     "description": "{{ htmlEscape .Description}}",
-    "content": {{$page.Plain | jsonify}}
+    "content": "{{ trim ($page.Plain | jsonify) `\n` }}"
   }
 {{- end -}}
 {{- end -}}
