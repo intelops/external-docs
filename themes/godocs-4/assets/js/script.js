@@ -54,6 +54,16 @@ $(preloader);
     return false;
   });
 
+  $('[data-toggle="sidebar"]').on("click", function () {
+    $(".sidenav").toggleClass("show");
+    $(this).children("svg").toggleClass("d-none");
+  });
+
+  $('[data-toggle="search-form"]').on("click", function () {
+    $("[data-search-form]").toggleClass("show");
+    $(this).children("svg").toggleClass("d-none");
+  });
+
   // masonry
   if ($(".masonry-wrapper").length > 0) {
     setTimeout(function () {

@@ -2,13 +2,26 @@
 <section>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-3 col-md-4 d-none d-md-block">
-        <ul class="sidenav menu p-4 border-right border-default mb-0">
+      <div class="col-lg-3 col-md-4 sidenav">
+        <ul class="menu py-4 pr-4 pl-0 pl-xl-4 border-right border-default mb-0">
           {{ partial "menu.html" . }}
         </ul>
       </div>
       <div class="col-lg-7 col-md-8 mx-auto">
-        <div class="px-lg-5 px-4 py-5">
+        <div class="px-xl-5 px-md-0 px-2 py-5">
+
+          {{ if gt .WordCount 400 }}
+          <div class="toc-mobile d-block d-lg-none mb-3">
+            <button class="w-100 border-0 px-2 py-2 rounded-lg d-flex align-items-center justify-content-between" type="button" data-toggle="collapse" data-target="#toc" aria-expanded="false" aria-controls="collapseExample">
+              <span>On this Page</span>
+              <span class="toc-icon"><i class="fa fa-angle-right fa-lg mr-1"></i></span>
+            </button>
+            <div class="collapse mt-2" id="toc">
+              {{ .TableOfContents }}
+            </div>
+          </div>
+          {{ end }}
+
           <h2 class="mb-4 font-weight-medium">{{ .Title }}</h2>
           {{ if .Content }}
           <div class="content" data-spy="scroll" data-target="#TableOfContents" data-offset="20">{{.Content}}</div>

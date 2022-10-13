@@ -78,8 +78,35 @@
   overflow-y: auto;
   height: 80vh;
   user-select: none;
+  @include tablet {
+    position: fixed;
+    width: 97%;
+    max-width: 300px;
+    z-index: 9999;
+    background-color: $white;
+    top: 74px;
+    height: 100vh;
+    left: -300px;
+    transition: 0.25s;
+    padding: 0;
+    padding-left: 25px;
+    &.show {
+      left: 0;
+      box-shadow: 0 4px 40px #eee;
+    }
+    .menu {
+      height: calc(100% - 74px);
+      overflow-y: auto;
+    }
+  }
+  @include mobile {
+    top: 63px;
+    .menu {
+      height: calc(100% - 63px);
+    }
+  }
 
-  &.menu {
+  .menu {
     line-height: 2rem;
     list-style-type: none;
 
@@ -185,8 +212,16 @@
     }
   }
 }
-
 /* /sidenav */
+
+[data-search-form] {
+  @include desktop {
+    display: none;
+    &.show {
+      display: block;
+    }
+  }
+}
 
 .pagination {
   margin-top: 50px;
@@ -678,21 +713,26 @@ textarea.form-control {
 #TableOfContents {
   position: sticky;
   top: 100px;
-  padding-left: 10px;
+  padding-left: 0;
   padding-bottom: 30px;
   border-left: 1px solid $border-color;
+  height: 80vh;
+  overflow-y: auto;
 
   a {
-    font-size: 14px;
+    font-size: 0.8rem;
     display: block;
     padding: 5px 0;
-    color: $text-color-dark;
-    font-weight: 400;
+    color: rgba($text-color-dark, 0.8);
+    font-weight: 500;
     transition: 0.2s ease;
+    padding-left: 10px;
 
     &.active {
       position: relative;
       color: $primary-color;
+      background-color: rgba($primary-color, 0.08);
+      border-radius: 6px;
 
       &::before {
         position: absolute;
@@ -707,14 +747,35 @@ textarea.form-control {
   }
 
   ul {
-    padding-left: 0;
     margin-bottom: 10px;
-    padding-left: 10px;
+    padding-left: 5px;
   }
 
   & > ul {
     & > li:not(:last-child) {
       border-bottom: 1px solid $border-color;
+    }
+  }
+}
+.toc-mobile {
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  svg {
+    transition: 0.25s;
+  }
+  [aria-expanded="true"] {
+    .toc-icon {
+      svg {
+        transform: rotate(90deg);
+      }
+    }
+  }
+  #TableOfContents {
+    height: 50vh;
+    padding-bottom: 0;
+    border-left: 0;
+    a {
+      font-size: 1rem;
     }
   }
 }
