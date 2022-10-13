@@ -1,4 +1,4 @@
-<footer>
+<footer class="border-top">
   <div class="container">
     <div class="row align-items-center border-bottom py-5">
       <div class="col-lg-4">
@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="py-4 text-center">
-      <small class="text-light">{{ site.Params.copyright | markdownify }}</small>
+      <small class="text-light">Copyright @ {{ now.Format "2006"}} {{ site.Params.copyright | markdownify }}</small>
     </div>
   </div>
 </footer>

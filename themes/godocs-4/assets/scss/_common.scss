@@ -48,7 +48,7 @@ a,
 button,
 select {
   cursor: pointer;
-  transition: .2s ease;
+  transition: 0.2s ease;
 
   &:focus {
     outline: 0;
@@ -61,6 +61,10 @@ a:hover {
 
 .slick-slide {
   outline: 0;
+}
+
+.container-fluid {
+  max-width: 1860px;
 }
 
 .section {
@@ -94,13 +98,13 @@ a:hover {
 
   &::before {
     position: absolute;
-    content: '';
+    content: "";
     height: 100%;
     width: 100%;
     top: 0;
     left: 0;
     background: $black;
-    opacity: .5;
+    opacity: 0.5;
   }
 }
 
@@ -172,7 +176,7 @@ a:hover {
   margin-bottom: 100px !important;
 }
 
-iframe{
+iframe {
   max-width: 100%;
 }
 
@@ -192,7 +196,8 @@ iframe{
   top: 0 !important;
 }
 
-.mark, mark {
+.mark,
+mark {
   padding: 0;
   background-color: inherit;
   text-decoration: underline;

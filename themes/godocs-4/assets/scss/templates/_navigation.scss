@@ -1,5 +1,7 @@
 .navigation {
   transition: 0.2s ease;
+  border-bottom: 1px solid $border-color;
+  background: $white;
 
   &.home-nav {
     transition: unset;
@@ -27,7 +29,6 @@
 
   &.nav-bg {
     background: $white;
-    box-shadow: 0px 5px 20px rgba(62, 62, 62, 0.08) !important;
 
     @include desktop {
       top: -60px;
@@ -133,12 +134,6 @@
 
   .site-logo {
     white-space: nowrap;
-
-    .site {
-      @include tablet {
-        display: none;
-      }
-    }
   }
 
   .logo-devider {
@@ -182,6 +177,9 @@
     @include mobile {
       height: 40px !important;
     }
+  }
+  button {
+    zoom: 0.85;
   }
 
   .btn-primary {

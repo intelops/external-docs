@@ -1,6 +1,6 @@
 {{ "<!-- navigation -->" | safeHTML }}
 <header class="sticky-top navigation {{if .IsHome}}home-nav{{end}}">
-  <div class="container">
+  <div class="container-fluid">
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent justify-content-between">
       <div class="logo-wrapper order-1 mobile-view">
@@ -13,7 +13,8 @@
         <a class="docs-logo" href="{{ .Site.BaseURL | relLangURL }}">
           <img class="docs"
             src="{{if site.Params.logo.docs_logo}}{{site.Params.logo.docs_logo | absURL}}{{else}}{{ site.Params.logo.main | absURL }}{{end}}"
-            alt="{{ site.Title }}"></a>
+            alt="{{ site.Title }}">
+        </a>
       </div>
 
       {{if not .IsHome }}

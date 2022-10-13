@@ -5,7 +5,7 @@ theme = "godocs-4"
 # google analytics
 googleAnalytics = "" # example : UA-123-45
 # disable language
-disableLanguages = ["fr"] # desable language from here
+disableLanguages = [] # desable language from here. ex: "fr"
 
 # hugo outputs
 [outputs]
@@ -14,6 +14,12 @@ home = ["HTML", "JSON"]
 # render unsafe html
 [markup.goldmark.renderer]
 unsafe = true
+
+# table of content
+[markup.tableOfContents]
+startLevel = 0
+endLevel = 6
+ordered = false
 
 ############################# Plugins ##############################
 
@@ -41,6 +47,8 @@ link = "plugins/featherlight/featherlight.min.js"
 [[params.plugins.js]]
 link = "plugins/clipboard/clipboard.min.js"
 [[params.plugins.js]]
+link = "plugins/scrollmenu/scrollmenu.min.js"
+[[params.plugins.js]]
 link = "plugins/search/auto-complete.js"
 [[params.plugins.js]]
 link = "plugins/search/search.js"
@@ -57,7 +65,7 @@ link = "plugins/search/search-page.js"
 [params.variables]
 # Color Variables
 primary_color = "#F16F33"
-text_color = "#333"
+text_color = "#1c1e21"
 text_color_dark = "#222"
 text_color_light = "#999"
 body_color = "#fff"
@@ -67,7 +75,7 @@ white = "#fff"
 light = "#FBFBFB"
 
 # Font Variables
-primary_font = "Montserrat:wght@300;400;500;600;700;800"
+primary_font = "Poppins:wght@300;400;500;600"
 primary_font_type = "sans-serif"                         # [serif/sans-serif]
 secondary_font = ""
 secondary_font_type = ""                                 # [serif/sans-serif]
@@ -89,7 +97,7 @@ feedback_form_action = "#" # contact form works with https://formspree.io
 main = "images/logo-dark.png"
 favicon = "images/favicon-intelops.png"
 main_site_link = "https://intelops.ai/"
-site_logo = "images/logo-dark.png"
+site_logo = "images/favicon-intelops.png"
 docs_logo = "images/docs-logo.png"
 
 # Preloader
@@ -137,7 +145,7 @@ languageName = "En"
 languageCode = "en-us"
 weight = 1
 # copyright
-copyright = "Copyright @ Intelops - 2022"
+copyright = "Intelops, Inc. TX USA"
 
 # banner
 [Languages.en.banner]
@@ -189,7 +197,7 @@ languageName = "Fr"
 languageCode = "fr-fr"
 weight = 2
 # copyright
-copyright = "Conçu par [Themefisher](https://themefisher.com) & développé par [Gethugothemes](https://gethugothemes.com)"
+copyright = "Intelops, Inc. TX USA"
 
 # banner
 [Languages.fr.banner]
