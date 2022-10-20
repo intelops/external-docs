@@ -43,15 +43,15 @@ disableFaq = false
 
 # logo
 [params.logo]
-main = "images/logo-dark.png"
+main = "images/intelops1.png"
 favicon = "images/favicon-intelops.png"
 main_site_link = "https://intelops.ai/"
-site_logo = "images/favicon-intelops.png"
+site_logo = "images/intelops-gear-only-1.png"
 docs_logo = "images/docs-logo.png"
 
 # Preloader
 [params.preloader]
-enable = true
+enable = false
 preloader = "images/loader.png" # use jpg, png, svg or gif format.
 
 # Navigation button
@@ -98,8 +98,8 @@ copyright = "Intelops, Inc. TX USA"
 
 # banner
 [Languages.en.banner]
-title = "Documentation Theme By Themefisher Team"
-subtitle = "Lorem ipsum dolor amet, consetetur sadiffspscing elitr, diam nonumy invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua At."
+title = "Documentation for IntelOps.Ai Components"
+subtitle = "Democratizing Cloud-Native"
 image = "images/banner.jpg"
 
 # feedback
