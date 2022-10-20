@@ -13,7 +13,7 @@ disableLanguages = [] # desable language from here. ex: "fr"
 isPlainText = false
 
 [outputs]
-home = ["HTML", "JSON"]
+home = ["HTML","JSON"]
 
 # render unsafe html
 [markup.goldmark.renderer]
@@ -25,67 +25,6 @@ startLevel = 0
 endLevel = 6
 ordered = false
 
-############################# Plugins ##############################
-
-# CSS Plugin
-[[params.plugins.css]]
-link = "plugins/bootstrap/bootstrap.min.css"
-[[params.plugins.css]]
-link = "plugins/search/auto-complete.css"
-[[params.plugins.css]]
-link = "plugins/featherlight/featherlight.min.css"
-
-
-# JS Plugin
-[[params.plugins.js]]
-link = "plugins/jquery/jquery.min.js"
-[[params.plugins.js]]
-link = "plugins/bootstrap/bootstrap.min.js"
-[[params.plugins.js]]
-link = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js"
-attributes = "crossorigin='anonymous' defer='defer' data-search-pseudo-elements"
-[[params.plugins.js]]
-link = "plugins/masonry/masonry.min.js"
-[[params.plugins.js]]
-link = "plugins/featherlight/featherlight.min.js"
-[[params.plugins.js]]
-link = "plugins/clipboard/clipboard.min.js"
-[[params.plugins.js]]
-link = "plugins/scrollmenu/scrollmenu.min.js"
-[[params.plugins.js]]
-link = "plugins/search/auto-complete.js"
-[[params.plugins.js]]
-link = "plugins/search/search.js"
-[[params.plugins.js]]
-link = "plugins/search/lunr.min.js"
-[[params.plugins.js]]
-link = "plugins/search/fuse.min.js"
-[[params.plugins.js]]
-link = "plugins/search/mark.js"
-[[params.plugins.js]]
-link = "plugins/search/search-page.js"
-
-# site variables
-[params.variables]
-# Color Variables
-primary_color = "#F16F33"
-text_color = "#1c1e21"
-text_color_dark = "#222"
-text_color_light = "#999"
-body_color = "#fff"
-border_color = "#E2E2E2"
-black = "#000"
-white = "#fff"
-light = "#FBFBFB"
-
-# Font Variables
-primary_font = "Poppins:wght@300;400;500;600"
-primary_font_type = "sans-serif"                         # [serif/sans-serif]
-secondary_font = ""
-secondary_font_type = ""                                 # [serif/sans-serif]
-icon_font = "Font Awesome 5 Free"
-
-
 #################### default parameters ################################
 [params]
 # meta description
@@ -95,6 +34,12 @@ description = "This is meta description"
 contact_form_action = "#" # contact form works with https://formspree.io
 # feedback form action
 feedback_form_action = "#" # contact form works with https://formspree.io
+# current doc version [folder_name]
+latestDocVersion = "1.1"
+# enable/disable Doc Version
+disableDocVersion = false
+# frequently asked question in homepage
+disableFaq = false
 
 # logo
 [params.logo]
@@ -245,3 +190,65 @@ weight = 2
 name = "Github"
 url = "https://github.com/themefisher/"
 weight = 3
+
+
+
+############################# Plugins ##############################
+
+# CSS Plugin
+[[params.plugins.css]]
+link = "plugins/bootstrap/bootstrap.min.css"
+[[params.plugins.css]]
+link = "plugins/search/auto-complete.css"
+[[params.plugins.css]]
+link = "plugins/featherlight/featherlight.min.css"
+
+
+# JS Plugin
+[[params.plugins.js]]
+link = "plugins/jquery/jquery.min.js"
+[[params.plugins.js]]
+link = "plugins/bootstrap/bootstrap.min.js"
+[[params.plugins.js]]
+link = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js"
+attributes = "crossorigin='anonymous' defer='defer' data-search-pseudo-elements"
+[[params.plugins.js]]
+link = "plugins/masonry/masonry.min.js"
+[[params.plugins.js]]
+link = "plugins/featherlight/featherlight.min.js"
+[[params.plugins.js]]
+link = "plugins/clipboard/clipboard.min.js"
+[[params.plugins.js]]
+link = "plugins/scrollmenu/scrollmenu.min.js"
+[[params.plugins.js]]
+link = "plugins/search/auto-complete.js"
+[[params.plugins.js]]
+link = "plugins/search/search.js"
+[[params.plugins.js]]
+link = "plugins/search/lunr.min.js"
+[[params.plugins.js]]
+link = "plugins/search/fuse.min.js"
+[[params.plugins.js]]
+link = "plugins/search/mark.js"
+[[params.plugins.js]]
+link = "plugins/search/search-page.js"
+
+# site variables
+[params.variables]
+# Color Variables
+primary_color = "#F16F33"
+text_color = "#1c1e21"
+text_color_dark = "#222"
+text_color_light = "#999"
+body_color = "#fff"
+border_color = "#E2E2E2"
+black = "#000"
+white = "#fff"
+light = "#FBFBFB"
+
+# Font Variables
+primary_font = "Poppins:wght@300;400;500;600"
+primary_font_type = "sans-serif"                         # [serif/sans-serif]
+secondary_font = ""
+secondary_font_type = ""                                 # [serif/sans-serif]
+icon_font = "Font Awesome 5 Free"

@@ -1,8 +1,28 @@
 {{- $currentNode := . }}
 
-{{- range .Site.Home.Sections.ByWeight}}
+{{ $version:= where site.Pages "Params.version" "!=" nil}}
+
+{{ range $version}}
+<ul id="{{.Params.version}}" class="version-tree menu  d-none py-4 pr-4 pl-0 pl-xl-4 border-right border-default mb-0">
+{{- range (where (where site.Pages "Section" .Params.version) "Type" "docs" )}}
 {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode }}
 {{- end}}
+</ul>
+{{ end }}
+
+<script>
+  let url = new URL(window.location.href);
+  let urlFirst = String(url.pathname).split("/")[1];
+  let urlSec = String(url.pathname).split("/")[2];
+
+  let versionTree = document.querySelectorAll(".version-tree");
+  versionTree.forEach((el, i) => {
+    let id = el.getAttribute("id");
+    if ((id == urlFirst) || (id == urlSec)) {
+      el.classList.remove("d-none");
+    }
+  });
+</script>
 
 <!-- templates -->
 {{- define "section-tree-nav" }}

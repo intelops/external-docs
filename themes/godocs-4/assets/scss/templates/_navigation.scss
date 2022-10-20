@@ -50,6 +50,31 @@
   }
 }
 
+.dropdown-doc-version {
+  button {
+    font-weight: 600;
+    line-height: 2.5;
+    margin-right: 10px;
+  }
+  .dropdown-item.active {
+    font-weight: 600;
+    color: #212529;
+    background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23292b2c' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e")
+      no-repeat 0.4rem 0.6rem/0.75rem 0.75rem;
+  }
+  .dropdown-item.current {
+    font-weight: 600;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23292b2c' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: left 0.4rem top 0.7rem;
+    background-size: 0.75rem 0.75rem;
+  }
+}
+.dropdown-item:focus,
+.dropdown-item:active {
+  background-color: $primary-color;
+}
+
 .language-selector {
   border: 0;
   margin-right: 10px;

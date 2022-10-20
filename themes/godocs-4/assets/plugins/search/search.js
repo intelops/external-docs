@@ -1,4 +1,4 @@
-var lunrIndex, pagesIndex;
+var lunrIndex, pagesIndex, version;
 
 function endsWith(str, suffix) {
   return str.indexOf(suffix, str.length - suffix.length) !== -1;
@@ -16,6 +16,7 @@ function initLunr() {
       pagesIndex = index;
       // Set up lunrjs by declaring the fields we use
       // Also provide their boost level for the ranking
+
       lunrIndex = lunr(function () {
         this.ref("url");
         this.field("title", {
@@ -49,6 +50,19 @@ function initLunr() {
  * @param  {String} query
  * @return {Array}  results
  */
+
+// let bodyVersion = $("body").attr("data-version");
+// let urlVersion = new URL(window.location.href);
+// urlVersion = String(urlVersion.pathname).split("/")[1];
+// if (urlVersion) {
+//   console.log(urlVersion);
+// } else {
+//   console.log(bodyVersion);
+// }
+// if (urlVersion == bodyVersion) {
+//   console.log(urlVersion);
+// }
+
 function search(queryTerm) {
   // Find the item in our index corresponding to the lunr one to have more info
   return lunrIndex
