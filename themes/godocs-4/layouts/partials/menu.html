@@ -1,0 +1,38 @@
+{{- $currentNode := . }}
+
+{{- range .Site.Home.Sections.ByWeight}}
+{{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode }}
+{{- end}}
+
+<!-- templates -->
+{{- define "section-tree-nav" }}
+ {{- with .sect}}
+  {{- if .IsSection }}
+    {{- $numberOfPages := (add (len .Pages) (len .Sections)) }}
+    {{- safeHTML .Params.head}}
+    <li data-nav-id="{{.Permalink}}" class="sidenav-item {{- if ne $numberOfPages 0 }} haschildren{{end}}">
+
+      <div>
+        <a href="{{ .RelPermalink}}">{{safeHTML .Params.Pre}}{{.Title}}{{safeHTML .Params.Post}}</a>
+        {{- if ne $numberOfPages 0 }}
+        <div class="category-icon"><i class="fa fa-angle-right fa-lg"></i></div>
+        {{- end}}
+      </div>
+
+      {{- if ne $numberOfPages 0 }}
+      <ul>
+        {{- $pages := .Pages }}
+        {{- if .Sections}}
+        {{- $pages = (.Pages | union .Sections) }}
+        {{- end}}
+
+        {{- range $pages.ByWeight }}
+        {{- template "section-tree-nav" dict "sect" . }}
+        {{- end}}
+      </ul>
+      {{- end}}
+
+    </li>
+  {{- end}}
+ {{- end}}
+{{- end}}

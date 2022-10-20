@@ -9,7 +9,7 @@
             <script>
               var str = (window.location.search).substr(3);
               var result = str.replaceAll("+", " ");
-              document.write(result);
+              document.write(decodeURIComponent(result));
             </script>
           </span>
         </h2>
@@ -17,9 +17,10 @@
           <div id="search-results"></div>
           <script id="search-result-template" type="text/x-js-template">
             <div class="py-4 search-item" id="summary-${key}">
-            <a class="h4 mb-0" href="${link}">${title}</a>
-          </div>
-        </script>
+              <a class="h4 mb-2 d-inline-block" href="${link}">${title}</a>
+              <span class="d-block">${snippet}</span>
+            </div>
+          </script>
         </div>
       </div>
     </div>

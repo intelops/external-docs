@@ -5,14 +5,11 @@ weight: 2
 draft: false
 ---
 
-The following steps are here to help you initialize your new website. If you don't know Hugo at all, we strongly suggest you learn more about it by following this [great documentation for beginners](https://gohugo.io/overview/quickstart/).
-
-Cypress, Jest, Selenium, Appium
+Les étapes suivantes sont là pour vous aider à initialiser votre nouveau site Web. Si vous ne connaissez pas du tout Hugo, nous vous suggérons fortement d'en savoir plus en suivant ce [excellente documentation pour les débutants](https://gohugo.io/overview/quickstart/).
 
 ### Create your project
 
-Hugo provides a `new` command to create a new website.738
-
+Hugo provides a `new` command to create a new website.
 
 ```
 hugo new site <new_project>
@@ -73,5 +70,3 @@ A `public` folder will be generated, containing all static content and assets fo
 {{< notice "info" >}}
 This website can be automatically published and hosted with [Netlify](https://www.netlify.com/) (Read more about [Automated HUGO deployments with Netlify](https://www.netlify.com/blog/2015/07/30/hosting-hugo-on-netlifyinsanely-fast-deploys/)). Alternatively, you can use [Github pages](https://gohugo.io/hosting-and-deployment/hosting-on-github/)
 {{< /notice >}}
-
-Objective

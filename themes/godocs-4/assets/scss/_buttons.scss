@@ -8,7 +8,7 @@
   border: 1px solid;
   position: relative;
   z-index: 1;
-  transition: .2s ease;
+  transition: 0.2s ease;
   font-weight: 600;
 
   &:hover,
@@ -17,9 +17,13 @@
     outline: 0;
     box-shadow: none !important;
   }
-  &-sm{
+  &-sm {
     font-size: 14px;
     padding: 10px 25px;
+    @include tablet {
+      font-size: 13px;
+      padding: 9px 14px;
+    }
   }
 }
 
