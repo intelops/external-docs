@@ -11,3 +11,4 @@ public
 resources
 .hugo_build.lock
 jsconfig.json
+test.file

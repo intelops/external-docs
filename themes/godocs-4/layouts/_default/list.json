@@ -1,4 +1,4 @@
-[{{ range $id, $el := (where (where site.Pages "Section" site.Params.latestDocVersion) "Type" "docs" ) }}
+[{{ range $id, $el := site.Sections }}
 {{- if and $id (gt $id 0) -}},{{- end }}
 {{ range $index, $page := .Pages}}
 {{- if ne $page.Type "json" -}}

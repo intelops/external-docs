@@ -27,7 +27,7 @@
   <div class="container">
     <h2 class="section-title">{{ i18n `topics`}}</h2>
     <div class="row masonry-wrapper">
-      {{ range (where .Site.Pages "Type" "docs") }}
+      {{ range (where (where site.Pages "Section" site.Params.latestDocVersion) "Type" "docs" ) }}
       <div class="col-lg-4 col-sm-6 mb-4">
         <div class="card match-height- text-center">
           <div class="card-body">
@@ -47,8 +47,10 @@
 </section>
 <!-- /topics -->
 
+{{ if not site.Params.disableFaq }}
 <!-- faq -->
-{{ with .Site.GetPage "/faq" }}
+{{ $faq := add (add `/` (string site.Params.latestDocVersion)) `/faq` }}
+{{ with site.GetPage $faq }}
 <section class="section pb-0">
   <div class="container">
     <h2 class="section-title">{{ .Title }}</h2>
@@ -59,6 +61,7 @@
 </section>
 {{ end }}
 <!-- /faq -->
+{{ end }}
 
 <!-- call to action -->
 {{ if .Site.Params.call_to_action.enable }}

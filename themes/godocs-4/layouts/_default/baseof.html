@@ -5,7 +5,7 @@
 	{{- partialCached "style.html" . -}}
 </head>
 
-<body>
+<body data-version="{{site.Params.latestDocVersion}}">
 	{{- partialCached "preloader.html" . -}}
 	{{- partial "header.html" . -}}
 	{{- block "main" . }}{{- end }}
