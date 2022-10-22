@@ -11,14 +11,10 @@
 {{ end }}
 
 <script>
-  let url = new URL(window.location.href);
-  let urlFirst = String(url.pathname).split("/")[1];
-  let urlSec = String(url.pathname).split("/")[2];
-
   let versionTree = document.querySelectorAll(".version-tree");
   versionTree.forEach((el, i) => {
     let id = el.getAttribute("id");
-    if ((id == urlFirst) || (id == urlSec)) {
+    if ((id == urlVersion) || (id == urlVersionMultilingual)) {
       el.classList.remove("d-none");
     }
   });

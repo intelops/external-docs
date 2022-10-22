@@ -1,6 +1,6 @@
 ---
-title: "Got Any Questions"
+title: "Search Result"
 description: "this is meta description"
-layout: "contact"
+layout: "search"
 draft: false
 ---

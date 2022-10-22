@@ -33,3 +33,6 @@
 
 - id: search_result
   translation: Search result for
+
+- id: changelog
+  translation: changelog

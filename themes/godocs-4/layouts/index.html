@@ -8,7 +8,8 @@
         <h1 class="mb-4 display-3">{{ .title | markdownify }}</h1>
         <p class="mb-4">{{ .subtitle | markdownify }}</p>
         {{ end }}
-        <form class="search-wrapper home-search" name="search-form" action="{{ `search` | relLangURL }}" onsubmit="return validateForm()">
+        <form class="search-wrapper home-search" name="search-form"
+         action="{{ (add site.Params.latestDocVersion `/search`) | relLangURL }}" onsubmit="return validateForm()">
           <input id="search-by" name="s" type="search" class="form-control form-control-lg px-4"
             placeholder="{{ i18n `search_placeholder`}}">
           <button type="submit" class="btn btn-primary d-none d-sm-block">{{ i18n `search`}}</button>
@@ -47,7 +48,7 @@
 </section>
 <!-- /topics -->
 
-{{ if not site.Params.disableFaq }}
+{{ if site.Params.faq }}
 <!-- faq -->
 {{ $faq := add (add `/` (string site.Params.latestDocVersion)) `/faq` }}
 {{ with site.GetPage $faq }}
@@ -64,8 +65,8 @@
 {{ end }}
 
 <!-- call to action -->
-{{ if .Site.Params.call_to_action.enable }}
-{{ with .Site.Params.call_to_action }}
+{{ if site.Params.call_to_action.enable }}
+{{ with site.Params.call_to_action }}
 <section class="section">
   <div class="container">
     <div class="row align-items-center">
