@@ -38,8 +38,10 @@ feedback_form_action = "#" # contact form works with https://formspree.io
 latestDocVersion = "1.1"
 # enable/disable Doc Version
 disableDocVersion = false
+docVersion = true
 # frequently asked question in homepage
 disableFaq = false
+faq = true
 
 # logo
 [params.logo]
