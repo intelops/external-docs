@@ -30,14 +30,27 @@ if (searchQuery) {
   executeSearch(searchQuery);
 }
 
+let currentVersion = $("body").attr("data-version");
+let searchPageVerUrl = String(url.pathname).split("/")[1];
+let searchPageVerUrlMultilingual = String(url.pathname).split("/")[2];
+
 function executeSearch(searchQuery) {
   $.getJSON(indexURL, function (data) {
     var pages = data;
     var fuse = new Fuse(pages, fuseOptions);
     var result = fuse.search(searchQuery);
-    console.log(data);
+
     if (result.length > 0) {
-      populateResults(result);
+      result.forEach(function (el) {
+        if (
+          searchPageVerUrl == el.item.version ||
+          searchPageVerUrlMultilingual == el.item.version
+        ) {
+          populateResults(el);
+        } else if (currentVersion == el.item.version) {
+          populateResults(el);
+        }
+      });
     } else {
       $("#search-results").append(
         '<div class="text-center"><img class="img-fluid" src="https://user-images.githubusercontent.com/58769763/75105664-632cd680-5640-11ea-94e0-127848a702df.png"><h3>No Search Found</h3></div>'
@@ -46,52 +59,55 @@ function executeSearch(searchQuery) {
   });
 }
 
-function populateResults(result) {
-  $.each(result, function (key, value) {
-    var content = value.item.content;
-    var snippet = "";
-    var snippetHighlights = [];
-    if (fuseOptions.tokenize) {
-      snippetHighlights.push(searchQuery);
-    } else {
-      $.each(value.matches, function (matchKey, mvalue) {
-        if (mvalue.key == "content") {
-          start =
-            mvalue.indices[0][0] - summaryInclude > 0
-              ? mvalue.indices[0][0] - summaryInclude
-              : 0;
-          end =
-            mvalue.indices[0][1] + summaryInclude < content.length
-              ? mvalue.indices[0][1] + summaryInclude
-              : content.length;
-          snippet += content.substring(start, end);
-          snippetHighlights.push(
-            mvalue.value.substring(
-              mvalue.indices[0][0],
-              mvalue.indices[0][1] - mvalue.indices[0][0] + 1
-            )
-          );
-        }
+function populateResults(el) {
+  $.each(el, function (key, value) {
+    var checkArray = Array.isArray(value);
+    if (checkArray != true) {
+      var content = value.content;
+      var snippet = "";
+      var snippetHighlights = [];
+      if (fuseOptions.tokenize) {
+        snippetHighlights.push(searchQuery);
+      } else {
+        $.each(value.matches, function (matchKey, mvalue) {
+          if (mvalue.key == "content") {
+            start =
+              mvalue.indices[0][0] - summaryInclude > 0
+                ? mvalue.indices[0][0] - summaryInclude
+                : 0;
+            end =
+              mvalue.indices[0][1] + summaryInclude < content.length
+                ? mvalue.indices[0][1] + summaryInclude
+                : content.length;
+            snippet += content.substring(start, end);
+            snippetHighlights.push(
+              mvalue.value.substring(
+                mvalue.indices[0][0],
+                mvalue.indices[0][1] - mvalue.indices[0][0] + 1
+              )
+            );
+          }
+        });
+      }
+
+      if (snippet.length < 1) {
+        snippet += content.substring(0, summaryInclude * 2);
+      }
+      //pull template from hugo templarte definition
+      var templateDefinition = $("#search-result-template").html();
+      //replace values
+      var output = render(templateDefinition, {
+        key: key,
+        title: value.title,
+        link: value.url,
+        snippet: snippet,
+      });
+      $("#search-results").append(output);
+
+      $.each(snippetHighlights, function (snipkey, snipvalue) {
+        $("#summary-" + key).mark(snipvalue);
       });
     }
-
-    if (snippet.length < 1) {
-      snippet += content.substring(0, summaryInclude * 2);
-    }
-    //pull template from hugo templarte definition
-    var templateDefinition = $("#search-result-template").html();
-    //replace values
-    var output = render(templateDefinition, {
-      key: key,
-      title: value.item.title,
-      link: value.item.url,
-      snippet: snippet,
-    });
-    $("#search-results").append(output);
-
-    $.each(snippetHighlights, function (snipkey, snipvalue) {
-      $("#summary-" + key).mark(snipvalue);
-    });
   });
 }
 

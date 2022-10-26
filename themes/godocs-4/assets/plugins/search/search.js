@@ -4,6 +4,12 @@ function endsWith(str, suffix) {
   return str.indexOf(suffix, str.length - suffix.length) !== -1;
 }
 
+// let bodyVersion = $("body").attr("data-version");
+let bodyVersion = $("body").attr("data-version");
+let versonUrl = new URL(window.location.href);
+let versonUrlOne = String(url.pathname).split("/")[1];
+let versonUrlTwo = String(url.pathname).split("/")[2];
+
 // Initialize lunrjs using our generated index file
 function initLunr() {
   if (!endsWith(baseurl, "/")) {
@@ -34,7 +40,11 @@ function initLunr() {
 
         // Feed lunr with each file and let lunr actually index them
         pagesIndex.forEach(function (page) {
-          this.add(page);
+          if (versonUrlOne == page.version || versonUrlTwo == page.version) {
+            this.add(page);
+          } else if (bodyVersion == page.version) {
+            this.add(page);
+          }
         }, this);
       });
     })
@@ -50,18 +60,6 @@ function initLunr() {
  * @param  {String} query
  * @return {Array}  results
  */
-
-// let bodyVersion = $("body").attr("data-version");
-// let urlVersion = new URL(window.location.href);
-// urlVersion = String(urlVersion.pathname).split("/")[1];
-// if (urlVersion) {
-//   console.log(urlVersion);
-// } else {
-//   console.log(bodyVersion);
-// }
-// if (urlVersion == bodyVersion) {
-//   console.log(urlVersion);
-// }
 
 function search(queryTerm) {
   // Find the item in our index corresponding to the lunr one to have more info
