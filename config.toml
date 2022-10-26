@@ -37,10 +37,10 @@ feedback_form_action = "#" # contact form works with https://formspree.io
 # current doc version [folder_name]
 latestDocVersion = "1.1"
 # enable/disable Doc Version
-disableDocVersion = false
+# disableDocVersion = false
 docVersion = true
 # frequently asked question in homepage
-disableFaq = false
+# disableFaq = false
 faq = true
 
 # logo
@@ -57,10 +57,6 @@ enable = false
 preloader = "images/loader.png" # use jpg, png, svg or gif format.
 
 # Navigation button
-[[params.nav_button]]
-style = "outline"   # available style: solid, outline
-label = "changelog"
-link = "changelog/"
 
 [[params.nav_button]]
 style = "solid"   # available style: solid, outline
@@ -126,10 +122,6 @@ link = "contact/"
 
 
 ############## English navigation ###############
-[[Languages.en.menu.footer]]
-name = "Changelog"
-url = "changelog/"
-weight = 1
 
 [[Languages.en.menu.footer]]
 name = "Contact"
@@ -178,10 +170,6 @@ link = "contact/"
 
 
 ############## French navigation ###############
-[[Languages.fr.menu.footer]]
-name = "Changelog"
-url = "changelog/"
-weight = 1
 
 [[Languages.fr.menu.footer]]
 name = "Contact"
