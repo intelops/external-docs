@@ -1,11 +1,40 @@
 {{- $currentNode := . }}
+{{- $language := .Language }}
 
 {{ $version:= where site.Pages "Params.version" "!=" nil}}
 
 {{ range $version}}
 <ul id="{{.Params.version}}" class="version-tree menu  d-none py-4 pr-4 pl-0 pl-xl-4 border-right border-default mb-0">
 {{- range (where (where site.Pages "Section" .Params.version) "Type" "docs" )}}
+
+{{ $currentSection := "" }}
+{{ $sliceSectionURL := split (string .RelPermalink) "/" }}
+{{ range $i, $e:= $sliceSectionURL }}
+<!-- check language -->
+{{ if eq (string $language) "en" }}
+  {{ if eq $i 2 }} {{ $currentSection = . }} {{ end }}
+{{ else }}
+  {{ if eq $i 3 }} {{ $currentSection = . }} {{ end }}
+{{ end }}
+<!-- end check language -->
+{{ end }}
+
+{{ $currentPageSection := "" }}
+{{ $sliceCurrentPage := split (string $currentNode.RelPermalink) "/" }}
+{{ range $i, $e:= $sliceCurrentPage }}
+<!-- check language -->
+{{ if eq (string $language) "en" }}
+  {{ if eq $i 2 }} {{ $currentPageSection = . }} {{ end }}
+{{ else }}
+  {{ if eq $i 3 }} {{ $currentPageSection = . }} {{ end }}
+{{ end }}
+<!-- end check language -->
+{{ end }}
+
+{{- if eq $currentSection $currentPageSection }}
 {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode }}
+{{- end}}
+
 {{- end}}
 </ul>
 {{ end }}
@@ -22,6 +51,7 @@
 
 <!-- templates -->
 {{- define "section-tree-nav" }}
+ {{ $currentNode := .currentnode }}
  {{- with .sect}}
   {{- if .IsSection }}
     {{- $numberOfPages := (add (len .Pages) (len .Sections)) }}

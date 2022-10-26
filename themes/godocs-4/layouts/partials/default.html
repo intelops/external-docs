@@ -8,7 +8,7 @@
       <div class="col-lg-7 col-md-8 mx-auto">
         <div class="px-xl-5 px-md-0 px-2 py-5">
 
-          {{ if gt .WordCount 400 }}
+          {{ if gt .WordCount 100 }}
           <div class="toc-mobile d-block d-lg-none mb-3">
             <button class="w-100 border-0 px-2 py-2 rounded-lg d-flex align-items-center justify-content-between" type="button" data-toggle="collapse" data-target="#toc" aria-expanded="false" aria-controls="collapseExample">
               <span>On this Page</span>
@@ -25,9 +25,26 @@
           <div class="content" data-spy="scroll" data-target="#TableOfContents" data-offset="20">{{.Content}}</div>
           {{ else }}
           <ul class="list-styled text-left mb-4">
-            {{ range .Data.Pages }}
-            <li><a href="{{.Permalink}}">{{.Title}}</a></li>
-            {{end}}
+            
+            {{- if .IsSection }}
+              {{- $numberOfPages := (add (len .Pages) (len .Sections)) }}
+              {{- safeHTML .Params.head}}
+          
+              {{- if ne $numberOfPages 0 }}
+                {{- $pages := .Pages }}
+                {{- if .Sections}}
+                {{- $pages = (.Pages | union .Sections) }}
+                {{- end}}
+        
+                {{- range $pages.ByWeight }}
+                {{- if .IsSection }}
+                <li><a href="{{.Permalink}}">{{.Title}}</a></li>
+                {{- end}}
+                {{- end}}
+              {{- end}}
+          
+            {{- end}}
+            
           </ul>
           {{ end }}
           <nav class="pagination">
@@ -52,8 +69,13 @@
             {{ $pages := ($currentNode.Scratch.Get "pages") }}
 
             {{ range $pages.ByWeight  }}
-            {{ template "menu-nextprev" dict "menu" . "currentnode" $currentNode }}
-            {{end}}
+              {{ if .IsSection }}
+                {{ if eq .Section $currentNode.Section }}
+                  {{ template "menu-nextprev" dict "menu" . "currentnode" $currentNode }}
+                {{ end }}
+              {{ end }}
+            {{ end }}
+
             {{ end }}
             {{ end }}
 
@@ -70,7 +92,7 @@
       </div>
       
       <div class="col-lg-2 d-none d-lg-block">
-        {{ if gt .WordCount 400 }}
+        {{ if gt .WordCount 100 }}
           {{ .TableOfContents }}
         {{ end }}
       </div>
