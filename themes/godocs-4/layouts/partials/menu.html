@@ -4,7 +4,7 @@
 {{ $version:= where site.Pages "Params.version" "!=" nil}}
 
 {{ range $version}}
-<ul id="{{.Params.version}}" class="version-tree menu  d-none py-4 pr-4 pl-0 pl-xl-4 border-right border-default mb-0">
+<ul id="{{.Params.version}}" class="version-tree menu d-none py-4 pr-4 pl-0 pl-xl-4 border-right border-default mb-0">
 {{- range (where (where site.Pages "Section" .Params.version) "Type" "docs" )}}
 
 {{ $currentSection := "" }}
@@ -59,7 +59,7 @@
     <li data-nav-id="{{.Permalink}}" class="sidenav-item {{- if ne $numberOfPages 0 }} haschildren{{end}}">
 
       <div>
-        <a href="{{ .RelPermalink}}">{{safeHTML .Params.Pre}}{{.Title}}{{safeHTML .Params.Post}}</a>
+        <a href="{{ .RelPermalink}}">{{.Title}}</a>
         {{- if ne $numberOfPages 0 }}
         <div class="category-icon"><i class="fa fa-angle-right fa-lg"></i></div>
         {{- end}}

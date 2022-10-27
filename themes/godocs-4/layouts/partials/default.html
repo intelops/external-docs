@@ -2,7 +2,10 @@
 <section>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-3 col-md-4 sidenav">
+      <div class="col-lg-3 col-md-4 sidenav invisible">
+        <button class="sidenav-toggler border-0">
+          <i class="fas fa-chevron-left"></i>
+        </button>
         {{ partial "menu.html" . }}
       </div>
       <div class="col-lg-7 col-md-8 mx-auto">
@@ -14,8 +17,10 @@
               <span>On this Page</span>
               <span class="toc-icon"><i class="fa fa-angle-right fa-lg mr-1"></i></span>
             </button>
-            <div class="collapse mt-2" id="toc">
-              {{ .TableOfContents }}
+            <div class="collapse" id="toc">
+              <div class="py-2">
+                {{ .TableOfContents }}
+              </div>
             </div>
           </div>
           {{ end }}
