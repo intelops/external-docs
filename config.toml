@@ -93,7 +93,7 @@ copyright = "Intelops, Inc. TX USA"
 
 # banner
 [Languages.en.banner]
-title = "Documentation for IntelOps.Ai Components"
+title = "Documentation for IntelOps's Products"
 subtitle = "Democratizing Cloud-Native"
 image = "images/banner.jpg"
 
