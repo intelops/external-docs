@@ -48,6 +48,22 @@ $(preloader);
     }
   }
 
+  $(window).on("load", function () {
+    $(".sidenav").removeClass("invisible");
+  });
+
+  $(".sidenav").on("click", ".sidenav-toggler", function () {
+    $(".sidenav").toggleClass("sidenav-hidden");
+    localStorage.setItem("sidenav", "hidden");
+    return false;
+  });
+  if (localStorage.getItem("sidenav") == "hidden") {
+    $(".sidenav").addClass("sidenav-hidden");
+    $(".sidenav").on("click", ".sidenav-toggler", function () {
+      localStorage.removeItem("sidenav");
+    });
+  }
+
   $(".sidenav .category-icon").on("click", function () {
     $(this).toggleClass("icon-down icon-right");
     $(this).parent().parent().children("ul").slideToggle(200);
@@ -204,7 +220,7 @@ $(preloader);
   });
 
   // table of content
-  if ($("#TableOfContents").length > 0) {
+  if ($("#TableOfContents li").length > 0) {
     new ScrollMenu("#TableOfContents a", {
       duration: 400,
       activeOffset: 40,

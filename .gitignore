@@ -14,3 +14,5 @@ resources
 .hugo_build.lock
 jsconfig.json
 test.file
+config-client.toml
+config-current.toml
