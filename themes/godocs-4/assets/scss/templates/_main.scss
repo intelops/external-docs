@@ -81,7 +81,6 @@
   transition: 0.3s;
   @media screen and (min-width: 768px) {
     &-hidden {
-      margin-left: calc(-25% + 38px);
       .menu li {
         transition: 0.3s;
         opacity: 0;
@@ -89,9 +88,21 @@
       }
     }
   }
-  @media screen and (min-width: 1485px) {
-    &-hidden {
-      margin-left: -320px;
+  &-hidden {
+    @media screen and (min-width: 1600px) {
+      margin-left: calc(-16.66666667% + 44px);
+    }
+    @media screen and (min-width: 1200px) and (max-width: 1600px) {
+      margin-left: calc(-20% + 44px);
+    }
+    @include desktop-lg {
+      margin-left: calc(-25% + 44px);
+    }
+    @include desktop {
+      margin-left: calc(-33.333333% + 44px);
+    }
+    @include tablet {
+      margin-left: 0;
     }
   }
   @media screen and (min-width: 1480px) {
@@ -144,7 +155,7 @@
     }
   }
   @include mobile {
-    top: 63px;
+    top: 73px;
     .menu {
       height: calc(100% - 63px);
     }
@@ -257,6 +268,51 @@
   }
 }
 /* /sidenav */
+
+.sidenav {
+  transition: 0.3s;
+  @media screen and (min-width: 1200px) and (max-width: 1600px) {
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+}
+.doc-content {
+  transition: 0.3s;
+  @media screen and (min-width: 1200px) and (max-width: 1600px) {
+    flex: 0 0 63.3333333%;
+  }
+}
+.sidenav-invisible {
+  @media (min-width: 1600px) {
+    .doc-content {
+      transition: 0.3s;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  .doc-content {
+    @media screen and (min-width: 1600px) {
+      flex: 0 0 calc(63.3333333% + 16.66666667% - 44px);
+      max-width: calc(63.3333333% + 16.66666667% - 44px);
+    }
+    @media screen and (min-width: 1200px) and (max-width: 1600px) {
+      flex: 0 0 calc(63.3333333% + 20% - 44px);
+      max-width: calc(63.3333333% + 20% - 44px);
+    }
+    @include desktop-lg {
+      flex: 0 0 calc(58.3333333% + 25% - 44px);
+      max-width: calc(58.3333333% + 25% - 44px);
+    }
+    @include desktop {
+      flex: 0 0 calc(66.666667% + 33.333333% - 44px);
+      max-width: calc(66.666667% + 33.333333% - 44px);
+    }
+    @include tablet {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+}
 
 [data-search-form] {
   @include desktop {

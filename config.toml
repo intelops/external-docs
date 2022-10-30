@@ -5,7 +5,7 @@ theme = "godocs-4"
 # google analytics
 googleAnalytics = "" # example : UA-123-45
 # disable language
-disableLanguages = [] # desable language from here. ex: "fr"
+disableLanguages = ["fr"] # desable language from here. ex: "fr"
 
 # hugo outputs
 [outputFormats]
@@ -93,7 +93,7 @@ copyright = "Intelops, Inc. TX USA"
 
 # banner
 [Languages.en.banner]
-title = "Documentation for IntelOps's Projects"
+title = "Documentation for IntelOps.Ai Components"
 subtitle = "Democratizing Cloud-Native"
 image = "images/banner.jpg"
 

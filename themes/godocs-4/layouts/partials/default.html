@@ -1,15 +1,53 @@
-{{ "<!-- details page -->" | safeHTML }}
+{{ $path := replace (path.Dir .RelPermalink) "/" "" }}
+{{ $version := .Params.version }}
+
+<!-- Next prev page -->
+{{ $currentNode := . }}
+{{ template "menu-nextprev" dict "menu" .Site.Home "currentnode" $currentNode }}
+{{ define "menu-nextprev" }}
+  {{$currentNode := .currentnode }}
+  
+  {{if ne .menu.Params.hidden true}}
+    {{if hasPrefix $currentNode.Permalink .menu.Permalink }}
+      {{ $currentNode.Scratch.Set "NextPageOK" "OK" }}
+      {{ $currentNode.Scratch.Set "prevPage" ($currentNode.Scratch.Get "prevPageTmp") }}
+    {{else}}
+      {{if eq ($currentNode.Scratch.Get "NextPageOK") "OK"}}
+        {{ $currentNode.Scratch.Set "NextPageOK" nil }}
+        {{ $currentNode.Scratch.Set "nextPage" .menu }}
+      {{end}}
+    {{end}}
+
+    {{ $currentNode.Scratch.Set "prevPageTmp" .menu }}
+    {{ $currentNode.Scratch.Set "pages" .menu.Pages }}
+    {{ $pages := ($currentNode.Scratch.Get "pages") }}
+
+    {{ range $pages.ByWeight  }}
+      {{ if .IsSection }}
+        {{ if eq .Section $currentNode.Section }}
+          {{ template "menu-nextprev" dict "menu" . "currentnode" $currentNode }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+
+  {{ end }}
+{{ end }}
+
+<!-- if version home -->
+{{ if ne $path $version }}
 <section>
+
   <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-3 col-md-4 sidenav invisible">
+      <div class="col-xl-2 col-lg-3 col-md-4 sidenav invisible">
         <button class="sidenav-toggler border-0">
           <i class="fas fa-chevron-left"></i>
         </button>
         {{ partial "menu.html" . }}
       </div>
-      <div class="col-lg-7 col-md-8 mx-auto">
-        <div class="px-xl-5 px-md-0 px-2 py-5">
+
+      <div class="col-xl-8 col-lg-7 col-md-8 doc-content">
+        <div class="py-5">
 
           {{ if gt .WordCount 100 }}
           <div class="toc-mobile d-block d-lg-none mb-3">
@@ -52,38 +90,8 @@
             
           </ul>
           {{ end }}
+
           <nav class="pagination">
-            <!-- Next prev page -->
-            {{ $currentNode := . }}
-            {{ template "menu-nextprev" dict "menu" .Site.Home "currentnode" $currentNode }}
-            {{ define "menu-nextprev" }}
-            {{$currentNode := .currentnode }}
-            {{ if ne .menu.Params.hidden true}}
-            {{if hasPrefix $currentNode.Permalink .menu.Permalink }}
-            {{ $currentNode.Scratch.Set "NextPageOK" "OK" }}
-            {{ $currentNode.Scratch.Set "prevPage" ($currentNode.Scratch.Get "prevPageTmp") }}
-            {{else}}
-            {{if eq ($currentNode.Scratch.Get "NextPageOK") "OK"}}
-            {{ $currentNode.Scratch.Set "NextPageOK" nil }}
-            {{ $currentNode.Scratch.Set "nextPage" .menu }}
-            {{end}}
-            {{end}}
-            {{ $currentNode.Scratch.Set "prevPageTmp" .menu }}
-
-            {{ $currentNode.Scratch.Set "pages" .menu.Pages }}
-            {{ $pages := ($currentNode.Scratch.Get "pages") }}
-
-            {{ range $pages.ByWeight  }}
-              {{ if .IsSection }}
-                {{ if eq .Section $currentNode.Section }}
-                  {{ template "menu-nextprev" dict "menu" . "currentnode" $currentNode }}
-                {{ end }}
-              {{ end }}
-            {{ end }}
-
-            {{ end }}
-            {{ end }}
-
             {{with ($.Scratch.Get "prevPage")}}
             <a class="nav nav-prev" href="{{.Permalink }}"><i class="fas fa-chevron-left mr-2"></i>
               <span class="d-none d-md-block">{{.Title}}</span></a>
@@ -96,7 +104,7 @@
         </div>
       </div>
       
-      <div class="col-lg-2 d-none d-lg-block">
+      <div class="col-lg-2 d-none d-lg-block ml-auto">
         {{ if gt .WordCount 100 }}
           {{ .TableOfContents }}
         {{ end }}
@@ -105,4 +113,79 @@
     </div>
   </div>
 </section>
-{{ "<!-- /details page -->" | safeHTML }}
+{{ else }}
+<!-- if version home else -->
+
+<!-- if latest version then redirect to home -->
+{{ if eq $version site.Params.latestDocVersion }}
+<script>window.location.replace("{{ site.BaseURL | relLangURL }}");</script>
+{{ else }}
+<!-- if latest version else -->
+
+<section class="section pb-0" id="banner">
+  <div class="container">
+    <div class="row justify-content-between align-items-center">
+      <div class="col-lg-7 text-center text-lg-left">
+        {{ with .Site.Params.banner }}
+        <h1 class="mb-4 display-3">{{ .title | markdownify }}</h1>
+        <p class="mb-4">{{ .subtitle | markdownify }}</p>
+        {{ end }}
+        <form class="search-wrapper home-search" name="search-form"
+         action="{{ (add $version `/search`) | relLangURL }}" onsubmit="return validateForm()">
+          <input id="search-by" name="s" type="search" class="form-control form-control-lg px-4"
+            placeholder="{{ i18n `search_placeholder`}}">
+          <button type="submit" class="btn btn-primary d-none d-sm-block">{{ i18n `search`}}</button>
+          <button class="border-0 px-3 bg-white d-block d-sm-none" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
+      <div class="col-lg-4 d-lg-block d-none">
+        <img loading="lazy" src="{{ .Site.Params.banner.image | absURL }}" alt="illustration" class="img-fluid">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section pb-0">
+  <div class="container">
+    <h2 class="section-title">{{ i18n `topics`}}</h2>
+    <div class="row masonry-wrapper">
+      {{ range (where (where site.Pages "Section" (string $version)) "Type" "docs" ) }}
+      <div class="col-lg-4 col-sm-6 mb-4">
+        <div class="card match-height- text-center">
+          <div class="card-body">
+            <h3 class="card-title h4 mb-4"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+            <ul class="list-styled text-left mb-4">
+              {{ range .Data.Pages }}
+              <li><a href="{{.Permalink}}">{{.Title}}</a></li>
+              {{end}}
+            </ul>
+            <a href="{{ .Permalink }}" class="btn btn-sm btn-outline-primary">{{ i18n "details" }}</a>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{ if site.Params.faq }}
+<!-- faq -->
+{{ $faq := add (add `/` (string $version)) `/faq` }}
+{{ with site.GetPage $faq }}
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">{{ .Title }}</h2>
+    <div class="row masonry-wrapper">
+      {{ .Content }}
+    </div>
+  </div>
+</section>
+{{ end }}
+<!-- /faq -->
+{{ end }}
+
+{{ end }}
+<!-- if latest version end -->
+
+{{ end }}
+<!-- if version home end -->
