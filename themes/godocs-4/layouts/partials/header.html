@@ -4,6 +4,9 @@
   let urlVersionMultilingual = String(url.pathname).split("/")[2];
 </script>
 
+{{ $path := replace (path.Dir .RelPermalink) "/" "" }}
+{{ $version := .Params.version }}
+
 {{ "<!-- navigation -->" | safeHTML }}
 <header class="sticky-top navigation {{if .IsHome}}home-nav{{end}}">
   <div class="container-fluid">
@@ -66,7 +69,7 @@
       {{ $pageUrl := $currentPage.RelPermalink }}
       {{ $docVersion := $pageUrl | replaceRE "[a-zA-Z]+[a-zA-Z]" "" | replaceRE " " "" | replaceRE "/" "" | replaceRE "-" "" }}
 
-      {{if and (not .IsHome) (or .IsSection (eq $searchPage "search")) }}
+      {{if and (not .IsHome) (ne $path $version) (or .IsSection (eq $searchPage "search")) }}
       <form class="form-inline search-wrapper order-3 order-lg-2" name="search-form" action="{{ (add $docVersion `/search`) | relLangURL }}" data-search-form onsubmit="return validateForm()">
         <input id="search-by" name="s" type="search" class="form-control" placeholder="{{ i18n `search_placeholder`}}">
         <button class="border-0 bg-white" type="submit" style="cursor:pointer"><i class="fas fa-search"></i></button>

@@ -54,11 +54,13 @@ $(preloader);
 
   $(".sidenav").on("click", ".sidenav-toggler", function () {
     $(".sidenav").toggleClass("sidenav-hidden");
+    $("body").toggleClass("sidenav-invisible");
     localStorage.setItem("sidenav", "hidden");
     return false;
   });
   if (localStorage.getItem("sidenav") == "hidden") {
     $(".sidenav").addClass("sidenav-hidden");
+    $("body").addClass("sidenav-invisible");
     $(".sidenav").on("click", ".sidenav-toggler", function () {
       localStorage.removeItem("sidenav");
     });
