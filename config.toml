@@ -94,7 +94,7 @@ copyright = "Intelops, Inc. TX USA"
 # banner
 [Languages.en.banner]
 title = "Documentation for IntelOps's Projects"
-subtitle = "Democratizing Cloud-Native"
+subtitle = "Democratizing Cloud Native Technology"
 image = "images/banner.jpg"
 
 # feedback
