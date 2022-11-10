@@ -2,6 +2,7 @@
 title: "Mostly Asked Questions"
 description: "this is meta description"
 draft: false
+type: "page"
 _build:
   render: never
   list: never
