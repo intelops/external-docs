@@ -67,7 +67,7 @@
 
       {{ $currentPage := . }}
       {{ $pageUrl := $currentPage.RelPermalink }}
-      {{ $docVersion := $pageUrl | replaceRE "[a-zA-Z]+[a-zA-Z]" "" | replaceRE " " "" | replaceRE "/" "" | replaceRE "-" "" }}
+      {{ $docVersion := $pageUrl | replaceRE "-[0-9]" "" | replaceRE "_[0-9]" "" | replaceRE "[a-zA-Z]+[a-zA-Z]" "" | replaceRE " " "" | replaceRE "/" "" | replaceRE "-" "" }}
 
       {{if and (not .IsHome) (ne $path $version) (or .IsSection (eq $searchPage "search")) }}
       <form class="form-inline search-wrapper order-3 order-lg-2" name="search-form" action="{{ (add $docVersion `/search`) | relLangURL }}" data-search-form onsubmit="return validateForm()">

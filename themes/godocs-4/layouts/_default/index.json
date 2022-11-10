@@ -1,22 +1,22 @@
-[{{ $version:= where site.Pages "Params.version" "!=" nil}}
-{{ $ver := ""}}
-{{ range $i, $e := $version}}
-{{ $ver := .Params.version}}
-{{- if and $i (gt $i 0) -}},{{- end }}
-{{ range $id, $el := (where (where site.Pages "Section" .Params.version) "Type" "docs" ) }}
-{{- if and $id (gt $id 0) -}},{{- end }}
-{{ range $index, $page := .Pages}}
-{{- if ne $page.Type "json" -}}
-{{- if and $index (gt $index 0) -}},{{- end }}
+{{- $version:= where site.Pages "Params.version" "!=" nil -}}
+{{- $versionLength := sub (len $version) 1 -}}
+{{- $secVerName := "" -}}
+[
+{{- range $i, $e := $version -}}
+{{- $secVerName := .Params.version -}}
+{{- range (where site.Pages "Section" $secVerName)  -}}
+{{- range $index, $page := .Pages -}}
+{{- if and (ne .Params.type "page") (not .IsPage) (ne $page.Type "json") -}}
   {
-    "version": "{{ $ver }}",
+    "version": "{{ $secVerName }}",
     "url": "{{ $page.Permalink }}",
     "title": "{{ htmlEscape $page.Title}}",
     "description": "{{ htmlEscape .Description}}",
     "content": "{{ trim ($page.Plain | jsonify) `\n` }}"
-  }
+  },
 {{- end -}}
 {{- end -}}
 {{- end -}}
+{{- if eq $i $versionLength -}}{}{{- end -}}
 {{- end -}}
 ]
