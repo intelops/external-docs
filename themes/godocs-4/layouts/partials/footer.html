@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="py-4 text-center">
-      <small class="text-light">Copyright @ {{ now.Format "2006"}} {{ site.Params.copyright | markdownify }}</small>
+      <small class="text-light">Copyright @ <script>document.write(new Date().getFullYear())</script> {{ site.Params.copyright | markdownify }}</small>
     </div>
   </div>
 </footer>
