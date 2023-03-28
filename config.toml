@@ -1,11 +1,11 @@
 ######################## default configuration ####################
 baseURL = "https://docs.intelops.ai"
-title = "Intelops docs"
+title = "Intelops Docs"
 theme = "godocs-4"
 # google analytics
 googleAnalytics = "" # example : UA-123-45
 # disable language
-disableLanguages = ["fr"] # desable language from here. ex: "fr"
+disableLanguages = ["fr"] # disable language from here. example syntax: "fr"
 
 # hugo outputs
 [outputFormats]
@@ -43,10 +43,10 @@ faq = true
 
 # logo
 [params.logo]
-main = "images/intelops1.png"
-favicon = "images/favicon-intelops.png"
+main = "images/IntelOps_full logo.png"
+favicon = "images/favicon-intelops.ico"
 main_site_link = "https://intelops.ai/"
-site_logo = "images/intelops-gear-only-1.png"
+site_logo = "images/IntelOps_icon.png"
 docs_logo = "images/docs-logo.png"
 
 # Preloader
@@ -95,7 +95,7 @@ copyright = "Intelops, Inc. TX USA"
 [Languages.en.banner]
 title = "Documentation for IntelOps's Projects"
 subtitle = "Democratizing Cloud Native Technology. Imaginiation is your Limit!"
-image = "images/banner.jpg"
+image = "images/undraw_homepage_image3.svg"
 
 # feedback
 [Languages.en.feedback]
@@ -108,7 +108,7 @@ negative_placeholder = "What can we improve in this doc?"
 [Languages.en.call_to_action]
 enable = true
 title = "Still Didn't Find Your Answer?"
-image = "images/cta-illustration.jpg"
+image = "images/undraw_homepage_image4.svg"
 content = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam <br> nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam"
 
 # call to action button
@@ -126,7 +126,7 @@ weight = 2
 
 [[Languages.en.menu.footer]]
 name = "Github"
-url = "https://github.com/themefisher/"
+url = "https://github.com/intelops/"
 weight = 3
 
 
@@ -142,7 +142,7 @@ copyright = "Intelops, Inc. TX USA"
 [Languages.fr.banner]
 title = "Thème de documentation par l'équipe Themefisher"
 subtitle = "Lorem ipsum dolor amet, consetetur sadiffspscing elitr, diam nonumy invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua At."
-image = "images/banner.jpg"
+image = "images/undraw_homepage_image3.svg"
 
 # feedback
 [Languages.fr.feedback]
@@ -155,7 +155,7 @@ negative_placeholder = "Que pouvons-nous améliorer dans ce document?"
 [Languages.fr.call_to_action]
 enable = true
 title = "Vous n'avez toujours pas trouvé votre réponse?"
-image = "images/cta-illustration.jpg"
+image = "images/undraw_homepage_image4.svg"
 content = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam <br> nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam"
 
 # call to action button
@@ -173,7 +173,7 @@ weight = 2
 
 [[Languages.fr.menu.footer]]
 name = "Github"
-url = "https://github.com/themefisher/"
+url = "https://github.com/intelops/"
 weight = 3
 
 
