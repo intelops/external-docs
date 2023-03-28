@@ -109,7 +109,7 @@ negative_placeholder = "What can we improve in this doc?"
 enable = true
 title = "Still Didn't Find Your Answer?"
 image = "images/undraw_homepage_image4.svg"
-content = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam <br> nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam"
+content = ""
 
 # call to action button
 [Languages.en.call_to_action.button]
