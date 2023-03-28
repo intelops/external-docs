@@ -20,5 +20,5 @@ End users of the Compage are developers in team. A developer as a user
   is locked till that point and any change made post code-generation till next code-generation is part of next version.
   User's can have at most 10 versions per project as of now. Moving between versions is not yet supported.
 
-1. [Create a node](./create-a-node.md)
-2. [Create an edge](./create-an-edge.md)
+1. [Create a node](../2-create-services)
+2. [Create an edge](../3-configure-services)
