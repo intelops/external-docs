@@ -12,7 +12,7 @@ one mission though which is:
 > Assist developers in building software with proper set of tools, standards, frameworks, quality, etc. for smoothening developer's workflow by having secured practices in place. 
 > Sharing is caring!
 
-You can participate and/or [contribute](../6-contribution/_index.en.md) to the community.
+You can participate and/or [contribute](../6-contribution) to the community.
 
 ## Discord Server
 
