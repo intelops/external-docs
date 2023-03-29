@@ -40,6 +40,8 @@ latestDocVersion = "1.2"
 docVersion = true
 # frequently asked question in homepage
 faq = true
+# github edit button url
+githubEditURL = "https://github.com/intelops/external-docs/edit/main/"
 
 # logo
 [params.logo]
@@ -184,8 +186,6 @@ weight = 3
 [[params.plugins.css]]
 link = "plugins/bootstrap/bootstrap.min.css"
 [[params.plugins.css]]
-link = "plugins/search/auto-complete.css"
-[[params.plugins.css]]
 link = "plugins/featherlight/featherlight.min.css"
 
 
@@ -205,18 +205,6 @@ link = "plugins/featherlight/featherlight.min.js"
 link = "plugins/clipboard/clipboard.min.js"
 [[params.plugins.js]]
 link = "plugins/scrollmenu/scrollmenu.min.js"
-[[params.plugins.js]]
-link = "plugins/search/auto-complete.js"
-[[params.plugins.js]]
-link = "plugins/search/search.js"
-[[params.plugins.js]]
-link = "plugins/search/lunr.min.js"
-[[params.plugins.js]]
-link = "plugins/search/fuse.min.js"
-[[params.plugins.js]]
-link = "plugins/search/mark.js"
-[[params.plugins.js]]
-link = "plugins/search/search-page.js"
 
 # site variables
 [params.variables]

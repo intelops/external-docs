@@ -1,22 +1,36 @@
-{{- $version:= where site.Pages "Params.version" "!=" nil -}}
-{{- $versionLength := sub (len $version) 1 -}}
-{{- $secVerName := "" -}}
-[
-{{- range $i, $e := $version -}}
-{{- $secVerName := .Params.version -}}
-{{- range (where site.Pages "Section" $secVerName)  -}}
-{{- range $index, $page := .Pages -}}
-{{- if and (ne .Params.type "page") (not .IsPage) (ne $page.Type "json") -}}
+{{- $len := sub (len (.Pages.GroupBy "Section")) 1 -}}
+[{{- range $item, $el := .Pages.GroupBy "Section" -}}
+{{- range $i, $e := .Pages -}}
+{{- if and (not .Params.ignoreSearch) (ne $e.Type "json") -}}
   {
-    "version": "{{ $secVerName }}",
-    "url": "{{ $page.Permalink }}",
-    "title": "{{ htmlEscape $page.Title}}",
+    "version": "",
+    "url": "{{ $e.Permalink }}",
+    "title": "{{ with $e.Params.bannertext }}{{htmlEscape .}}{{else}}{{htmlEscape $e.Title}}{{end}}",
     "description": "{{ htmlEscape .Description}}",
-    "content": "{{ trim ($page.Plain | jsonify) `\n` }}"
+    "searchKeyword": "{{ htmlEscape .Params.searchKeyword}}",
+    "content": {{$e.Plain | jsonify}}
   },
 {{- end -}}
+
+{{- if .Section -}}
+{{- $section := (where site.Pages "Section" .Section) | intersect (where site.Pages ".Title" "!=" .Title) -}}
+{{- $sectionLen := len (where site.Pages "Section" .Section) -}}
+{{- $sectionLenTotal := sub $sectionLen 3 -}}
+
+{{- range $index, $page := $section -}}
+{{- if and (not .Params.ignoreSearch) (ne $page.Type "json") -}}
+  {
+    "version": "{{$page.Section | humanize}}",
+    "url": "{{ $page.Permalink }}",
+    "title": "{{ with $page.Params.bannertext }}{{htmlEscape .}}{{else}}{{htmlEscape $page.Title}}{{end}}",
+    "description": "{{ htmlEscape .Description}}",
+    "searchKeyword": "{{ htmlEscape .Params.searchKeyword}}",
+    "content": {{$page.Plain | jsonify}}
+  }{{- if eq $item $len -}}{{- if ne $index $sectionLenTotal -}},{{- end -}}{{- else -}},{{- end -}}
 {{- end -}}
 {{- end -}}
-{{- if eq $i $versionLength -}}{}{{- end -}}
+
 {{- end -}}
-]
+
+{{- end -}}
+{{- end -}}]

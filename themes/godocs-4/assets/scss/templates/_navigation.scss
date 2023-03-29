@@ -24,15 +24,6 @@
     background: $white;
   }
 
-  .form-inline {
-    width: 30%;
-
-    input {
-      width: 100%;
-      box-shadow: 0px 5px 10px rgba(62, 62, 62, 0.05) !important;
-    }
-  }
-
   @include desktop {
     .form-inline {
       width: 100%;
@@ -50,11 +41,21 @@
   }
 }
 
+.btn-changelog {
+  @include mobile {
+    transform: scale(.8);
+    transform-origin: right;
+  }
+}
+
 .dropdown-doc-version {
   button {
     font-weight: 600;
     line-height: 2.5;
     margin-right: 15px;
+    @include tablet {
+      margin-right: 5px;
+    }
   }
   .dropdown-item.active {
     font-weight: 600;
@@ -81,51 +82,79 @@
   margin-right: 10px;
 }
 
+header .search-wrapper {
+  display: none;
+}
+
 .search-wrapper {
   position: relative;
+  cursor: text;
+  width: 100%;
+  max-width: 460px;
 
-  .form-control {
-    height: 46px;
-    border: 0;
-    border-radius: 6px;
-    outline: 0;
-    @extend .shadow;
-    @include mobile {
-      height: 40px;
-    }
-
-    &:focus {
-      @extend .shadow;
-    }
-
-    &::placeholder {
-      color: $text-color-light;
-      font-size: 15px;
-    }
-
-    &-lg {
-      height: 70px;
-    }
-
-    &.active.focus-visible {
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
+  &-sm {
+    height: 45px;
+    width: 320px;
+    .form-control {
+      height: 45px !important;
     }
   }
 
-  button {
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 15px;
+  }
+
+  .form-control {
+    height: 54px;
+    border: 1px solid $border-color;
+    padding-left: 40px !important;
+    border-radius: 5px;
+    @extend .shadow;
+    background-color: $white;
+
+    &::placeholder {
+      color: #999;
+      font-size: 15px;
+    }
+  }
+
+  .search-button {
+    border: 1px solid $border-color;
+    color: #999;
+    background-color: transparent;
     position: absolute;
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
+    border-radius: 4px;
+    cursor: text;
+  }
+}
 
-    i {
-      color: $primary-color;
+header.search-active.home-nav {
+  .search-wrapper {
+    display: block !important;
+  }
+
+  @include desktop {
+    .logo-wrapper {
+      display: none;
     }
 
-    @include mobile {
-      zoom: 0.8;
+    .mobile-view {
+      display: none !important;
     }
+  }
+}
+
+@include desktop {
+  #banner .search-wrapper {
+    max-width: 360px;
+    margin: auto;
+    display: block;
   }
 }
 

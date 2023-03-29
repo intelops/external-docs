@@ -45,6 +45,10 @@
     let id = el.getAttribute("id");
     if ((id == urlVersion) || (id == urlVersionMultilingual)) {
       el.classList.remove("d-none");
+    } else {
+      if (el.classList.contains("version-tree")) {
+        el.remove();
+      }
     }
   });
 </script>

@@ -7,6 +7,43 @@ $(preloader);
 (function ($) {
   "use strict";
 
+  if ($('.search-wrapper').length > 0) {
+    // searchToggler keyboard shortcut
+    const searchToggler = document.querySelectorAll('[data-search-toggler]');
+    searchToggler.forEach((item) => {
+      let userAgentData = navigator?.userAgentData?.platform || navigator?.platform || 'unknown';
+      if (userAgentData == 'macOS') {
+        item.innerText = `⌘ + K`
+      } else {
+        item.innerText = `Ctrl + K`
+      }
+    });
+
+    $('#searchModal').on('shown.bs.modal', function () {
+      document.getElementById('searchInput').focus()
+    });
+
+    let modalOpen = false;
+    document.addEventListener('keydown', function(e) {
+      if (e.key === "Escape") {
+        searchModal.hide();
+      } else if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        if (!modalOpen) {
+          e.preventDefault();
+          $('#searchModal').modal('show');
+          modalOpen = true;
+        } else {
+          e.preventDefault();
+          $('#searchModal').modal('hide');
+          modalOpen = false;
+        }
+      }
+    });
+    $('#searchModal').on('hidden.bs.modal', e => {
+      modalOpen = false;
+    });
+  }
+
   // scroll function
   $(window).scroll(function () {
     // navfixed
@@ -19,10 +56,8 @@ $(preloader);
     // search add for homepage
     var height = $("#banner").innerHeight();
     if ($(".navigation").offset().top > height) {
-      $(".search-wrapper").addClass("search-sticky");
       $(".navigation").addClass("nav-bg-home");
     } else {
-      $(".search-wrapper").removeClass("search-sticky");
       $(".navigation").removeClass("nav-bg-home");
     }
   });
@@ -74,11 +109,6 @@ $(preloader);
 
   $('[data-toggle="sidebar"]').on("click", function () {
     $(".sidenav").toggleClass("show");
-    $(this).children("svg").toggleClass("d-none");
-  });
-
-  $('[data-toggle="search-form"]').on("click", function () {
-    $("[data-search-form]").toggleClass("show");
     $(this).children("svg").toggleClass("d-none");
   });
 
