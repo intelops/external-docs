@@ -111,10 +111,10 @@
             <li><a class="dropdown-item inactive {{if $isHome}}active{{end}}" id="{{.Params.version}}" aria-current="true" href="{{ .Params.version | relLangURL }}/">
               Latest (v{{ .Params.version }}.x)
             </a></li>
-            <li><hr class="dropdown-divider"></li>
             {{ end }}
             
             {{ if and $i (gt $i 0) }}
+            <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item inactive" id="{{.Params.version}}" href="{{.Params.version | relLangURL}}/">v{{.Params.version}}.x</a></li>
             {{ end }}
 

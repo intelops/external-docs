@@ -36,6 +36,38 @@
 {{- end}}
 
 {{- end}}
+
+{{- range (where (where site.Pages "Section" .Params.version) "Type" "changelog" )}}
+
+{{ $currentSection := "" }}
+{{ $sliceSectionURL := split (string .RelPermalink) "/" }}
+{{ range $i, $e:= $sliceSectionURL }}
+<!-- check language -->
+{{ if eq (string $language) "en" }}
+  {{ if eq $i 2 }} {{ $currentSection = . }} {{ end }}
+{{ else }}
+  {{ if eq $i 3 }} {{ $currentSection = . }} {{ end }}
+{{ end }}
+<!-- end check language -->
+{{ end }}
+
+{{ $currentPageSection := "" }}
+{{ $sliceCurrentPage := split (string $currentNode.RelPermalink) "/" }}
+{{ range $i, $e:= $sliceCurrentPage }}
+<!-- check language -->
+{{ if eq (string $language) "en" }}
+  {{ if eq $i 2 }} {{ $currentPageSection = . }} {{ end }}
+{{ else }}
+  {{ if eq $i 3 }} {{ $currentPageSection = . }} {{ end }}
+{{ end }}
+<!-- end check language -->
+{{ end }}
+
+{{- if eq $currentSection $currentPageSection }}
+{{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode }}
+{{- end}}
+
+{{- end}}
 </ul>
 {{ end }}
 

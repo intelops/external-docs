@@ -65,9 +65,13 @@
           
           <div class="d-flex align-items-center justify-content-between mb-4">
             <h2 class="mb-0 font-weight-medium">{{ .Title }}</h2>
+            {{ $scratch := newScratch }}
+            {{ with .File }}
+            {{ $scratch.Set "path" .Path }}
+            {{ end }}
             <a 
               class="btn btn-sm px-3" 
-              href='{{site.Params.githubEditURL}}/content/{{ .Page.File.Path | replaceRE `\\` "/" }}?plain=1'
+              href='{{site.Params.githubEditURL}}/content/{{ $scratch.Get "path" | replaceRE `\\` "/" }}?plain=1'
               target="_blank"
             >
               <i class="fas fa-edit"></i>
@@ -105,13 +109,18 @@
           {{ end }}
 
           <nav class="pagination">
+            {{$currentParent := .Parent }}
             {{with ($.Scratch.Get "prevPage")}}
+            {{ if eq $currentParent .Parent}}
             <a class="nav nav-prev" href="{{.Permalink }}"><i class="fas fa-chevron-left mr-2"></i>
               <span class="d-none d-md-block">{{.Title}}</span></a>
             {{end}}
+            {{end}}
             {{with ($.Scratch.Get "nextPage")}}
+            {{ if eq $currentParent .Parent}}
             <a class="nav nav-next" href="{{.Permalink }}"> <span class="d-none d-md-block">{{.Title}}</span><i
                 class="fas fa-chevron-right ml-2"></i></a>
+            {{end}}
             {{end}}
           </nav>
         </div>
