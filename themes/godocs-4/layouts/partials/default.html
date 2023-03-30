@@ -62,8 +62,25 @@
             </div>
           </div>
           {{ end }}
+          
+          <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2 class="mb-0 font-weight-medium">{{ .Title }}</h2>
+            {{ $scratch := newScratch }}
+            {{ with .File }}
+            {{ $scratch.Set "path" .Path }}
+            {{ end }}
+            <a 
+              class="btn btn-sm px-3" 
+              href='{{site.Params.githubEditURL}}/content/{{ $scratch.Get "path" | replaceRE `\\` "/" }}?plain=1'
+              target="_blank"
+            >
+              <i class="fas fa-edit"></i>
+              <span class="d-none d-sm-inline ml-1">Edit on GitHub</span>
+            </a>
+          </div>
 
-          <h2 class="mb-4 font-weight-medium">{{ .Title }}</h2>
+          <hr>
+
           {{ if .Content }}
           <div class="content" data-spy="scroll" data-target="#TableOfContents" data-offset="20">{{.Content}}</div>
           {{ else }}
@@ -92,13 +109,18 @@
           {{ end }}
 
           <nav class="pagination">
+            {{$currentParent := .Parent }}
             {{with ($.Scratch.Get "prevPage")}}
+            {{ if eq $currentParent .Parent}}
             <a class="nav nav-prev" href="{{.Permalink }}"><i class="fas fa-chevron-left mr-2"></i>
               <span class="d-none d-md-block">{{.Title}}</span></a>
             {{end}}
+            {{end}}
             {{with ($.Scratch.Get "nextPage")}}
+            {{ if eq $currentParent .Parent}}
             <a class="nav nav-next" href="{{.Permalink }}"> <span class="d-none d-md-block">{{.Title}}</span><i
                 class="fas fa-chevron-right ml-2"></i></a>
+            {{end}}
             {{end}}
           </nav>
         </div>
@@ -130,12 +152,10 @@
         <h1 class="mb-4 display-3">{{ .title | markdownify }}</h1>
         <p class="mb-4">{{ .subtitle | markdownify }}</p>
         {{ end }}
-        <form class="search-wrapper home-search" name="search-form"
-         action="{{ (add $version `/search`) | relLangURL }}" onsubmit="return validateForm()">
-          <input id="search-by" name="s" type="search" class="form-control form-control-lg px-4"
-            placeholder="{{ i18n `search_placeholder`}}">
-          <button type="submit" class="btn btn-primary d-none d-sm-block">{{ i18n `search`}}</button>
-          <button class="border-0 px-3 bg-white d-block d-sm-none" type="submit"><i class="fas fa-search"></i></button>
+        <form class="search-wrapper mt-4 mx-auto mx-lg-0" name="search-form" data-toggle="modal" data-target="#searchModal">
+          <i class="search-icon fas fa-search"></i>
+          <input class="form-control px-4 text-dark" placeholder="{{ i18n `search_placeholder`}}" readonly>
+          <button type="button" class="search-button" data-search-toggler>{{ i18n "search" }}</button>
         </form>
       </div>
       <div class="col-lg-4 d-lg-block d-none">
@@ -145,8 +165,8 @@
   </div>
 </section>
 
-<section class="section pb-0">
-  <div class="container">
+<section id="topics" class="section pb-0">
+  <div class="container mt-4">
     <h2 class="section-title">{{ i18n `topics`}}</h2>
     <div class="row masonry-wrapper">
       {{ range (where (where site.Pages "Section" (string $version)) "Type" "docs" ) }}
