@@ -41,7 +41,7 @@ docVersion = true
 # frequently asked question in homepage
 faq = true
 # github edit button url
-githubEditURL = "https://github.com/intelops/external-docs/edit/main/"
+githubEditURL = "https://github.com/intelops/external-docs/tree/main"
 
 # logo
 [params.logo]
