@@ -1,7 +1,6 @@
 ---
 title: "Requirments"
-date: 2018-12-29T11:02:05+06:00
-weight: 1
+date: 2023-03-31
 draft: true
 ---
 

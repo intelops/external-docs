@@ -1,6 +1,6 @@
 ---
 title: "Basic Startup 1.2"
-date: 2018-12-29T11:02:05+06:00
+date: 2023-03-31
 description: "this is meta description"
 type : "docs"
 draft: true

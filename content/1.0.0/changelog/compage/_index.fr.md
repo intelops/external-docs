@@ -1,6 +1,6 @@
 ---
-title: "Basic Startup 1.2"
-date: 2018-12-29T11:02:05+06:00
+title: "Compage"
+date: 2023-03-31
 description: "this is meta description"
 type : "changelog"
 draft: true
