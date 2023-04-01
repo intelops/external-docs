@@ -7,6 +7,8 @@ googleAnalytics = "" # example : UA-123-45
 # disable language
 disableLanguages = ["fr"] # disable language from here. example syntax: "fr"
 
+enableGitInfo = true
+
 # hugo outputs
 [outputFormats]
 [outputFormats.JSON]
@@ -40,6 +42,8 @@ latestDocVersion = "1.0.0"
 docVersion = true
 # frequently asked question in homepage
 faq = true
+# github edit button url
+githubEditURL = "https://github.com/intelops/external-docs/tree/main"
 
 # logo
 [params.logo]
@@ -184,8 +188,6 @@ weight = 3
 [[params.plugins.css]]
 link = "plugins/bootstrap/bootstrap.min.css"
 [[params.plugins.css]]
-link = "plugins/search/auto-complete.css"
-[[params.plugins.css]]
 link = "plugins/featherlight/featherlight.min.css"
 
 
@@ -205,18 +207,6 @@ link = "plugins/featherlight/featherlight.min.js"
 link = "plugins/clipboard/clipboard.min.js"
 [[params.plugins.js]]
 link = "plugins/scrollmenu/scrollmenu.min.js"
-[[params.plugins.js]]
-link = "plugins/search/auto-complete.js"
-[[params.plugins.js]]
-link = "plugins/search/search.js"
-[[params.plugins.js]]
-link = "plugins/search/lunr.min.js"
-[[params.plugins.js]]
-link = "plugins/search/fuse.min.js"
-[[params.plugins.js]]
-link = "plugins/search/mark.js"
-[[params.plugins.js]]
-link = "plugins/search/search-page.js"
 
 # site variables
 [params.variables]

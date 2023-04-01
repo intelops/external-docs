@@ -1,7 +1,7 @@
 ---
-title: "Basic Startup 1.2"
+title: "Capten"
 date: 2023-03-31
 description: "this is meta description"
-type : "docs"
+type : "changelog"
 draft: true
 ---
