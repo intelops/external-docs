@@ -36,3 +36,6 @@
 
 - id: changelog
   translation: changelog
+
+- id: min_read
+  translation: min to read

@@ -7,6 +7,8 @@ googleAnalytics = "" # example : UA-123-45
 # disable language
 disableLanguages = ["fr"] # disable language from here. example syntax: "fr"
 
+enableGitInfo = true
+
 # hugo outputs
 [outputFormats]
 [outputFormats.JSON]
