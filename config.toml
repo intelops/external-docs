@@ -51,7 +51,7 @@ main = "images/IntelOps_full logo.png"
 favicon = "images/favicon-intelops.ico"
 main_site_link = "https://intelops.ai/"
 site_logo = "images/IntelOps_icon.png"
-docs_logo = "images/docs-logo.png"
+docs_logo = "images/docs-logo.svg"
 
 # Preloader
 [params.preloader]
