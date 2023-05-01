@@ -112,14 +112,10 @@ negative_placeholder = "What can we improve in this doc?"
 [Languages.en.call_to_action]
 enable = true
 title = "Still Didn't Find Your Answer?"
+subtitle = ""
+button_label = "Submit a ticket"
+button_link = "contact/"
 image = "images/undraw_homepage_image4.svg"
-content = ""
-
-# call to action button
-[Languages.en.call_to_action.button]
-enable = "true"
-label = "Submit a ticket"
-link = "contact/"
 
 
 ############## English navigation ###############
