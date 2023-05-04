@@ -17,22 +17,6 @@ cluster.
 You can create a KinD cluster as explained [here](https://github.com/intelops/compage/blob/main/CONTRIBUTING.md), in
 cluster creation section.
 
-### Retrieve KinD cluster Node IP
-
-```shell
-# retrieves nodes ip [tested on single node cluster]
-$KIND_NODE_IP=$(kubectl get nodes -o wide --no-headers | awk -v OFS='\t' '{print $6}')
-```
-
-#### Update KinD node ip in /etc/hosts.
-
-```shell
-$KIND_NODE_IP (retrieved by above command) www.mycompage.dev
-```
-
-- You can choose your choice of url above. `www.mycompage.dev` is dummy here. Please make sure that you are using same
-  urls in GitHub app as well(redirect url etc.).
-
 ### Register an app on GitHub
 
 To run `Compage` (on your local or on the server), you have to first set up GitHub app.
@@ -44,13 +28,13 @@ To run `Compage` (on your local or on the server), you have to first set up GitH
 ```yaml
 githubApp:
   # update below value cluster's node ip and with port specified here (.Values.ui.service.nodePort)
-  redirectURI: "http://www.mycompage.dev:32222/login"
+  redirectURI: "http://localhost:32222/login"
   clientId: "XXXXXXXX"
   clientSecret: "XXXXXXXX"
 ui:
   compageApp:
     #   update below value cluster's node ip and with port specified here (.Values.app.service.nodePort)
-    serverUrl: http://www.mycompage.dev:31111
+    serverUrl: http://localhost:31111
 ```
 
 ### Create a namespace
@@ -97,7 +81,7 @@ kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=compage-core
 kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=compage-app
 ```
 
-##### Go to http://www.mycompage.dev:32222
+##### Go to http://localhost:32222
 
 ### Uninstall
 
