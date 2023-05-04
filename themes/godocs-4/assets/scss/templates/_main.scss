@@ -885,3 +885,16 @@ textarea.form-control {
     }
   }
 }
+
+footer {
+  padding-top: 100px;
+  background-color: #f7f7f7;
+}
+
+.call-to-action {
+  margin-bottom: -100px;
+  .block {
+    padding: 50px 60px;
+    border-radius: 12px;
+  }
+}
