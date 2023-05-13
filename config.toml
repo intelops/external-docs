@@ -37,7 +37,7 @@ contact_form_action = "#" # contact form works with https://formspree.io
 # feedback form action
 feedback_form_action = "#" # contact form works with https://formspree.io
 # current doc version [folder_name]
-latestDocVersion = "1.0.0"
+latestDocVersion = "1.0.1"
 # enable/disable Doc Version
 docVersion = true
 # frequently asked question in homepage

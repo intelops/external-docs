@@ -6,6 +6,11 @@
   HUGO_VERSION = "0.104.1"
   HUGO_BASEURL = "/"
 
+[[redirects]]
+  from = "/1.0.1/*"
+  to = "/latest/:splat"
+  status = 200
+
 [[headers]]
   for = "/*" # This defines which paths this specific [[headers]] block will cover.
 
