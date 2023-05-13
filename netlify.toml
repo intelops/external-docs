@@ -7,8 +7,8 @@
   HUGO_BASEURL = "/"
 
 [[redirects]]
-  from = "/1.0.1/*"
-  to = "/latest/:splat"
+  from = "/latest/*"
+  to = "/1.0.1/:splat"
   status = 301
   force = true
 
