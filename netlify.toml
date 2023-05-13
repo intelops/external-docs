@@ -10,6 +10,7 @@
   from = "/1.0.1/*"
   to = "/latest/:splat"
   status = 200
+  force = true
 
 [[headers]]
   for = "/*" # This defines which paths this specific [[headers]] block will cover.
