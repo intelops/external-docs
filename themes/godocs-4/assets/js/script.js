@@ -259,4 +259,31 @@ $(preloader);
       scrollOffset: 10,
     });
   }
+
+  // copy-to-clipboard
+  let copyEl = document.querySelector(".copy-url");
+  if (copyEl !== null) {
+    let pageUrl = copyEl.getAttribute("data-url");
+    let latestDocVer = copyEl.getAttribute("data-latest-doc-ver");
+    if (pageUrl.includes(latestDocVer)) {
+      pageUrl = pageUrl.replace(latestDocVer, "latest");
+    }
+    
+    copyEl.addEventListener("click", function () {
+      this.classList.add("done");
+
+      let textarea = document.createElement("textarea");
+      textarea.value = pageUrl;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+
+    });
+
+    copyEl.addEventListener("mouseleave", function () {
+      this.classList.remove("done");
+    });
+  }
+
 })(jQuery);
