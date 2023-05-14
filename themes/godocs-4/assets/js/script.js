@@ -263,7 +263,7 @@ $(preloader);
   // copy-to-clipboard
   let copyEl = document.querySelector(".copy-url");
   if (copyEl !== null) {
-    let pageUrl = copyEl.getAttribute("data-url");
+    let pageUrl = window.location.href;
     let latestDocVer = copyEl.getAttribute("data-latest-doc-ver");
     if (pageUrl.includes(latestDocVer)) {
       pageUrl = pageUrl.replace(latestDocVer, "latest");
