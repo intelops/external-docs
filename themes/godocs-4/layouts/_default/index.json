@@ -16,7 +16,7 @@
 {{- $section := (where site.Pages "Section" .Section) | intersect (where site.Pages ".Title" "!=" .Title) -}}
 {{- $sectionLen := len (where site.Pages "Section" .Section) -}}
 
-{{- $sectionLenTotal := sub $sectionLen 2 -}}
+{{- $sectionLenTotal := sub $sectionLen 3 -}}
 
 {{- range $index, $page := $section -}}
 {{- if and (not .Params.ignoreSearch) (ne $page.Type "json") -}}
