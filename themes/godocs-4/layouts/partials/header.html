@@ -105,17 +105,19 @@
 
           <ul class="dropdown-menu dropdown-menu-right shadow rounded-1 border-0">
             {{ $versionLength := len $version }}
+            {{ $theURL := .RelPermalink }}
+            {{ $theURL = replaceRE "^/[^/]+" "$1" $theURL }}
             {{ range $i, $e := $version }}
 
             {{ if eq $i 0 }}
-            <li><a class="dropdown-item inactive {{if $isHome}}active{{end}}" id="{{.Params.version}}" aria-current="true" href="{{ .Params.version | relLangURL }}/">
+            <li><a class="dropdown-item inactive {{if $isHome}}active{{end}}" id="{{.Params.version}}" aria-current="true" href="{{ .Params.version | relLangURL }}{{$theURL}}">
               Latest (v{{ .Params.version }})
             </a></li>
             {{ end }}
             
             {{ if and $i (gt $i 0) }}
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item inactive" id="{{.Params.version}}" href="{{.Params.version | relLangURL}}/">v{{.Params.version}}</a></li>
+            <li><a class="dropdown-item inactive" id="{{.Params.version}}" href="{{.Params.version | relLangURL}}{{$theURL}}">v{{.Params.version}}</a></li>
             {{ end }}
 
             {{ end }}
