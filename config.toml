@@ -29,10 +29,6 @@ ordered = false
 
 #################### default parameters ################################
 [params]
-# meta description
-author = "Themefisher"
-description = "This is meta description"
-image = "images/og-image.jpg" # this image will be used as fallback if a page has no image of its own
 # contact form action
 contact_form_action = "#" # contact form works with https://formspree.io
 # feedback form action
@@ -45,6 +41,15 @@ docVersion = true
 faq = true
 # github edit button url
 githubEditURL = "https://github.com/intelops/external-docs/tree/main"
+
+
+
+# seo meta data for OpenGraph / Twitter Card
+[params.metadata]
+keywords = ["Intelops", "Cloud-Native", "Ai", "DevOps", "SRE", "Kubernetes", "Talent", "Democratize", "Next-Gen"]
+description = "DevSecOps concept in development and testing"
+author = "Intelops"
+image = "images/og-image.jpg" # this image will be used as fallback if a page has no image of its own
 
 
 # logo
