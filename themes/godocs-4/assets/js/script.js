@@ -92,6 +92,8 @@ $(preloader);
   const matches = document.querySelectorAll(
     `li[data-nav-id$="${window.location.pathname}"]`
   );
+  console.log(`li[data-nav-id="${window.location.pathname}"]`);
+  console.log(matches)
   if (matches.length > 0) {
     const menu = matches[0];
     menu.classList.add("active");
