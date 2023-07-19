@@ -2,6 +2,9 @@ Thumbs.db
 .DS_Store
 */.DS_Store
 */*/.DS_Store
+.obsidian
+*/.obsidian
+*/*/.obsidian
 .dist
 .tmp
 .sass-cache
@@ -17,3 +20,6 @@ test.file
 config-client.toml
 config-current.toml
 .vscode
+Untitled.canvas
+*/Untitled.canvas
+*/*/Untitled.canvas

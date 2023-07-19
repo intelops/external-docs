@@ -54,10 +54,10 @@ image = "images/og-image.jpg" # this image will be used as fallback if a page ha
 
 # logo
 [params.logo]
-main = "images/IntelOps_full logo.png"
-favicon = "images/favicon-intelops.ico"
+main = "images/new-logos/png/new-fulllogo-dark-largepng.png"
+favicon = "images/new-logos/new-intelops-fav-icon.png"
 main_site_link = "https://intelops.ai/"
-site_logo = "images/IntelOps_icon.png"
+site_logo = "images/new-logos/new-dark-logo-icon.svg"
 docs_logo = "images/docs-logo.svg"
 
 # Preloader
