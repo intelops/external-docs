@@ -6,6 +6,9 @@
 </head>
 
 <body {{if .IsHome}}data-version="{{site.Params.latestDocVersion}}"{{end}}>
+	<!-- google tag manager noscript -->
+	{{ partial "gtm-noscript.html" . }}
+	
 	{{- partialCached "preloader.html" . -}}
 	{{- partial "header.html" . -}}
 	{{- block "main" . }}{{- end }}

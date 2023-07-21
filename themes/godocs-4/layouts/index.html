@@ -14,9 +14,11 @@
           <button type="button" class="search-button" data-search-toggler>{{ i18n "search" }}</button>
         </form>
       </div>
+      {{ if site.Params.banner.image }}
       <div class="col-lg-4 d-lg-block d-none">
-        <img loading="lazy" src="{{ .Site.Params.banner.image | absURL }}" alt="illustration" class="img-fluid">
+        <img loading="lazy" src="{{ site.Params.banner.image | absURL }}" alt="illustration" class="img-fluid">
       </div>
+      {{ end }}
     </div>
   </div>
 </section>

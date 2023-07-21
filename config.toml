@@ -43,6 +43,9 @@ faq = true
 githubEditURL = "https://github.com/intelops/external-docs/tree/main"
 
 
+# google tag manager, see https://developers.google.com/tag-manager/
+google_tag_manager = "GTM-PVRN5BQ"
+
 
 # seo meta data for OpenGraph / Twitter Card
 [params.metadata]
@@ -103,20 +106,20 @@ weight = 1
 copyright = "Intelops, Inc. TX USA"
 
 # banner
-[Languages.en.banner]
+[en.banner]
 title = "Documentation for IntelOps's Projects"
 subtitle = "Democratizing Cloud Native Technology. Imaginiation is your Limit!"
 image = "images/undraw_homepage_image3.svg"
 
 # feedback
-[Languages.en.feedback]
+[en.feedback]
 title = "Did you find this doc useful?"
 content = "Your feedback helps us improve our docs."
 positive_placeholder = "What did you like about this doc?"
 negative_placeholder = "What can we improve in this doc?"
 
 # call to action
-[Languages.en.call_to_action]
+[en.call_to_action]
 enable = true
 title = "Still Didn't Find Your Answer?"
 subtitle = ""
@@ -126,12 +129,12 @@ image = "images/undraw_homepage_image4.svg"
 
 
 ############## English navigation ###############
-[[Languages.en.menu.footer]]
+[[en.menu.footer]]
 name = "Contact"
 url = "contact/"
 weight = 2
 
-[[Languages.en.menu.footer]]
+[[en.menu.footer]]
 name = "Github"
 url = "https://github.com/intelops/"
 weight = 3
@@ -146,39 +149,39 @@ weight = 2
 copyright = "Intelops, Inc. TX USA"
 
 # banner
-[Languages.fr.banner]
+[fr.banner]
 title = "Thème de documentation par l'équipe Themefisher"
 subtitle = "Lorem ipsum dolor amet, consetetur sadiffspscing elitr, diam nonumy invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua At."
 image = "images/undraw_homepage_image3.svg"
 
 # feedback
-[Languages.fr.feedback]
+[fr.feedback]
 title = "Avez-vous trouvé ce document utile?"
 content = "Vos commentaires nous aident à améliorer nos documents."
 positive_placeholder = "Qu'avez-vous aimé dans ce document?"
 negative_placeholder = "Que pouvons-nous améliorer dans ce document?"
 
 # call to action
-[Languages.fr.call_to_action]
+[fr.call_to_action]
 enable = true
 title = "Vous n'avez toujours pas trouvé votre réponse?"
 image = "images/undraw_homepage_image4.svg"
 content = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam <br> nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam"
 
 # call to action button
-[Languages.fr.call_to_action.button]
+[fr.call_to_action.button]
 enable = "true"
 label = "Soumettre un ticket"
 link = "contact/"
 
 
 ############## French navigation ###############
-[[Languages.fr.menu.footer]]
+[[fr.menu.footer]]
 name = "Contact"
 url = "contact/"
 weight = 2
 
-[[Languages.fr.menu.footer]]
+[[fr.menu.footer]]
 name = "Github"
 url = "https://github.com/intelops/"
 weight = 3
