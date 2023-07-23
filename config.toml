@@ -103,20 +103,20 @@ weight = 1
 copyright = "Intelops, Inc. TX USA"
 
 # banner
-[Languages.en.banner]
+[Languages.en.params.banner]
 title = "Documentation for IntelOps's Projects"
 subtitle = "Democratizing Cloud Native Technology. Imaginiation is your Limit!"
 image = "images/undraw_homepage_image3.svg"
 
 # feedback
-[Languages.en.feedback]
+[Languages.en.params.feedback]
 title = "Did you find this doc useful?"
 content = "Your feedback helps us improve our docs."
 positive_placeholder = "What did you like about this doc?"
 negative_placeholder = "What can we improve in this doc?"
 
 # call to action
-[Languages.en.call_to_action]
+[Languages.en.params.call_to_action]
 enable = true
 title = "Still Didn't Find Your Answer?"
 subtitle = ""
@@ -146,27 +146,27 @@ weight = 2
 copyright = "Intelops, Inc. TX USA"
 
 # banner
-[Languages.fr.banner]
+[Languages.fr.params.banner]
 title = "Thème de documentation par l'équipe Themefisher"
 subtitle = "Lorem ipsum dolor amet, consetetur sadiffspscing elitr, diam nonumy invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua At."
 image = "images/undraw_homepage_image3.svg"
 
 # feedback
-[Languages.fr.feedback]
+[Languages.fr.params.feedback]
 title = "Avez-vous trouvé ce document utile?"
 content = "Vos commentaires nous aident à améliorer nos documents."
 positive_placeholder = "Qu'avez-vous aimé dans ce document?"
 negative_placeholder = "Que pouvons-nous améliorer dans ce document?"
 
 # call to action
-[Languages.fr.call_to_action]
+[Languages.fr.params.call_to_action]
 enable = true
 title = "Vous n'avez toujours pas trouvé votre réponse?"
 image = "images/undraw_homepage_image4.svg"
 content = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam <br> nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam"
 
 # call to action button
-[Languages.fr.call_to_action.button]
+[Languages.fr.params.call_to_action.button]
 enable = "true"
 label = "Soumettre un ticket"
 link = "contact/"
