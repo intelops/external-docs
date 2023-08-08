@@ -1,3 +1,10 @@
+---
+title: "Configuration"
+date: 2023-07-24
+weight: 2
+draft: false
+---
+
 # Setting Up a Webhook
 
 In order to visualize git and container events in Kubviz, it is necessary to create a webhook for the respective repository.
