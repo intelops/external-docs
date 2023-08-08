@@ -8,7 +8,7 @@ draft: false
 
 ![Compage-banner](compage_logo.svg#gh-light-mode-only)
 
-<!-- hidding this twitter for now since twitter account is having issues. 
+<!-- hiding this twitter for now since twitter account is having issues. 
 
 [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/fold_left.svg?style=social&label=Follow%20%40IntelOpsAi)](https://twitter.com/IntelOpsAi) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Draw%20and%20Generate%20Code&url=https://github.com/intelops/compage&via=IntelOpsAi&hashtags=compage,codegeneration,cloud,devops)
 
