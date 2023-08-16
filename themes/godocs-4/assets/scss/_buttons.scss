@@ -25,6 +25,17 @@
       padding: 9px 14px;
     }
   }
+
+  &-dark {
+    color: $text-color-dark;
+    &:active,
+    &:hover,
+    &:focus,
+    &.focus,
+    &.active {
+      color: $text-color-dark;
+    }
+  }
 }
 
 .btn-primary {

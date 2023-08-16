@@ -947,3 +947,72 @@ footer {
     }
   }
 }
+
+// Mermaid
+.mermaid-loader {
+  background-color: $white;
+  z-index: 99999999;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  display: none;
+}
+img, svg, video, canvas, audio, iframe, embed, object {
+  display: inline;
+}
+.mindmap-node {
+  user-select: none;
+  &.disable {
+    pointer-events: none;
+  }
+}
+.clickable {
+  cursor: pointer;
+  user-select: none;
+}
+[data-mindmap] {
+  * {
+    @extend .clickable;
+  }
+  @extend .clickable;
+  [class^="node-line"],
+  .node-bkg {
+    transition: .3s;
+  }
+  &:hover {
+    .node-bkg {
+      // fill: $primary-color !important;
+      filter: brightness(.9);
+    }
+    [class^="node-line"] {
+      stroke: $primary-color !important;
+    }
+    // text {
+    //   fill: $white !important;
+    // }
+  }
+}
+.roadmap-list-item {
+  padding-top: 14px;
+  padding-bottom: 14px;
+  transition: .3s;
+  border-color: #eeeeee !important;
+  &:hover {
+    opacity: .9;
+    transform: scale(0.995);
+    background-color: #eee;
+  }
+}
+.content-hidden {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  right: -200%;
+  top: -200%;
+}

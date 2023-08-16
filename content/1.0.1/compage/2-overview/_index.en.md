@@ -5,8 +5,57 @@ weight: 2
 draft: false
 ---
 
-
 ![Compage-banner](compage_logo.svg#gh-light-mode-only)
+
+## Mindmap
+
+```mermaid
+mindmap
+   root(Learn a programming language)
+    Changelog
+    Ruby
+    Go
+    Operating System
+      VCS Hosting
+      Version Control System
+```
+
+<hr/>
+
+## Flowchart
+
+```mermaid
+flowchart TD
+  A[Changelog] -->|Go| B(Go shopping)
+  B --> C{Let me think}
+  C -->|One| D[Laptop]
+  C -->|Two| E[iPhone]
+  C -->|Three| F[fa:fa-car Car]
+```
+
+<hr/>
+
+## zenuml
+
+```mermaid
+zenuml
+  BookLibService.Borrow(id) {
+    User = Changelog.GetUser()
+    if(User.isActive) {
+      try {
+        BookRepository.Update(id, onLoan, User)
+        receipt = new Receipt(id, dueDate)
+      } catch (BookNotFoundException) {
+        ErrorService.onException(BookNotFoundException)
+      } finally {
+        Connection.close()
+      }
+    }
+    return receipt
+  }
+```
+
+<hr/>
 
 **Compage** is the `open-source` project by IntelOps.
 
@@ -26,6 +75,7 @@ cloud-events, vulnerability reports, etc. auto generate code after defining requ
 diagram.
 
 **Draw the requirements for backend workloads, and then auto generate code, customize it and maintain it by using Compage.**
+
 > Our goal is to support both auto-generate code and import existing code. Let's see how far we can go with importing
 > existing code support. One step at a time!
 
@@ -85,7 +135,7 @@ Problems with many of the current low-code platforms -
   and integrations, and also git repo observability.**
 - **Please suggest what you would like to add as features.**
 
--------------------------
+---
 
 ### Current features in compage
 
@@ -147,21 +197,21 @@ file is updated in GitHub repository with the latest state of canvas.
 Compage has 3 components: core, app and ui.
 
 - core
-    - This is a `Go` component and acts as code generator for the configurations passed.
-    - This component considers the configuration passed from `app` and runs it on the templates.
-    - This component is a gRPC server to `app` component and streams the generated code back to `app`.
-    - Currently, it supports REST protocol and two types of REST templates are supported as of now.
-        1. Compage managed templates
-           The Compage managed templates are git submodules in the `core` component. If you want to support more
-           frameworks or languages, you have to add the template in a separate repository and import it as submodule in
-           this project. The current template for `Go` is a separate
-           repository - https://github.com/intelops/compage-template-go.git
-        2. OpenApi Generator templates
+  - This is a `Go` component and acts as code generator for the configurations passed.
+  - This component considers the configuration passed from `app` and runs it on the templates.
+  - This component is a gRPC server to `app` component and streams the generated code back to `app`.
+  - Currently, it supports REST protocol and two types of REST templates are supported as of now.
+    1. Compage managed templates
+       The Compage managed templates are git submodules in the `core` component. If you want to support more
+       frameworks or languages, you have to add the template in a separate repository and import it as submodule in
+       this project. The current template for `Go` is a separate
+       repository - https://github.com/intelops/compage-template-go.git
+    2. OpenApi Generator templates
 - app
-    - This is a `NodeJs` component and is responsible for authentication with GitHub and all the GitHub related
-      operations.
-    - This component is a REST server to `ui` component and also a gRPC client to `core`.
-    - Further additions of other logins and GitHub operations will be done in this component.
+  - This is a `NodeJs` component and is responsible for authentication with GitHub and all the GitHub related
+    operations.
+  - This component is a REST server to `ui` component and also a gRPC client to `core`.
+  - Further additions of other logins and GitHub operations will be done in this component.
 - ui
-    - This is a `ReactJs` component and has an integration with aws diagram-maker for canvas.
-    - User draws diagram and the json created out of it is used to generate the code.
+  - This is a `ReactJs` component and has an integration with aws diagram-maker for canvas.
+  - User draws diagram and the json created out of it is used to generate the code.

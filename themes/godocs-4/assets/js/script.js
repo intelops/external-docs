@@ -261,15 +261,6 @@ $(preloader);
     $(this).html("copied");
   });
 
-  // search
-  $("#search-by").keyup(function () {
-    if (this.value) {
-      $(this).addClass("active");
-    } else {
-      $(this).removeClass("active");
-    }
-  });
-
   // featherlight
   $(function () {
     $('a[rel="lightbox"]').featherlight({

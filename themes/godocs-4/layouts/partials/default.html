@@ -51,9 +51,9 @@
 
           {{ if gt .WordCount 100 }}
           <div class="toc-mobile d-block d-lg-none mb-3">
-            <button class="w-100 border-0 px-2 py-2 rounded-lg d-flex align-items-center justify-content-between" type="button" data-toggle="collapse" data-target="#toc" aria-expanded="false" aria-controls="collapseExample">
+            <button class="w-100 border-0 px-2 py-2 rounded-lg d-flex align-items-center justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#toc" aria-expanded="false" aria-controls="collapseExample">
               <span>On this Page</span>
-              <span class="toc-icon"><i class="fa fa-angle-right fa-lg mr-1"></i></span>
+              <span class="toc-icon"><i class="fa fa-angle-right fa-lg me-1"></i></span>
             </button>
             <div class="collapse" id="toc">
               <div class="py-2">
@@ -64,11 +64,11 @@
           {{ end }}
           
           {{ if.Content }}
-          <span class="text-muted d-block mb-3" style="font-size:14px;">Last Update : <span class="text-dark">{{ .Lastmod.Format "02 January, 2006" }}</span> <span class="mx-2 text-dark">|</span> Published : <span class="text-dark">{{ .PublishDate.Format "02 January, 2006" }}</span> <span class="mx-2 text-dark">|</span> {{.ReadingTime}} {{i18n `min_read`}}</span>
+          <span class="text-muted d-block mb-0" style="font-size:14px;">Last Update : <span class="text-dark">{{ .Lastmod.Format "02 January, 2006" }}</span> <span class="mx-2 text-dark">|</span> Published : <span class="text-dark">{{ .PublishDate.Format "02 January, 2006" }}</span> <span class="mx-2 text-dark">|</span> {{.ReadingTime}} {{i18n `min_read`}}</span>
           {{ end }}
 
           <div class="d-flex align-items-center justify-content-between mb-4">
-            <h2 class="mb-0 font-weight-medium">{{ .Title }}</h2>
+            <h2 class="mb-0 fw-medium">{{ .Title }}</h2>
             {{ $scratch := newScratch }}
             {{ with .File }}
             {{ $scratch.Set "dir" .Dir }}
@@ -76,7 +76,7 @@
             <div>
               <button
                 type="button"
-                class="tooltip-el copy-url border-0 bg-transparent p-2 mr-3 text-center"
+                class="tooltip-el copy-url border-0 bg-transparent p-2 me-3 text-center"
                 data-latest-doc-ver="{{site.Params.latestDocVersion}}"
               >
                 <svg class="copy" xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16"><path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/><path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/></svg>
@@ -86,12 +86,12 @@
               </button>
 
               <a 
-                class="btn btn-sm px-3" 
+                class="btn btn-sm px-3 text-dark" 
                 href='{{site.Params.githubEditURL}}/content/{{ $scratch.Get "dir" | replaceRE `\\` "/" }}'
                 target="_blank"
               >
                 <i class="fas fa-edit"></i>
-                <span class="d-none d-sm-inline ml-1">Edit in Git Repo</span>
+                <span class="d-none d-sm-inline ms-1">Edit in Git Repo</span>
               </a>
             </div>
           </div>
@@ -99,9 +99,11 @@
           <hr>
 
           {{ if .Content }}
-          <div class="content" data-spy="scroll" data-target="#TableOfContents" data-offset="20">{{.Content}}</div>
+          <div class="content" data-spy="scroll" data-bs-target="#TableOfContents" data-offset="20">{{.Content}}</div>
+          
+          {{ partial "mermaid-script" . }}
           {{ else }}
-          <ul class="list-styled text-left mb-4">
+          <ul class="list-styled text-start mb-4">
             
             {{- if .IsSection }}
               {{- $numberOfPages := (add (len .Pages) (len .Sections)) }}
@@ -129,21 +131,21 @@
             {{$currentParent := .Parent }}
             {{with ($.Scratch.Get "prevPage")}}
             {{ if eq $currentParent .Parent}}
-            <a class="nav nav-prev" href="{{.Permalink }}"><i class="fas fa-chevron-left mr-2"></i>
+            <a class="nav nav-prev" href="{{.Permalink }}"><i class="fas fa-chevron-left me-2"></i>
               <span class="d-none d-md-block">{{.Title}}</span></a>
             {{end}}
             {{end}}
             {{with ($.Scratch.Get "nextPage")}}
             {{ if eq $currentParent .Parent}}
             <a class="nav nav-next" href="{{.Permalink }}"> <span class="d-none d-md-block">{{.Title}}</span><i
-                class="fas fa-chevron-right ml-2"></i></a>
+                class="fas fa-chevron-right ms-2"></i></a>
             {{end}}
             {{end}}
           </nav>
         </div>
       </div>
       
-      <div class="col-lg-2 d-none d-lg-block ml-auto">
+      <div class="col-lg-2 d-none d-lg-block ms-auto">
         {{ if gt .WordCount 100 }}
           {{ .TableOfContents }}
         {{ end }}
@@ -164,12 +166,12 @@
 <section class="section pb-0" id="banner">
   <div class="container">
     <div class="row justify-content-between align-items-center">
-      <div class="col-lg-7 text-center text-lg-left">
+      <div class="col-lg-7 text-center text-lg-start">
         {{ with .Site.Params.banner }}
         <h1 class="mb-4 display-3">{{ .title | markdownify }}</h1>
         <p class="mb-4">{{ .subtitle | markdownify }}</p>
         {{ end }}
-        <form class="search-wrapper mt-4 mx-auto mx-lg-0" name="search-form" data-toggle="modal" data-target="#searchModal">
+        <form class="search-wrapper mt-4 mx-auto mx-lg-0" name="search-form" data-bs-toggle="modal" data-bs-target="#searchModal">
           <i class="search-icon fas fa-search"></i>
           <input class="form-control px-4 text-dark" placeholder="{{ i18n `search_placeholder`}}" readonly>
           <button type="button" class="search-button" data-search-toggler>{{ i18n "search" }}</button>
@@ -191,7 +193,7 @@
         <div class="card match-height- text-center">
           <div class="card-body">
             <h3 class="card-title h4 mb-4"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-            <ul class="list-styled text-left mb-4">
+            <ul class="list-styled text-start mb-4">
               {{ range .Data.Pages }}
               <li><a href="{{.Permalink}}">{{.Title}}</a></li>
               {{end}}

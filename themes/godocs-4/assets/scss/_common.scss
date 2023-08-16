@@ -136,6 +136,14 @@ a:hover {
   color: $text-color-light !important;
 }
 
+.text-dark {
+  color: $text-color-dark !important;
+
+  &:hover {
+    color: $text-color-dark !important;
+  }
+}
+
 .mb-10 {
   margin-bottom: 10px !important;
 }
