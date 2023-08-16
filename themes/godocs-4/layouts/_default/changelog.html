@@ -16,16 +16,16 @@
       </div>
 
       <div class="col-xl-8 col-lg-7 col-md-8 doc-content">
-        <div class="py-5">
+        <div class="py-4">
 
-          <div class="d-flex align-items-center justify-content-between mb-4">
+          <div class="d-flex align-items-center mt-2 justify-content-between mb-4">
             <h2 class="mb-0 fw-medium">{{ .Title }}</h2>
             {{ $scratch := newScratch }}
             {{ with .File }}
             {{ $scratch.Set "path" .Path }}
             {{ end }}
             <a 
-              class="btn btn-sm px-3 text-dark" 
+              class="btn btn-sm text-dark" 
               href='{{site.Params.githubEditURL}}/content/{{ $scratch.Get "path" | replaceRE `\\` "/" }}?plain=1'
               target="_blank"
             >

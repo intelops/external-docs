@@ -47,11 +47,11 @@
       </div>
 
       <div class="col-xl-8 col-lg-7 col-md-8 doc-content">
-        <div class="py-5">
+        <div class="py-4">
 
           {{ if gt .WordCount 100 }}
           <div class="toc-mobile d-block d-lg-none mb-3">
-            <button class="w-100 border-0 px-2 py-2 rounded-lg d-flex align-items-center justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#toc" aria-expanded="false" aria-controls="collapseExample">
+            <button class="w-100 border-0 px-1 py-1 rounded-2 d-flex align-items-center justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#toc" aria-expanded="false" aria-controls="collapseExample">
               <span>On this Page</span>
               <span class="toc-icon"><i class="fa fa-angle-right fa-lg me-1"></i></span>
             </button>
@@ -67,7 +67,7 @@
           <span class="text-muted d-block mb-0" style="font-size:14px;">Last Update : <span class="text-dark">{{ .Lastmod.Format "02 January, 2006" }}</span> <span class="mx-2 text-dark">|</span> Published : <span class="text-dark">{{ .PublishDate.Format "02 January, 2006" }}</span> <span class="mx-2 text-dark">|</span> {{.ReadingTime}} {{i18n `min_read`}}</span>
           {{ end }}
 
-          <div class="d-flex align-items-center justify-content-between mb-4">
+          <div class="d-flex align-items-center mt-2 justify-content-between mb-4">
             <h2 class="mb-0 fw-medium">{{ .Title }}</h2>
             {{ $scratch := newScratch }}
             {{ with .File }}
@@ -76,7 +76,7 @@
             <div>
               <button
                 type="button"
-                class="tooltip-el copy-url border-0 bg-transparent p-2 me-3 text-center"
+                class="tooltip-el copy-url border-0 bg-transparent p-1 me-3 text-center"
                 data-latest-doc-ver="{{site.Params.latestDocVersion}}"
               >
                 <svg class="copy" xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16"><path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/><path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/></svg>
@@ -86,7 +86,7 @@
               </button>
 
               <a 
-                class="btn btn-sm px-3 text-dark" 
+                class="btn btn-sm text-dark" 
                 href='{{site.Params.githubEditURL}}/content/{{ $scratch.Get "dir" | replaceRE `\\` "/" }}'
                 target="_blank"
               >

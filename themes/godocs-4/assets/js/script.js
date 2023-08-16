@@ -133,7 +133,7 @@ $(preloader);
     return false;
   });
 
-  $('[data-toggle="sidebar"]').on("click", function () {
+  $('[data-bs-toggle="sidebar"]').on("click", function () {
     $(".sidenav").toggleClass("show");
     $(this).children("svg").toggleClass("d-none");
   });
