@@ -41,5 +41,6 @@ Possible values are:
 Values | Platform |
 ------ | -------- | 
 `/event/docker/hub` | DockerHub |
+`/event/azure/container` | Azure |
 
 
