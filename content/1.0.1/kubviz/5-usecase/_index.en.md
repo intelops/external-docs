@@ -28,3 +28,11 @@ Use KubViz to monitor your cluster events, including:
 ### Container Registry Events Tracking
 
 - Using KubViz you can also monitors changes in your container registry, providing visibility into image updates. By tracking these changes, KubViz helps you proactively manage container registries.
+
+### Kubernetes Container Security Tracking
+
+Using KubViz you can comprehensively scan the kubernetes containers for the security flaws such as vulnerabilities and misconfigurations.
+
+Detects comprehensive vulnerabilities in OS packages (Alpine, Red Hat Universal Base Image, Red Hat Enterprise Linux, CentOS, Oracle Linux, Debian, Ubuntu, Amazon Linux, openSUSE Leap, SUSE Enterprise Linux, Photon OS and Distroless).
+
+Detects configuration issues in Kubernetes cluster
