@@ -947,3 +947,13 @@ footer {
     }
   }
 }
+
+// Tab
+.code-tabs {
+  .nav-item {
+    margin-bottom: 0px;
+  }
+  .nav-link:hover {
+    color: $primary-color;
+  }
+}
