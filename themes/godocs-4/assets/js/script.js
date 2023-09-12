@@ -69,6 +69,32 @@ $(preloader);
       modalOpen = false;
     });
   }
+  
+  // Code Copy
+  // ----------------------------------------
+  let blocks = document.querySelectorAll(".code-highlight");
+
+  async function copyCode(block, button) {
+    let code = block.querySelector("code");
+    let text = code.innerText;
+    await navigator.clipboard.writeText(text);
+    button.innerText = "copied";
+    setTimeout(() => {
+      button.innerText = "copy";
+    }, 700);
+  }
+
+  blocks.forEach((block) => {
+    if (navigator.clipboard) {
+      let button = document.createElement("span");
+      button.innerText = "copy";
+      button.className = "copy";
+      block.appendChild(button);
+      button?.addEventListener("click", async () => {
+        await copyCode(block, button);
+      });
+    }
+  });
 
   // scroll function
   $(window).scroll(function () {
