@@ -223,3 +223,7 @@ Markdown | Less | Pretty
 
 {{< youtube 8cdO5mJnPws >}}
 
+-------
+##### Other teamplate layout style
+To write content in a fancy style like docbox template layout see the sample in docbox-layouts folder in 1.0.1 version. 
+
