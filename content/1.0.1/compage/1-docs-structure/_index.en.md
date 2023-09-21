@@ -5,15 +5,13 @@ weight: 1
 draft: false
 ---
 
-
 ![Compage-banner](compage_logo.svg#gh-light-mode-only)
 
-<!-- hidding this twitter for now since twitter account is having issues. 
+<!-- hidding this twitter for now since twitter account is having issues.
 
 [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/fold_left.svg?style=social&label=Follow%20%40IntelOpsAi)](https://twitter.com/IntelOpsAi) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Draw%20and%20Generate%20Code&url=https://github.com/intelops/compage&via=IntelOpsAi&hashtags=compage,codegeneration,cloud,devops)
 
 -->
-
 
 This section is a high-level overview of how the Compage Documentation is structured. It will help you use the documentation more effectively by guiding you on where to look for specific information.
 
@@ -22,8 +20,7 @@ The Compage Documentation covers everything you need to know about Compage. It m
 - [Getting started](../3-installation)
 - [Contributing](../6-contribution)
 - [User Guide](../5-guides)
-- [FAQs](../8-faq) 
-
+- [FAQs](../8-faq)
 
 ## Introduction
 
@@ -33,7 +30,6 @@ The `What is Compage?` page summarizes the goals and features of the Compage pro
 - [What is Compage?](../2-overview)
 - [Community](../4-community)
 - [Installation](../3-installation)
-
 
 ## Contributing
 

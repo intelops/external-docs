@@ -1,0 +1,266 @@
+{{ if .Page.Store.Get "hasMermaid" }}
+  <style>
+    img,
+    svg,
+    video,
+    canvas,
+    audio,
+    iframe,
+    embed,
+    object {
+      display: unset;
+      vertical-align: middle;
+    }
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+      font-family: inherit;
+      font-size: 100%;
+      font-weight: inherit;
+      line-height: inherit;
+      color: inherit;
+      margin: unset;
+      padding: revert;
+    }
+  </style>
+  <div class="mermaid-loader">loading..</div>
+  {{ $titleArray1 := slice }}
+  <!-- Create an empty array to store titles -->
+
+  {{ range where site.Pages "Section" .Section }}
+    {{ $title := .Title | urlize }}
+    <!-- Get the URLized title -->
+
+    {{ if not (in $titleArray1 $title) }}
+      <!-- Check if title is not in array -->
+      <!-- Add the title to the array -->
+      {{ $titleArray1 = $titleArray1 | append $title }}
+      <div
+        class="offcanvas offcanvas-end fade"
+        tabindex="-1"
+        id="{{ $title }}"
+        aria-labelledby="{{ $title }}"
+        style="width: 500px; transform: none">
+        <div class="offcanvas-header">
+          <h4 class="offcanvas-title" id="offcanvasExampleLabel">
+            {{ .Title }}
+          </h4>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div class="content">{{ .Content }}</div>
+        </div>
+      </div>
+    {{ end }}
+  {{ end }}
+
+  {{ $titleArray2 := slice }}
+  {{ range .Data.Pages }}
+    {{ $title := .Title | urlize }}
+    <!-- Get the URLized title -->
+
+    {{ if not (in $titleArray2 $title) }}
+      <!-- Check if title is not in array -->
+      <!-- Add the title to the array -->
+      {{ $titleArray2 = $titleArray2 | append $title }}
+      <div
+        class="offcanvas offcanvas-end fade"
+        tabindex="-1"
+        id="{{ $title }}"
+        aria-labelledby="{{ $title }}"
+        style="width: 500px; transform: none">
+        <div class="offcanvas-header">
+          <h4 class="offcanvas-title" id="offcanvasExampleLabel">
+            {{ .Title }}
+          </h4>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div class="content">{{ .Content }}</div>
+        </div>
+      </div>
+    {{ end }}
+  {{ end }}
+  <script type="module">
+    // Import necessary libraries
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs";
+    import zenuml from "https://cdn.jsdelivr.net/npm/@mermaid-js/mermaid-zenuml/dist/mermaid-zenuml.esm.min.mjs";
+
+    // Initialize and configure mermaid and register zenuml extension
+    async function initializeMermaid() {
+      // Initialize mermaid
+      mermaid.initialize({
+        startOnLoad: true,
+        securityLevel: "loose",
+        theme: "forest",
+      });
+
+      // Register the zenuml extension
+      await mermaid.registerExternalDiagrams([zenuml]);
+    }
+
+    // Initialize mermaid and register zenuml
+    initializeMermaid();
+
+    // Define mermaid loader and mermaid elements
+    const mermaidLoader = document.querySelector(".mermaid-loader");
+    const mermaids = document.querySelectorAll("div.mermaid");
+
+    // Define search data with keywords and corresponding selectors
+    const searchData = [
+      { txt: "mindmap", selector: "mindmap", exist: false },
+      { txt: "flowchart", selector: "flowchart-v2", exist: false },
+      { txt: "C4Deployment", selector: "c4", exist: false },
+      { txt: "zenuml", selector: "zenuml", exist: false },
+    ];
+
+    // Loop through mermaid elements to check which diagrams are used on the page
+    mermaids.forEach(function (mermaid) {
+      searchData.forEach(function (data) {
+        if (mermaid.textContent.includes(data.txt)) {
+          data.exist = true;
+        }
+      });
+    });
+
+    // Filter the searchData array to include only items with exist set to true,
+    // then map the result to get an array of the corresponding selector values
+    const selectedSelectors = searchData
+      .filter((item) => item.exist)
+      .map((item) => `[aria-roledescription='${item.selector}']`);
+
+    // Helper function to add data attributes
+    function addDataAttribute(el, textID) {
+      el.setAttribute("type", "button");
+      el.setAttribute("data-mindmap", "");
+      el.setAttribute("data-bs-toggle", "offcanvas");
+      el.setAttribute("data-bs-target", "#" + urlize(textID));
+      el.setAttribute("aria-controls", urlize(textID));
+    }
+
+    // Helper function to generate URL-friendly strings
+    function urlize(str) {
+      str = str
+        .trim()
+        .replace(/\s+/g, "-")
+        .replace(/[^\w-]/g, "")
+        .replace(/-{2,}/g, "-")
+        .toLowerCase();
+      return str;
+    }
+
+    // Function to execute the code when the specified selectors are true
+    function executeCodeIfSelectorsFound() {
+      const selectors = selectedSelectors;
+
+      let allSelectorsFound = true;
+
+      selectors.forEach(function (selector) {
+        const targetElement = document.querySelector(selector);
+
+        if (!targetElement) {
+          allSelectorsFound = false;
+        }
+      });
+
+      // Main function to handle each diagram type
+      function handleDiagrams() {
+        // maindmap
+        let mindmapNode = document.querySelectorAll(
+          ".mindmap-node:not(.section-root):not(.node)"
+        );
+        mindmapNode.forEach(function (el) {
+          let innerText = el.querySelectorAll(".text-inner-tspan");
+          const textArray = [];
+          innerText.forEach((text) => {
+            textArray.push(text.textContent);
+          });
+          const textID = textArray.join(" ");
+          let id = document.getElementById(urlize(textID));
+          if (id) {
+            addDataAttribute(el, textID);
+          }
+        });
+
+        // flowchart
+        let flowchartLabel = document.querySelectorAll(".flowchart-label");
+        let flowchartEdgeLabel = document.querySelectorAll("g.edgeLabel");
+        let flowchartLabels = [...flowchartLabel, ...flowchartEdgeLabel];
+        flowchartLabels.forEach(function (el) {
+          let nodeLabel = el.querySelectorAll(".nodeLabel");
+          let edgeLabel = el.querySelectorAll(".edgeLabel");
+          let allLabel = [...nodeLabel, ...edgeLabel];
+          const textArray = [];
+          allLabel.forEach((text) => {
+            textArray.push(text.textContent);
+          });
+          const textID = textArray.join(" ");
+          let id = document.getElementById(urlize(textID));
+          if (id) {
+            addDataAttribute(el, textID);
+          }
+        });
+
+        // C4Context
+        let personMan = document.querySelectorAll(".person-man");
+        let personManLabel = document.querySelectorAll("g.edgeLabel");
+
+        personMan.forEach(function (el) {
+          const textArray = [];
+          let allLabel = el.querySelectorAll("text");
+          allLabel.forEach((text) => {
+            let fontSize = window.getComputedStyle(text).fontSize;
+            if (fontSize == "16px") {
+              textArray.push(text.textContent);
+            }
+          });
+
+          const textID = textArray.join(" ");
+          let id = document.querySelector(
+            `[aria-labelledby="${urlize(textID)}"]`
+          );
+          if (id) {
+            addDataAttribute(el, textID);
+          }
+        });
+
+        // zenuml
+        let zenumlParticipant = document.querySelectorAll(
+          ".zenuml .participant"
+        );
+        let zenumlMessageName = document.querySelectorAll(".message .name");
+        let allZenuml = [...zenumlParticipant, ...zenumlMessageName];
+
+        allZenuml.forEach(function (el) {
+          let label = el.querySelector(".name");
+          const textID = el.textContent;
+          let id = document.getElementById(urlize(el.innerText));
+          if (id) {
+            addDataAttribute(el, textID);
+          }
+        });
+      }
+
+      if (allSelectorsFound) {
+        handleDiagrams();
+        clearInterval(interval); // Clear the interval
+        mermaidLoader.remove();
+      }
+    }
+
+    // Check for the target elements at a specified interval
+    const interval = setInterval(function () {
+      executeCodeIfSelectorsFound();
+    }, 1000); // Adjust the interval as needed (in milliseconds)
+  </script>
+{{ end }}
