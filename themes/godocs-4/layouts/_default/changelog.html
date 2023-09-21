@@ -16,30 +16,30 @@
       </div>
 
       <div class="col-xl-8 col-lg-7 col-md-8 doc-content">
-        <div class="py-5">
+        <div class="py-4">
 
-          <div class="d-flex align-items-center justify-content-between mb-4">
-            <h2 class="mb-0 font-weight-medium">{{ .Title }}</h2>
+          <div class="d-flex align-items-center mt-2 justify-content-between mb-4">
+            <h2 class="mb-0 fw-medium">{{ .Title }}</h2>
             {{ $scratch := newScratch }}
             {{ with .File }}
             {{ $scratch.Set "path" .Path }}
             {{ end }}
             <a 
-              class="btn btn-sm px-3" 
+              class="btn btn-sm text-dark" 
               href='{{site.Params.githubEditURL}}/content/{{ $scratch.Get "path" | replaceRE `\\` "/" }}?plain=1'
               target="_blank"
             >
               <i class="fas fa-edit"></i>
-              <span class="d-none d-sm-inline ml-1">Edit in Git Repo</span>
+              <span class="d-none d-sm-inline ms-1">Edit in Git Repo</span>
             </a>
           </div>
 
           <hr>
 
           {{ if .Content }}
-          <div class="content" data-spy="scroll" data-target="#TableOfContents" data-offset="20">{{.Content}}</div>
+          <div class="content" data-spy="scroll" data-bs-target="#TableOfContents" data-offset="20">{{.Content}}</div>
           {{ else }}
-          <ul class="list-styled text-left mb-4">
+          <ul class="list-styled text-start mb-4">
             
             {{- if .IsSection }}
               {{- $numberOfPages := (add (len .Pages) (len .Sections)) }}
@@ -66,7 +66,7 @@
         </div>
       </div>
       
-      <div class="col-lg-2 d-none d-lg-block ml-auto">
+      <div class="col-lg-2 d-none d-lg-block ms-auto">
         {{ if gt .WordCount 100 }}
           {{ .TableOfContents }}
         {{ end }}
@@ -87,12 +87,12 @@
 <section class="section pb-0" id="banner">
   <div class="container">
     <div class="row justify-content-between align-items-center">
-      <div class="col-lg-7 text-center text-lg-left">
+      <div class="col-lg-7 text-center text-lg-start">
         {{ with .Site.Params.banner }}
         <h1 class="mb-4 display-3">{{ .title | markdownify }}</h1>
         <p class="mb-4">{{ .subtitle | markdownify }}</p>
         {{ end }}
-        <form class="search-wrapper mt-4 mx-auto mx-lg-0" name="search-form" data-toggle="modal" data-target="#searchModal">
+        <form class="search-wrapper mt-4 mx-auto mx-lg-0" name="search-form" data-bs-toggle="modal" data-bs-target="#searchModal">
           <i class="search-icon fas fa-search"></i>
           <input class="form-control px-4 text-dark" placeholder="{{ i18n `search_placeholder`}}" readonly>
           <button type="button" class="search-button" data-search-toggler>{{ i18n "search" }}</button>
@@ -114,7 +114,7 @@
         <div class="card match-height- text-center">
           <div class="card-body">
             <h3 class="card-title h4 mb-4"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-            <ul class="list-styled text-left mb-4">
+            <ul class="list-styled text-start mb-4">
               {{ range .Data.Pages }}
               <li><a href="{{.Permalink}}">{{.Title}}</a></li>
               {{end}}

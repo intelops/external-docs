@@ -48,6 +48,9 @@
   }
 }
 
+.dropdown-item {
+  padding-left: 1.5rem;
+}
 .dropdown-doc-version {
   button {
     font-weight: 600;
@@ -131,6 +134,7 @@ header .search-wrapper {
     transform: translateY(-50%);
     border-radius: 4px;
     cursor: text;
+    padding-inline: 4px;
   }
 }
 

@@ -4,7 +4,7 @@
 {{ $version:= where site.Pages "Params.version" "!=" nil}}
 
 {{ range $version}}
-<ul id="{{.Params.version}}" class="version-tree menu d-none py-4 pr-4 pl-0 border-right border-default mb-0">
+<ul id="{{.Params.version}}" class="version-tree menu d-none py-4 pe-4 ps-0 border-end border-default mb-0">
 {{- range (where (where site.Pages "Section" .Params.version) "Type" "docs" )}}
 
 {{ $currentSection := "" }}
