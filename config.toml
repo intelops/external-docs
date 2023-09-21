@@ -194,6 +194,14 @@ weight = 3
 # CSS Plugin
 [[params.plugins.css]]
 link = "plugins/featherlight/featherlight.min.css"
+[[params.plugins.css]]
+link = "plugins/font-awesome/solid.css"
+[[params.plugins.css]]
+link = "plugins/font-awesome/regular.css"
+[[params.plugins.css]]
+link = "plugins/font-awesome/brands.css"
+[[params.plugins.css]]
+link = "plugins/font-awesome/icons.css"
 
 
 # JS Plugin
@@ -201,9 +209,9 @@ link = "plugins/featherlight/featherlight.min.css"
 link = "plugins/jquery/jquery.min.js"
 [[params.plugins.js]]
 link = "plugins/bootstrap/bootstrap.min.js"
-[[params.plugins.js]]
-link = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"
-attributes = "crossorigin='anonymous' defer='defer' data-search-pseudo-elements"
+# [[params.plugins.js]]
+# link = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"
+# attributes = "crossorigin='anonymous' defer='defer' data-search-pseudo-elements"
 [[params.plugins.js]]
 link = "plugins/search/auto-complete.js"
 [[params.plugins.js]]
