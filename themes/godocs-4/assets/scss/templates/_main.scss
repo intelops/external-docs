@@ -816,6 +816,7 @@ textarea.form-control {
   position: sticky;
   top: 77px;
   padding-left: 0;
+  padding-top: 20px;
   padding-bottom: 30px;
   border-left: 1px solid $border-color;
   height: 80vh;
@@ -950,17 +951,17 @@ footer {
 
 // Mermaid
 .mermaid-loader {
-  background-color: $white;
-  z-index: 99999999;
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+background-color: $white;
+z-index: 99999999;
+position: fixed;
+left: 0;
+top: 0;
+width: 100vw;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+overflow: hidden;
 }
 img, svg, video, canvas, audio, iframe, embed, object {
   display: inline;

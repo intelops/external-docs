@@ -7,56 +7,6 @@ draft: false
 
 ![Compage-banner](compage_logo.svg#gh-light-mode-only)
 
-## Mindmap
-
-```mermaid
-mindmap
-   root(Learn a programming language)
-    Changelog
-    Ruby
-    Go
-    Operating System
-      VCS Hosting
-      Version Control System
-```
-
-<hr/>
-
-## Flowchart
-
-```mermaid
-flowchart TD
-  A[Changelog] -->|Go| B(Go shopping)
-  B --> C{Let me think}
-  C -->|One| D[Laptop]
-  C -->|Two| E[iPhone]
-  C -->|Three| F[fa:fa-car Car]
-```
-
-<hr/>
-
-## zenuml
-
-```mermaid
-zenuml
-  BookLibService.Borrow(id) {
-    User = Changelog.GetUser()
-    if(User.isActive) {
-      try {
-        BookRepository.Update(id, onLoan, User)
-        receipt = new Receipt(id, dueDate)
-      } catch (BookNotFoundException) {
-        ErrorService.onException(BookNotFoundException)
-      } finally {
-        Connection.close()
-      }
-    }
-    return receipt
-  }
-```
-
-<hr/>
-
 **Compage** is the `open-source` project by IntelOps.
 
 Compage was pictured in mind after facing troubles while bootstrapping new projects and adding integrations of standard
