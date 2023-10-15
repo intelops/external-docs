@@ -1,137 +1,160 @@
 {{ define "main" }}
+  {{ $path := replace (path.Dir .RelPermalink) "/" "" }}
+  {{ $version := .Params.version }}
 
-{{ $path := replace (path.Dir .RelPermalink) "/" "" }}
-{{ $version := .Params.version }}
 
-<!-- if version home -->
-{{ if ne $path $version }}
-<section>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-xl-2 col-lg-3 col-md-4 sidenav invisible">
-        <button class="sidenav-toggler border-0">
-          <i class="fas fa-chevron-left"></i>
-        </button>
-        {{ partial "menu.html" . }}
-      </div>
+  <!-- if version home -->
+  {{ if ne $path $version }}
+    <section>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xl-2 col-lg-3 col-md-4 sidenav invisible">
+            <button class="sidenav-toggler border-0">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            {{ partial "menu.html" . }}
+          </div>
 
-      <div class="col-xl-8 col-lg-7 col-md-8 doc-content">
-        <div class="py-5">
+          <div class="col-xl-8 col-lg-7 col-md-8 doc-content">
+            <div class="py-24">
+              <div
+                class="d-flex align-items-center justify-content-between mb-4">
+                <h2 class="mb-0 font-weight-medium">{{ .Title }}</h2>
+                {{ $scratch := newScratch }}
+                {{ with .File }}
+                  {{ $scratch.Set "path" .Path }}
+                {{ end }}
 
-          <div class="d-flex align-items-center justify-content-between mb-4">
-            <h2 class="mb-0 font-weight-medium">{{ .Title }}</h2>
-            {{ $scratch := newScratch }}
-            {{ with .File }}
-            {{ $scratch.Set "path" .Path }}
+               <div>
+                 {{ partial "version-switcher.html" . }}
+                <a
+                  class="btn btn-sm px-3 ml-2"
+                  href="{{ site.Params.githubEditURL }}/content/{{ $scratch.Get "path" | replaceRE `\\` "/" }}?plain=1"
+                  target="_blank">
+                  <i class="fas fa-edit"></i>
+                  <span class="d-none d-sm-inline ml-1">Edit in Git Repo</span>
+                </a>
+               </div>
+              </div>
+
+              <hr />
+
+              {{ if .Content }}
+                <div
+                  class="content"
+                  data-spy="scroll"
+                  data-target="#TableOfContents"
+                  data-offset="20">
+                  {{ .Content }}
+                </div>
+              {{ else }}
+                <ul class="list-styled text-left mb-4">
+                  {{- if .IsSection }}
+                    {{- $numberOfPages := (add (len .Pages) (len .Sections)) }}
+                    {{- safeHTML .Params.head }}
+
+                    {{- if ne $numberOfPages 0 }}
+                      {{- $pages := .Pages }}
+                      {{- if .Sections }}
+                        {{- $pages = (.Pages | union .Sections) }}
+                      {{- end }}
+
+                      {{- range $pages.ByWeight }}
+                        {{- if .IsSection }}
+                          <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+                        {{- end }}
+                      {{- end }}
+                    {{- end }}
+
+                  {{- end }}
+
+                </ul>
+              {{ end }}
+
+            </div>
+          </div>
+
+          <div class="col-lg-2 d-none d-lg-block ml-auto">
+            {{ if gt .WordCount 100 }}
+              {{ .TableOfContents }}
             {{ end }}
-            <a 
-              class="btn btn-sm px-3" 
-              href='{{site.Params.githubEditURL}}/content/{{ $scratch.Get "path" | replaceRE `\\` "/" }}?plain=1'
-              target="_blank"
-            >
-              <i class="fas fa-edit"></i>
-              <span class="d-none d-sm-inline ml-1">Edit in Git Repo</span>
-            </a>
-          </div>
-
-          <hr>
-
-          {{ if .Content }}
-          <div class="content" data-spy="scroll" data-target="#TableOfContents" data-offset="20">{{.Content}}</div>
-          {{ else }}
-          <ul class="list-styled text-left mb-4">
-            
-            {{- if .IsSection }}
-              {{- $numberOfPages := (add (len .Pages) (len .Sections)) }}
-              {{- safeHTML .Params.head}}
-          
-              {{- if ne $numberOfPages 0 }}
-                {{- $pages := .Pages }}
-                {{- if .Sections}}
-                {{- $pages = (.Pages | union .Sections) }}
-                {{- end}}
-        
-                {{- range $pages.ByWeight }}
-                {{- if .IsSection }}
-                <li><a href="{{.Permalink}}">{{.Title}}</a></li>
-                {{- end}}
-                {{- end}}
-              {{- end}}
-          
-            {{- end}}
-            
-          </ul>
-          {{ end }}
-          
-        </div>
-      </div>
-      
-      <div class="col-lg-2 d-none d-lg-block ml-auto">
-        {{ if gt .WordCount 100 }}
-          {{ .TableOfContents }}
-        {{ end }}
-      </div>
-      
-    </div>
-  </div>
-</section>
-{{ else }}
-<!-- if version home else -->
-
-<!-- if latest version then redirect to home -->
-{{ if eq $version site.Params.latestDocVersion }}
-<script>window.location.replace("{{ site.BaseURL | relLangURL }}");</script>
-{{ else }}
-<!-- if latest version else -->
-
-<section class="section pb-0" id="banner">
-  <div class="container">
-    <div class="row justify-content-between align-items-center">
-      <div class="col-lg-7 text-center text-lg-left">
-        {{ with .Site.Params.banner }}
-        <h1 class="mb-4 display-3">{{ .title | markdownify }}</h1>
-        <p class="mb-4">{{ .subtitle | markdownify }}</p>
-        {{ end }}
-        <form class="search-wrapper mt-4 mx-auto mx-lg-0" name="search-form" data-toggle="modal" data-target="#searchModal">
-          <i class="search-icon fas fa-search"></i>
-          <input class="form-control px-4 text-dark" placeholder="{{ i18n `search_placeholder`}}" readonly>
-          <button type="button" class="search-button" data-search-toggler>{{ i18n "search" }}</button>
-        </form>
-      </div>
-      <div class="col-lg-4 d-lg-block d-none">
-        <img loading="lazy" src="{{ .Site.Params.banner.image | absURL }}" alt="illustration" class="img-fluid">
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="topics" class="section pb-0">
-  <div class="container mt-4">
-    <h2 class="section-title">{{ i18n `topics`}}</h2>
-    <div class="row masonry-wrapper">
-      {{ range (where (where site.Pages "Section" (string $version)) "Type" "docs" ) }}
-      <div class="col-lg-4 col-sm-6 mb-4">
-        <div class="card match-height- text-center">
-          <div class="card-body">
-            <h3 class="card-title h4 mb-4"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-            <ul class="list-styled text-left mb-4">
-              {{ range .Data.Pages }}
-              <li><a href="{{.Permalink}}">{{.Title}}</a></li>
-              {{end}}
-            </ul>
-            <a href="{{ .Permalink }}" class="btn btn-sm btn-outline-primary">{{ i18n "details" }}</a>
           </div>
         </div>
       </div>
-      {{ end }}
-    </div>
-  </div>
-</section>
+    </section>
+  {{ else }}
+    <!-- if version home else -->
 
-{{ end }}
-<!-- if latest version end -->
+    <!-- if latest version then redirect to home -->
+    {{ if eq $version site.Params.latestDocVersion }}
+    <script>window.location.replace("{{ site.BaseURL | relLangURL }}");</script>
+    {{ else }}
+      <!-- if latest version else -->
 
-{{ end }}
-<!-- if version home end -->
+      <section class="section pb-0" id="banner">
+        <div class="container">
+          <div class="row justify-content-between align-items-center">
+            <div class="col-lg-7 text-center text-lg-left">
+              {{ with .Site.Params.banner }}
+                <h1 class="mb-4 display-3">{{ .title | markdownify }}</h1>
+                <p class="mb-4">{{ .subtitle | markdownify }}</p>
+              {{ end }}
+              <form
+                class="search-wrapper mt-4 mx-auto mx-lg-0"
+                name="search-form"
+                data-toggle="modal"
+                data-target="#searchModal">
+                <i class="search-icon fas fa-search"></i>
+                <input
+                  class="form-control px-4 text-dark"
+                  placeholder="{{ i18n `search_placeholder` }}"
+                  readonly />
+                <button type="button" class="search-button" data-search-toggler>
+                  {{ i18n "search" }}
+                </button>
+              </form>
+            </div>
+            <div class="col-lg-4 d-lg-block d-none">
+              <img
+                loading="lazy"
+                src="{{ .Site.Params.banner.image | absURL }}"
+                alt="illustration"
+                class="img-fluid" />
+            </div>
+          </div>
+        </div>
+      </section>
 
+      <section id="topics" class="section pb-0">
+        <div class="container mt-4">
+          <h2 class="section-title">{{ i18n `topics` }}</h2>
+          <div class="row masonry-wrapper">
+            {{ range (where (where site.Pages "Section" (string $version)) "Type" "docs" ) }}
+              <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="card match-height- text-center">
+                  <div class="card-body">
+                    <h3 class="card-title h4 mb-4">
+                      <a href="{{ .Permalink }}">{{ .Title }}</a>
+                    </h3>
+                    <ul class="list-styled text-left mb-4">
+                      {{ range .Data.Pages }}
+                        <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+                      {{ end }}
+                    </ul>
+                    <a
+                      href="{{ .Permalink }}"
+                      class="btn btn-sm btn-outline-primary"
+                      >{{ i18n "details" }}</a
+                    >
+                  </div>
+                </div>
+              </div>
+            {{ end }}
+          </div>
+        </div>
+      </section>
+    {{ end }}
+    <!-- if latest version end -->
+  {{ end }}
+  <!-- if version home end -->
 {{ end }}
