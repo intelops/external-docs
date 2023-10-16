@@ -1,4 +1,3 @@
 ---
-draft: true
-visible: false # Redirects the user to the latest version of this topic if they are on the root page itself. # Redirects the user to the latest version of this topic if they are on the root page itself.
+draft: true # Set 'draft: true' if this topic all version is hidden or not published
 ---

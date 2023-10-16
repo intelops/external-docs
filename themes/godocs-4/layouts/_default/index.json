@@ -8,8 +8,7 @@
         "title": "{{ with $e.Params.bannertext }}{{htmlEscape .}}{{else}}{{htmlEscape $e.Title}}{{end}}",
         "description": "{{ htmlEscape .Description}}",
         "searchKeyword": "{{ htmlEscape .Params.searchKeyword}}",
-        "content": {{$e.Plain | jsonify}},
-        "_293yh2": ""
+        "content": {{$e.Plain | jsonify}}
       },
     {{- end -}}
 
@@ -17,18 +16,17 @@
       {{- $section := (where site.Pages "Section" .Section) | intersect (where site.Pages ".Title" "!=" .Title) -}}
       {{- $sectionLen := len (where site.Pages "Section" .Section) -}}
 
-      {{- $sectionLenTotal := sub $sectionLen 3 -}}
+      {{- $sectionLenTotal := sub $sectionLen 2 -}}
 
       {{- range $index, $page := $section -}}
         {{- if and (not .Params.ignoreSearch) (ne $page.Type "json") -}}
           {
-            "version": "{{$page.Section | humanize}}",
+            "version": "{{index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0}}",
             "url": "{{ $page.Permalink }}",
             "title": "{{ with $page.Params.bannertext }}{{htmlEscape .}}{{else}}{{htmlEscape $page.Title}}{{end}}",
             "description": "{{ htmlEscape .Description}}",
             "searchKeyword": "{{ htmlEscape .Params.searchKeyword}}",
-            "content": {{$page.Plain | jsonify}},
-            "_293yh2": "we"
+            "content": {{$page.Plain | jsonify}}
           }{{- if eq $item $len -}}{{- if ne $index $sectionLenTotal -}},{{- end -}}{{- else -}},{{- end -}}
       {{- end -}}
     {{- end -}}

@@ -25,16 +25,19 @@
                   {{ $scratch.Set "path" .Path }}
                 {{ end }}
 
-               <div>
-                 {{ partial "version-switcher.html" . }}
-                <a
-                  class="btn btn-sm px-3 ml-2"
-                  href="{{ site.Params.githubEditURL }}/content/{{ $scratch.Get "path" | replaceRE `\\` "/" }}?plain=1"
-                  target="_blank">
-                  <i class="fas fa-edit"></i>
-                  <span class="d-none d-sm-inline ml-1">Edit in Git Repo</span>
-                </a>
-               </div>
+
+                <div>
+                  {{ partial "version-switcher.html" . }}
+                  <a
+                    class="btn btn-sm px-3 ml-2"
+                    href="{{ site.Params.githubEditURL }}/content/{{ $scratch.Get "path" | replaceRE `\\` "/" }}?plain=1"
+                    target="_blank">
+                    <i class="fas fa-edit"></i>
+                    <span class="d-none d-sm-inline ml-1">
+                      Edit in Git Repo
+                    </span>
+                  </a>
+                </div>
               </div>
 
               <hr />
@@ -143,9 +146,9 @@
                     </ul>
                     <a
                       href="{{ .Permalink }}"
-                      class="btn btn-sm btn-outline-primary"
-                      >{{ i18n "details" }}</a
-                    >
+                      class="btn btn-sm btn-outline-primary">
+                      {{ i18n "details" }}
+                    </a>
                   </div>
                 </div>
               </div>

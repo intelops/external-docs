@@ -1,5 +1,4 @@
-{{- $currentNode := . }}
-{{- $language := .Language }}
+{{ $currentNode := . }}
 {{ $isChangelogSection := eq .Section "changelog" }}
 {{ $currentChangelogNode := site.GetPage "/changelog/" }}
 {{ $currentTopic := delimit (first 3 (split .RelPermalink "/")) "/" }}

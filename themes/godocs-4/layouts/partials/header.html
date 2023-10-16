@@ -2,7 +2,6 @@
   let url = new URL(window.location.href);
   let extractVersion = (String(url.pathname).match(/\d+\.\d+\.\d+/));
   let urlVersion = extractVersion ? extractVersion[0] : "{{site.Params.latestDocVersion}}";
-  let urlVersionMultilingual = String(url.pathname).split("/")[1];
 </script>
 
 <!-- prettier-ignore -->
