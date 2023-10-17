@@ -33,7 +33,7 @@
   let versionTree = document.querySelectorAll(".version-tree");
   versionTree.forEach((el, i) => {
     let id = el.getAttribute("id");
-    if (id == urlVersion || id == urlVersionMultilingual) {
+    if (id == urlVersion) {
       el.classList.remove("d-none");
     } else {
       if (el.classList.contains("version-tree")) {
