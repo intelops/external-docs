@@ -6,7 +6,7 @@
 
 <ul
   id="{{ $currentPageVersion }}"
-  class="version-tree menu d-none py-4 pr-4 pl-0 border-right border-default mb-0">
+  class="version-tree menu d-none py-4 pe-4 ps-0 border-end border-default mb-0">
   <!-- For Topics -->
   {{- range (where site.Pages ".Params.Type" "==" "docs") }}
     {{ $sectionNode := delimit (first 3 (split .RelPermalink "/")) "/" }}

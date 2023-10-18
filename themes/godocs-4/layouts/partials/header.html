@@ -19,8 +19,8 @@
         {{ if and (not .IsHome) .IsSection }}
           <button
             type="button"
-            class="bg-transparent border-0 p-0 mr-2 d-inline-block d-md-none"
-            data-toggle="sidebar">
+            class="bg-transparent border-0 p-0 me-1 d-inline-block d-md-none"
+            data-bs-toggle="sidebar">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="32"
@@ -71,10 +71,10 @@
         </a>
 
         {{ if .Section }}
-          <span class="dropdown dropdown-doc-version ml-4 d-none d-md-block">
+          <span class="dropdown dropdown-doc-version ms-4 d-none d-md-block">
             <button
               class="bg-transparent border-0 px-0"
-              data-toggle="dropdown"
+              data-bs-toggle="dropdown"
               aria-expanded="false"
               data-display="static"
               aria-label="Toggle version menu">
@@ -122,8 +122,8 @@
         {{ if and (not .IsHome) (ne $path $version) .IsSection }}
           <form
             class="search-wrapper search-wrapper-sm d-none d-lg-block order-3 order-lg-2"
-            data-toggle="modal"
-            data-target="#searchModal">
+            data-bs-toggle="modal"
+            data-bs-target="#searchModal">
             <i class="search-icon fas fa-search"></i>
             <input
               class="form-control"
@@ -144,7 +144,7 @@
         <!-- Language List -->
         {{ if .IsTranslated }}
           <select
-            class="language-selector mr-1 mr-lg-3"
+            class="language-selector me-1 me-lg-3"
             onchange="location = this.value;">
             {{ $siteLanguages := .Site.Languages }}
             {{ $pageLang := .Page.Lang }}
@@ -170,10 +170,10 @@
 
         {{ if not .IsHome }}
           <button
-            class="d-block d-lg-none bg-transparent border-0 mr-2 mr-sm-3"
+            class="d-block d-lg-none bg-transparent border-0 me-1 me-sm-3"
             type="button"
-            data-toggle="modal"
-            data-target="#searchModal">
+            data-bs-toggle="modal"
+            data-bs-target="#searchModal">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -192,7 +192,7 @@
         <!-- if doc version enable show changelog -->
         <a
           href="/changelog"
-          class="btn btn-sm btn-outline-primary mr-0 mr-sm-3">
+          class="btn btn-sm btn-outline-primary me-0 me-sm-3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -216,7 +216,7 @@
               btn-outline-primary
             {{ else }}
               btn-primary
-            {{ end }} {{ if and $i (gt $i 0) }}ml-1 ml-sm-3{{ end }}">
+            {{ end }} {{ if and $i (gt $i 0) }}ms-1 ms-sm-3{{ end }}">
             {{ .label }}
           </a>
         {{ end }}

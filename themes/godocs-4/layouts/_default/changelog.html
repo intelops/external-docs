@@ -19,7 +19,7 @@
             <div class="py-24">
               <div
                 class="d-flex align-items-center justify-content-between mb-4">
-                <h2 class="mb-0 font-weight-medium">{{ .Title }}</h2>
+                <h2 class="mb-0 fw-medium">{{ .Title }}</h2>
                 {{ $scratch := newScratch }}
                 {{ with .File }}
                   {{ $scratch.Set "path" .Path }}
@@ -29,11 +29,11 @@
                 <div>
                   {{ partial "version-switcher.html" . }}
                   <a
-                    class="btn btn-sm px-3 ml-2"
+                    class="btn btn-sm px-3 ms-2 github-edit-btn"
                     href="{{ site.Params.githubEditURL }}/content/{{ $scratch.Get "path" | replaceRE `\\` "/" }}?plain=1"
                     target="_blank">
                     <i class="fas fa-edit"></i>
-                    <span class="d-none d-sm-inline ml-1">
+                    <span class="d-none d-sm-inline ms-1">
                       Edit in Git Repo
                     </span>
                   </a>
@@ -45,13 +45,13 @@
               {{ if .Content }}
                 <div
                   class="content"
-                  data-spy="scroll"
-                  data-target="#TableOfContents"
-                  data-offset="20">
+                  data-bs-spy="scroll"
+                  data-bs-target="#TableOfContents"
+                  data-bs-offset="20">
                   {{ .Content }}
                 </div>
               {{ else }}
-                <ul class="list-styled text-left mb-4">
+                <ul class="list-styled text-start mb-4">
                   {{- if .IsSection }}
                     {{- $numberOfPages := (add (len .Pages) (len .Sections)) }}
                     {{- safeHTML .Params.head }}
@@ -77,7 +77,7 @@
             </div>
           </div>
 
-          <div class="col-lg-2 d-none d-lg-block ml-auto">
+          <div class="col-lg-2 d-none d-lg-block ms-auto">
             {{ if gt .WordCount 100 }}
               {{ .TableOfContents }}
             {{ end }}
@@ -97,7 +97,7 @@
       <section class="section pb-0" id="banner">
         <div class="container">
           <div class="row justify-content-between align-items-center">
-            <div class="col-lg-7 text-center text-lg-left">
+            <div class="col-lg-7 text-center text-lg-start">
               {{ with .Site.Params.banner }}
                 <h1 class="mb-4 display-3">{{ .title | markdownify }}</h1>
                 <p class="mb-4">{{ .subtitle | markdownify }}</p>
@@ -105,8 +105,8 @@
               <form
                 class="search-wrapper mt-4 mx-auto mx-lg-0"
                 name="search-form"
-                data-toggle="modal"
-                data-target="#searchModal">
+                data-bs-toggle="modal"
+                data-bs-target="#searchModal">
                 <i class="search-icon fas fa-search"></i>
                 <input
                   class="form-control px-4 text-dark"
@@ -139,7 +139,7 @@
                     <h3 class="card-title h4 mb-4">
                       <a href="{{ .Permalink }}">{{ .Title }}</a>
                     </h3>
-                    <ul class="list-styled text-left mb-4">
+                    <ul class="list-styled text-start mb-4">
                       {{ range .Data.Pages }}
                         <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
                       {{ end }}

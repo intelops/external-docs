@@ -68,3 +68,15 @@
     color: $white;
   }
 }
+
+.github-edit-btn {
+  color: $dark;
+
+  &:active,
+  &:hover,
+  &:focus,
+  &.focus,
+  &.active{
+    color: $dark;
+  } 
+}

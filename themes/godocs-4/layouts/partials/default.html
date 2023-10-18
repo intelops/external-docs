@@ -59,18 +59,18 @@
 
         <div class="col-xl-8 col-lg-7 col-md-8 doc-content">
           <div class="py-24">
-            {{ if gt .WordCount 100 }}
+            {{ if gt .WordCount 150 }}
               <div class="toc-mobile d-block d-lg-none mb-3">
                 <button
-                  class="w-100 border-0 px-2 py-2 rounded-lg d-flex align-items-center justify-content-between"
+                  class="w-100 border-0 px-2 py-1 rounded-3 d-flex align-items-center justify-content-between"
                   type="button"
-                  data-toggle="collapse"
-                  data-target="#toc"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#toc"
                   aria-expanded="false"
                   aria-controls="collapseExample">
                   <span>On this Page</span>
                   <span class="toc-icon">
-                    <i class="fa fa-angle-right fa-lg mr-1"></i>
+                    <i class="fa fa-angle-right fa-lg me-1"></i>
                   </span>
                 </button>
                 <div class="collapse" id="toc">
@@ -96,8 +96,8 @@
               </span>
             {{ end }}
 
-            <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-20">
-              <h2 class="mb-0 font-weight-medium">{{ .Title }}</h2>
+            <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-10">
+              <h2 class="mb-0 fw-medium">{{ .Title }}</h2>
               {{ $scratch := newScratch }}
               {{ with .File }}
                 {{ $scratch.Set "dir" .Dir }}
@@ -108,7 +108,7 @@
 
                 <button
                   type="button"
-                  class="tooltip-el copy-url border-0 bg-transparent p-2 mr-1 text-center"
+                  class="tooltip-el copy-url border-0 bg-transparent p-2 me-1 text-center"
                   data-latest-doc-ver="{{ site.Params.latestDocVersion }}">
                   <svg
                     class="copy"
@@ -140,11 +140,11 @@
                 </button>
 
                 <a
-                  class="btn btn-sm px-3"
+                  class="btn btn-sm px-3 github-edit-btn"
                   href="{{ site.Params.githubEditURL }}/content/{{ $scratch.Get "dir" | replaceRE `\\` "/" }}"
                   target="_blank">
                   <i class="fas fa-edit"></i>
-                  <span class="d-none d-sm-inline ml-1">Edit in Git Repo</span>
+                  <span class="d-none d-sm-inline ms-1">Edit in Git Repo</span>
                 </a>
               </div>
             </div>
@@ -155,12 +155,12 @@
               <div
                 class="content"
                 data-spy="scroll"
-                data-target="#TableOfContents"
-                data-offset="20">
+                data-bs-target="#TableOfContents"
+                data-bs-offset="20">
                 {{ .Content }}
               </div>
             {{ else }}
-              <ul class="list-styled text-left mb-4">
+              <ul class="list-styled text-start mb-4">
                 {{- if .IsSection }}
                   {{- $numberOfPages := (add (len .Pages) (len .Sections)) }}
                   {{- safeHTML .Params.head }}
@@ -189,7 +189,7 @@
               {{ with ($.Scratch.Get "prevPage") }}
                 {{ if eq $currentParent .Parent }}
                   <a class="nav nav-prev" href="{{ .Permalink }}"
-                    ><i class="fas fa-chevron-left mr-2"></i>
+                    ><i class="fas fa-chevron-left me-2"></i>
                     <span class="d-none d-md-block">{{ .Title }}</span></a
                   >
                 {{ end }}
@@ -198,7 +198,7 @@
                 {{ if eq $currentParent .Parent }}
                   <a class="nav nav-next" href="{{ .Permalink }}">
                     <span class="d-none d-md-block">{{ .Title }}</span
-                    ><i class="fas fa-chevron-right ml-2"></i
+                    ><i class="fas fa-chevron-right ms-2"></i
                   ></a>
                 {{ end }}
               {{ end }}
@@ -206,7 +206,7 @@
           </div>
         </div>
 
-        <div class="col-lg-2 d-none d-lg-block ml-auto">
+        <div class="col-lg-2 d-none d-lg-block ms-auto">
           {{ if gt .WordCount 100 }}
             {{ .TableOfContents }}
           {{ end }}
@@ -225,7 +225,7 @@
     <section class="section pb-0" id="banner">
       <div class="container">
         <div class="row justify-content-between align-items-center">
-          <div class="col-lg-7 text-center text-lg-left">
+          <div class="col-lg-7 text-center text-lg-start">
             {{ with .Site.Params.banner }}
               <h1 class="mb-4 display-3">{{ .title | markdownify }}</h1>
               <p class="mb-4">{{ .subtitle | markdownify }}</p>
@@ -233,8 +233,8 @@
             <form
               class="search-wrapper mt-4 mx-auto mx-lg-0"
               name="search-form"
-              data-toggle="modal"
-              data-target="#searchModal">
+              data-bs-toggle="modal"
+              data-bs-target="#searchModal">
               <i class="search-icon fas fa-search"></i>
               <input
                 class="form-control px-4 text-dark"
@@ -267,7 +267,7 @@
                   <h3 class="card-title h4 mb-4">
                     <a href="{{ .Permalink }}">{{ .Title }}</a>
                   </h3>
-                  <ul class="list-styled text-left mb-4">
+                  <ul class="list-styled text-start mb-4">
                     {{ range .Data.Pages }}
                       <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
                     {{ end }}
