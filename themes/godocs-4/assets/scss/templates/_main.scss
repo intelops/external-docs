@@ -822,6 +822,10 @@ textarea.form-control {
   height: 80vh;
   overflow-y: auto;
 
+  @include desktop {
+    padding-top: 0px;
+  }
+
   a {
     font-size: 0.8rem;
     display: block;
