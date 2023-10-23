@@ -1,65 +1,88 @@
 {{ define "main" }}
 
-<section class="section pb-0" id="banner">
-  <div class="container">
-    <div class="row justify-content-between align-items-center">
-      <div class="col-lg-7 text-center text-lg-start">
-        {{ with .Site.Params.banner }}
-        <h1 class="mb-4 display-3">{{ .title | markdownify }}</h1>
-        <p class="pb-2">{{ .subtitle | markdownify }}</p>
-        {{ end }}
-        <form class="search-wrapper mt-4 mx-auto mx-lg-0" name="search-form" data-bs-toggle="modal" data-bs-target="#searchModal">
-          <i class="search-icon fas fa-search"></i>
-          <input class="form-control px-4 text-dark" placeholder="{{ i18n `search_placeholder`}}" readonly>
-          <button type="button" class="search-button" data-search-toggler>{{ i18n "search" }}</button>
-        </form>
-      </div>
-      <div class="col-lg-4 d-lg-block d-none">
-        <img loading="lazy" src="{{ .Site.Params.banner.image | absURL }}" alt="illustration" class="img-fluid">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- topics -->
-<section id="topics" class="section pb-0">
-  <div class="container">
-    <h2 class="section-title">{{ i18n `topics`}}</h2>
-    <div class="row masonry-wrapper">
-      {{ range (where (where site.Pages "Section" site.Params.latestDocVersion) "Type" "docs" ) }}
-      <div class="col-lg-4 col-sm-6 mb-4">
-        <div class="card match-height- text-center">
-          <div class="card-body">
-            <h3 class="card-title h4 mb-4"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-            <ul class="list-styled text-start mb-4">
-              {{ range .Data.Pages }}
-              <li><a href="{{.Permalink}}">{{.Title}}</a></li>
-              {{end}}
-            </ul>
-            <a href="{{ .Permalink }}" class="btn btn-sm btn-outline-primary">{{ i18n "details" }}</a>
-          </div>
+  <section class="section pb-0" id="banner">
+    <div class="container">
+      <div class="row justify-content-between align-items-center">
+        <div class="col-lg-7 text-center text-lg-start">
+          {{ with .Site.Params.banner }}
+            <h1 class="mb-4 display-5">{{ .title | markdownify }}</h1>
+            <p class="pb-2">{{ .subtitle | markdownify }}</p>
+          {{ end }}
+          <form
+            class="search-wrapper mt-4 mx-auto mx-lg-0"
+            name="search-form"
+            data-bs-toggle="modal"
+            data-bs-target="#searchModal">
+            <i class="search-icon fas fa-search"></i>
+            <input
+              class="form-control px-4 text-dark"
+              placeholder="{{ i18n `search_placeholder` }}"
+              readonly />
+            <button type="button" class="search-button" data-search-toggler>
+              {{ i18n "search" }}
+            </button>
+          </form>
+        </div>
+        <div class="col-lg-4 d-lg-block d-none">
+          <img
+            loading="lazy"
+            src="{{ .Site.Params.banner.image | absURL }}"
+            alt="illustration"
+            class="img-fluid" />
         </div>
       </div>
-      {{ end }}
     </div>
-  </div>
-</section>
-<!-- /topics -->
+  </section>
 
-{{ if site.Params.faq }}
-<!-- faq -->
-{{ $faq := add (add `/` (string site.Params.latestDocVersion)) `/faq` }}
-{{ with site.GetPage $faq }}
-<section class="section pb-0">
-  <div class="container">
-    <h2 class="section-title">{{ .Title }}</h2>
-    <div class="row masonry-wrapper">
-      {{ .Content }}
+  <!-- topics -->
+  <section id="topics" class="section pb-0">
+    <div class="container">
+      <h2 class="section-title">{{ i18n `topics` }}</h2>
+      <div class="row masonry-wrapper">
+        {{ range (where site.Pages "Type" "==" "docs") }}
+          {{ $version := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
+
+          {{ if eq $version site.Params.latestDocVersion }}
+            <div class="col-lg-4 col-sm-6 mb-4">
+              <div class="card match-height- text-center">
+                <div class="card-body">
+                  <h3 class="card-title h4 mb-4">
+                    <a href="{{ .Permalink }}">{{ .Title }}</a>
+                  </h3>
+                  <ul class="list-styled text-start mb-4">
+                    {{ range .Data.Pages }}
+                      <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+                    {{ end }}
+                  </ul>
+                  <a
+                    href="{{ .Permalink }}"
+                    class="btn btn-sm btn-outline-primary"
+                    >{{ i18n "details" }}</a
+                  >
+                </div>
+              </div>
+            </div>
+          {{ end }}
+        {{ end }}
+      </div>
     </div>
-  </div>
-</section>
-{{ end }}
-<!-- /faq -->
-{{ end }}
+  </section>
+  <!-- /topics -->
+
+  {{ if site.Params.faq }}
+    <!-- faq -->
+    {{ $faq := add (add `/` (string site.Params.latestDocVersion)) `/faq` }}
+    {{ with site.GetPage $faq }}
+      <section class="section pb-0">
+        <div class="container">
+          <h2 class="section-title">{{ .Title }}</h2>
+          <div class="row masonry-wrapper">
+            {{ .Content }}
+          </div>
+        </div>
+      </section>
+    {{ end }}
+    <!-- /faq -->
+  {{ end }}
 
 {{ end }}

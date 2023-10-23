@@ -6,28 +6,66 @@
       <div class="col-lg-4">
         <ul class="list-inline footer-menu text-center text-lg-start">
           {{ range site.Menus.footer }}
-          <li class="list-inline-item"><a href="{{ .URL | absLangURL }}">{{ .Name }}</a></li>
+            <li class="list-inline-item">
+              <a href="{{ .URL | absLangURL }}">{{ .Name }}</a>
+            </li>
           {{ end }}
         </ul>
       </div>
       <div class="col-lg-4 text-center mb-4 mb-lg-0 my-4 my-lg-0">
-        <a href="{{site.Params.logo.main_site_link | safeURL}}?ref=docs">
+        <a href="{{ site.Params.logo.main_site_link | safeURL }}?ref=docs">
           {{ if site.Params.logo.main }}
-          <img class="img-fluid" src="{{ site.Params.logo.main | absURL }}" alt="{{ site.Title }}">
+            <img
+              class="img-fluid"
+              src="{{ site.Params.logo.main | absURL }}"
+              alt="{{ site.Title }}" />
           {{ else }}
-          {{ site.Title }}
-          {{ end }}</a>
+            {{ site.Title }}
+          {{ end }}</a
+        >
       </div>
       <div class="col-lg-4">
         <ul class="list-inline social-icons text-lg-end text-center">
           {{ range site.Params.social }}
-          <li class="list-inline-item"><a href="{{ .link | safeURL }}"><i class="{{ .icon }}"></i></a></li>
+            <li class="list-inline-item">
+              <a href="{{ .link | safeURL }}"><i class="{{ .icon }}"></i></a>
+            </li>
           {{ end }}
         </ul>
       </div>
     </div>
-    <div class="py-3 text-center">
-      <small class="text-light">Copyright @ <script>document.write(new Date().getFullYear())</script> {{ site.Params.copyright | markdownify }}</small>
+    <div class="py-4 text-center">
+      <small class="text-light">
+        Copyright @
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        {{ site.Params.copyright | markdownify }}
+      </small>
     </div>
   </div>
 </footer>
+
+{{ if site.Params.docVersion }}
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <!-- script for dropdown and changelog -->
+  <script>
+    let docVersionToggler = document.querySelectorAll(
+      ".dropdown-item, .doc-version-toggler, .btn-changelog",
+    );
+    docVersionToggler.forEach((el, i) => {
+      let id = el.getAttribute("id");
+      if (id == urlVersion) {
+        el.classList.remove("inactive");
+        el.classList.remove("d-none");
+      } else {
+        if (
+          el.classList.contains("doc-version-toggler") ||
+          el.classList.contains("btn-changelog")
+        ) {
+          el.remove();
+        }
+      }
+    });
+  </script>
+{{ end }}

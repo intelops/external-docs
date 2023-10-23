@@ -74,7 +74,7 @@
 /* sidenav */
 .sidenav {
   position: sticky;
-  top: 77px;
+  top: 71px;
   overflow-y: auto;
   height: 90vh;
   user-select: none;
@@ -140,7 +140,6 @@
     max-width: 300px;
     z-index: 9999;
     background-color: $white;
-    top: 74px;
     height: 100vh;
     left: -300px;
     transition: 0.25s;
@@ -822,6 +821,10 @@ textarea.form-control {
   height: 80vh;
   overflow-y: auto;
 
+  @include desktop {
+    padding-top: 0px;
+  }
+
   a {
     font-size: 0.8rem;
     display: block;
@@ -897,6 +900,10 @@ footer {
   .block {
     padding: 50px 60px;
     border-radius: 12px;
+
+    @include mobile {
+      padding: 50px 20px;
+    }
   }
 }
 

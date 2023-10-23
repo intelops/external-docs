@@ -18,7 +18,7 @@ isPlainText = false
   disableHTML = true
 
 [outputs]
-home = ["HTML","JSON"]
+home = ["HTML", "JSON"]
 
 # render unsafe html
 [markup.goldmark.renderer]
@@ -36,6 +36,8 @@ ordered = false
 contact_form_action = "#" # contact form works with https://formspree.io
 # feedback form action
 feedback_form_action = "#" # contact form works with https://formspree.io
+# all doc version
+docVersions = ["1.0.0", "1.0.1"]  # Each version should consist of three parts: major version, minor version, and patches. Example of a correct version: ["1.0.0"]. Examples of incorrect versions: ["1.0", "1"].
 # current doc version [folder_name]
 latestDocVersion = "1.0.1"
 # enable/disable Doc Version
@@ -50,7 +52,17 @@ google_tag_manager = "GTM-PVRN5BQ"
 
 # seo meta data for OpenGraph / Twitter Card
 [params.metadata]
-keywords = ["Intelops", "Cloud-Native", "Ai", "DevOps", "SRE", "Kubernetes", "Talent", "Democratize", "Next-Gen"]
+keywords = [
+  "Intelops",
+  "Cloud-Native",
+  "Ai",
+  "DevOps",
+  "SRE",
+  "Kubernetes",
+  "Talent",
+  "Democratize",
+  "Next-Gen",
+]
 description = "Next-Gen Ai based solution to democratize cloud native."
 author = "Intelops"
 image = "images/og-image.jpg" # this image will be used as fallback if a page has no image of its own
@@ -188,7 +200,6 @@ url = "https://github.com/intelops/"
 weight = 3
 
 
-
 ############################# Plugins ##############################
 
 # CSS Plugin
@@ -248,7 +259,7 @@ light = "#FBFBFB"
 
 # Font Variables
 primary_font = "Poppins:wght@300;400;500;600"
-primary_font_type = "sans-serif"                         # [serif/sans-serif]
+primary_font_type = "sans-serif"              # [serif/sans-serif]
 secondary_font = ""
-secondary_font_type = ""                                 # [serif/sans-serif]
+secondary_font_type = ""                      # [serif/sans-serif]
 icon_font = "Font Awesome 5 Free"
