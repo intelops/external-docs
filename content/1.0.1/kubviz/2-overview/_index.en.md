@@ -10,7 +10,7 @@ draft: false
 
 **KubViz** is the `open-source` project by IntelOps.
 
-Visualize Kubernetes & DevSecOps Workflows. Tracks changes/events real-time across your entire K8s clusters, git repos, container registries, Container image Vulnerability scanning, misconfiguration  etc. , analyzing their effects and providing you with the context you need to troubleshoot efficiently. Get the Observability you need, easily.
+Visualize Kubernetes & DevSecOps Workflows. Tracks changes/events real-time across your entire K8s clusters, git repos, container registries, Container image Vulnerability scanning, misconfiguration, SBOM etc. , analyzing their effects and providing you with the context you need to troubleshoot efficiently. Get the Observability you need, easily.
 
 ## Problem
 
@@ -47,6 +47,10 @@ Using KubViz you can comprehensively scan the kubernetes containers for the secu
 Detects comprehensive vulnerabilities in OS packages (Alpine, Red Hat Universal Base Image, Red Hat Enterprise Linux, CentOS, Oracle Linux, Debian, Ubuntu, Amazon Linux, openSUSE Leap, SUSE Enterprise Linux, Photon OS and Distroless).
 
 Detects configuration issues in Kubernetes cluster
+
+#### SBOM
+
+Generate reports for Software Bill of Materials (SBOM) from images within your Kubernetes cluster using KubViz in the CycloneDX format. These reports will be available in JSON format.
 
 ### Architecture
 

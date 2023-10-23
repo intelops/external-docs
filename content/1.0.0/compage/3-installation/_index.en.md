@@ -1,6 +1,6 @@
 ---
 title: "Installation"
-date: 2023-03-31
+date: 2023-10-08
 weight: 3
 draft: false
 ---
@@ -12,30 +12,13 @@ the server, you have to expose the `ui` service using LoadBalancer service type 
 
 ### Create a KinD cluster
 
-Make sure you have access to Kubernetes cluster along with a capability to install a namespaced scope CRD to your
-cluster.
-You can create a KinD cluster as explained [here](https://github.com/intelops/compage/blob/main/CONTRIBUTING.md), in
-cluster creation section.
+Make sure you have access to Kubernetes cluster. You can create a KinD cluster as explained [here](https://github.com/intelops/compage/blob/main/CONTRIBUTING.md), in a cluster creation section. Make sure that you are installing the nginx ingress controller as well.
 
-### Register an app on GitHub
+We have configured the KinD cluster to be available at these ports: 
+- ui-32222
+- app—31111
 
-To run `Compage` (on your local or on the server), you have to first set up GitHub app.
-
-- Register a new app on GitHub to retrieve clientId and clientSecret by following steps given on this
-  link - https://docs.github.com/en/apps/creating-github-apps/creating-github-apps/creating-a-github-app.
-  Update the clientId and clientSecret in values.yaml like below.
-
-```yaml
-githubApp:
-  # update below value cluster's node ip and with port specified here (.Values.ui.service.nodePort)
-  redirectURI: "http://localhost:32222/login"
-  clientId: "XXXXXXXX"
-  clientSecret: "XXXXXXXX"
-ui:
-  compageApp:
-    #   update below value cluster's node ip and with port specified here (.Values.app.service.nodePort)
-    serverUrl: http://localhost:31111
-```
+So, you can access the compage using [http://localhost:32222](http://localhost:32222)
 
 ### Create a namespace
 
@@ -46,6 +29,20 @@ kubectl create ns compage
 kubectl config set-context --current --namespace=compage
 ```
 
+### Configure Cassandra
+You need to get the details for Cassandra as compage/app uses Cassandra as a database.
+You need to update the values.yaml file with the Cassandra details.
+```shell
+app:  
+  cassandra:
+    contactPoints: "test-dc1-service.k8ssandra-operator.svc.cluster.local"
+    localDataCenter: "dc1"
+    username: "test-superuser"
+    password: "Vr58zqslXCgQniIfHdYe"
+    keyspace: "compage"
+```
+You can use any Cassandra cluster to store the data. If you want to start a local Cassandra cluster, you can follow the steps given in the [compage/deploy/steps.md](https://github.com/intelops/compage/blob/v1.0.0/deploy/steps.md) file.
+
 ### Install the latest version from GitHub helm repository.
 
 Fire below set of commands and install the compage on your KinD cluster running locally.
@@ -53,8 +50,6 @@ Fire below set of commands and install the compage on your KinD cluster running 
 Before this, you will have to create a docker image for ui component. As this is a UI component and commands in
 Dockerfile use below CONFIG values
 
-- REACT_APP_GITHUB_APP_CLIENT_ID
-- REACT_APP_GITHUB_APP_REDIRECT_URI
 - REACT_APP_COMPAGE_APP_SERVER_URL
 
 to create it, you will have to use your configurations and create a docker image using below commands (run them from base folder of compage)
@@ -81,7 +76,7 @@ kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=compage-core
 kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=compage-app
 ```
 
-##### Go to http://localhost:32222
+Go to [http://localhost:32222](http://localhost:32222)
 
 ### Uninstall
 
