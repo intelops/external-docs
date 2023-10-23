@@ -10,4 +10,3 @@ layout : "changelog"
 
 - [Compage](compage/1.0.1/compage-project-changelog/)
 - [Capten](capten/1.0.1/capten-project-changelog/)
-
