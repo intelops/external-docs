@@ -36,3 +36,7 @@ Using KubViz you can comprehensively scan the kubernetes containers for the secu
 Detects comprehensive vulnerabilities in OS packages (Alpine, Red Hat Universal Base Image, Red Hat Enterprise Linux, CentOS, Oracle Linux, Debian, Ubuntu, Amazon Linux, openSUSE Leap, SUSE Enterprise Linux, Photon OS and Distroless).
 
 Detects configuration issues in Kubernetes cluster
+
+### SBOM
+
+- Generate reports for Software Bill of Materials (SBOM) from images within your Kubernetes cluster using KubViz in the CycloneDX format. These reports will be available in JSON format.
