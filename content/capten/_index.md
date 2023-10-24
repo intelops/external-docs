@@ -1,3 +1,4 @@
 ---
-draft: true # Set 'draft: true' if this topic all version is hidden or not published
+# draft: true # Set 'draft: true' if this topic all version is hidden or not published
+visible: false
 ---
