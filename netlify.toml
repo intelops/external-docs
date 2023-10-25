@@ -1,10 +1,10 @@
 [build]
   publish = "public"
-  command = "npm run build"
+  command = "yarn build"
 
 [build.environment]
-  HUGO_VERSION = "0.115.0"
-  HUGO_BASEURL = "/"
+  HUGO_VERSION = "0.118.2"
+  GO_VERSION = "1.20.5"
 
 # [[redirects]]
 #   from = "/latest/*"
