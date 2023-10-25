@@ -1,6 +1,7 @@
 {{ $path := replace (path.Dir .RelPermalink) "/" "" }}
 {{ $version := .Params.version }}
 
+
 <!-- Redirects to the latest version of topic page if the user is on the topic's root page, e.g., "/compage" -->
 {{ if not .Params.visible }}
   {{ if not (index (split .RelPermalink "/") 2) }}
@@ -82,7 +83,9 @@
             {{ end }}
 
             {{ if.Content }}
-              <span class="text-muted d-block mb-3" style="font-size:14px;">
+              <span
+                class="text-muted d-block mb-2"
+                style="font-size:14px;padding-top: 5px;">
                 Last Update :
                 <span class="text-dark">
                   {{ .Lastmod.Format "02 January, 2006" }}
@@ -96,19 +99,20 @@
               </span>
             {{ end }}
 
-            <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-10">
+
+            <div
+              class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-20">
               <h2 class="mb-0 fw-medium">{{ .Title }}</h2>
               {{ $scratch := newScratch }}
               {{ with .File }}
                 {{ $scratch.Set "dir" .Dir }}
               {{ end }}
               <div>
-
                 {{ partial "version-switcher.html" . }}
 
                 <button
                   type="button"
-                  class="tooltip-el copy-url border-0 bg-transparent p-2 me-1 text-center"
+                  class="tooltip-el copy-url border-0 bg-transparent p-1 me-1 text-center"
                   data-latest-doc-ver="{{ site.Params.latestDocVersion }}">
                   <svg
                     class="copy"

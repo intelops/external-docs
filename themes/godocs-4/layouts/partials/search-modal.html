@@ -49,6 +49,16 @@
   </div>
 </div>
 
+{{ $currentPageVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
+{{ $index := "" }}
+{{ if eq (index (split .RelPermalink "/") 3) $currentPageVersion }}
+  {{ $index = 3 }}
+{{ else }}
+  {{ $index = 2 }}
+{{ end }}
+{{ $currentSection := string (delimit (first $index (split .RelPermalink "/")) "/") }}
+{{ $latest_version := (string (site.GetPage (string $currentSection)).Params.latest_version) }}
+
 <script>
   const bodyVersion = document.querySelector("body").getAttribute("data-version");
   const versonUrl = new URL(window.location.href);
@@ -79,25 +89,23 @@
           version: item,
           data: filteredItems,
         };
-      });
+    });
 
     let searchItem = filteredJSON.filter((item) => {
-      if (bodyVersion === item.version || versonUrlOne === item.version ) {
-        if (searchString === "" ) {
-          return "";
-        }
-        else if (item.data.find((el) => (el.title?.toLowerCase().includes(searchString)))) {
-          return item
-        }
-        else if (item.data.find((el) => (el.description?.toLowerCase().includes(searchString)))) {
-          return item
-        }
-        else if (item.data.find((el) => (el.searchKeyword?.toLowerCase().includes(searchString)))) {
-          return item
-        }
-        else if (item.data.find((el) => (el.content?.toLowerCase().includes(searchString)))) {
-          return item
-        }
+      if (searchString === "" ) {
+        return "";
+      }
+      else if (item.data.find((el) => (el.title?.toLowerCase().includes(searchString)))) {
+        return item
+      }
+      else if (item.data.find((el) => (el.description?.toLowerCase().includes(searchString)))) {
+        return item
+      }
+      else if (item.data.find((el) => (el.searchKeyword?.toLowerCase().includes(searchString)))) {
+        return item
+      }
+      else if (item.data.find((el) => (el.content?.toLowerCase().includes(searchString)))) {
+        return item
       }
     });
 
@@ -117,11 +125,11 @@
       return (item.version &&
       `<div class="search-result-item">
         <p class="section">v${item.version}</p>
-        ${item.data.filter((d) => 
-          d.title?.toLowerCase().includes(searchString) || 
-          d.description?.toLowerCase().includes(searchString) || 
-          d.searchKeyword?.toLowerCase().includes(searchString) || 
-          d.content?.toLowerCase().includes(searchString)).map((innerItem) => 
+        ${item.data.filter((d) =>
+          d.title?.toLowerCase().includes(searchString) ||
+          d.description?.toLowerCase().includes(searchString) ||
+          d.searchKeyword?.toLowerCase().includes(searchString) ||
+          d.content?.toLowerCase().includes(searchString)).map((innerItem) =>
             `<a class="block" href="${innerItem.url}"><p class="text-dark mb-0 lh-base">${innerItem.title}</p><span></span><p class="small text-muted mt-1 mb-0 lh-base">${contentValue}</p></a>`
           ).join("")}
       </div>`)

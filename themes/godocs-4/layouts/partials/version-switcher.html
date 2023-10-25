@@ -1,12 +1,10 @@
 {{ $isHome := .IsHome }}
-{{ $currentPageURL := .RelPermalink }}
-{{ $currentPageVersion := index (findRE `(\d+\.\d+\.\d+)` $currentPageURL) 0 }}
-
+{{ $currentPageVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
 {{ if site.Params.docVersion }}
   <span class="dropdown dropdown-doc-version">
     {{ if not $isHome }}
       <button
-      class="bg-transparent border-0 me-0 px-0 doc-version-toggler d-none"
+        class="bg-transparent border-0 me-0 px-0 doc-version-toggler d-none"
         id="{{ $currentPageVersion }}"
         data-bs-toggle="dropdown"
         aria-expanded="false"
@@ -31,49 +29,54 @@
       </button>
 
       {{ if $currentPageVersion }}
-        <ul
-          class="dropdown-menu dropdown-menu-right shadow rounded-1 border-0">
-          {{ $latestVerison := slice }}
-          {{ $versions := slice }}
-          {{ $url := .RelPermalink }}
+        {{ $index := "" }}
+        {{ if eq (index (split .RelPermalink "/") 3) $currentPageVersion }}
+          {{ $index = 3 }}
+        {{ else }}
+          {{ $index = 2 }}
+        {{ end }}
 
-          {{ range $i, $e := site.Params.docVersions }}
-            {{ $pageVersion := string . }}
-            {{ $url := replace $url $currentPageVersion $pageVersion }}
-            {{ $isPageExist := site.GetPage $url }}
 
-            {{ if $isPageExist }}
-              {{ if eq $pageVersion site.Params.latestDocVersion }}
-                {{ $latestVerison = $latestVerison | append $isPageExist }}
+        <ul class="dropdown-menu dropdown-menu-right shadow rounded-1 border-0">
+          {{ $currentSection := string (delimit (first $index (split .RelPermalink "/")) "/") }}
+          {{ $latest_version := string (site.GetPage (string $currentSection)).Params.latest_version }}
+
+          {{ with site.GetPage $currentSection }}
+            {{ $withoutLatestVerion := slice }}
+            {{ range $i, $ele := .Sections }}
+              {{ $currentRangeVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
+              {{ $currentRangeSection := delimit (first $index (split .RelPermalink "/")) "/" }}
+
+              {{ if eq $currentRangeVersion $latest_version }}
+                <li>
+                  <a
+                    class="dropdown-item inactive"
+                    id="{{ $currentRangeVersion }}"
+                    aria-current="true"
+                    href="{{ .Permalink | relLangURL }}">
+                    Latest (v{{ $currentRangeVersion }})
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
               {{ else }}
-                {{ $versions = $versions | append $isPageExist }}
+                {{ $withoutLatestVerion = $withoutLatestVerion | append . }}
               {{ end }}
             {{ end }}
-          {{ end }}
-          {{ with index $latestVerison 0 }}
-            {{ $pageVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
-            <li>
-              <a
-                class="dropdown-item inactive"
-                id="{{ $pageVersion }}"
-                aria-current="true"
-                href="{{ .Permalink | relLangURL }}">
-                Latest (v{{ $pageVersion }})
-              </a>
-            </li>
-          {{ end }}
-
-          {{ range $versions }}
-            {{ $pageVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
-            <li><hr class="dropdown-divider" /></li>
-            <li>
-              <a
-                class="dropdown-item inactive"
-                id="{{ $pageVersion }}"
-                href="{{ .Permalink | relLangURL }}">
-                v{{ $pageVersion }}
-              </a>
-            </li>
+            {{ range $i, $items := $withoutLatestVerion }}
+              {{ $currentRangeVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
+              {{ $currentRangeSection := delimit (first $index (split .RelPermalink "/")) "/" }}
+              <li>
+                <a
+                  class="dropdown-item inactive"
+                  id="{{ $currentRangeVersion }}"
+                  href="{{ .Permalink | relLangURL }}">
+                  v{{ $currentRangeVersion }}
+                </a>
+              </li>
+              {{ if not (eq $i (sub (len $withoutLatestVerion) 1)) }}
+                <li><hr class="dropdown-divider" /></li>
+              {{ end }}
+            {{ end }}
           {{ end }}
         </ul>
       {{ end }}

@@ -909,6 +909,7 @@ footer {
 
 .tooltip-el {
   position: relative;
+  z-index: 1111;
   display: inline-block;
   border-bottom: 1px dotted black;
   .tooltiptext {
