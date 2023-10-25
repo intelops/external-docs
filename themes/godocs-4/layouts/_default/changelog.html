@@ -64,7 +64,7 @@
 
                   <a
                     class="btn btn-sm px-3 github-edit-btn"
-                    href="{{ site.Params.githubEditURL }}/content/{{ $scratch.Get "dir" | replaceRE `\\` "/" }}"
+                    href="{{ site.Params.githubEditURL }}/content/{{ $scratch.Get "path" | replaceRE `\\` "/" }}?plain=1"
                     target="_blank">
                     <i class="fas fa-edit"></i>
                     <span class="d-none d-sm-inline ms-1">
