@@ -1,5 +1,5 @@
 ######################## default configuration ####################
-baseURL = "https://docs.intelops.ai"
+baseURL = "/"
 title = "Intelops Docs"
 theme = "godocs-4"
 # google analytics
