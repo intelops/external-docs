@@ -1,6 +1,7 @@
 Thumbs.db
 .DS_Store
 **/.DS_Store
+**/yarn.lock
 **/*.lock
 .obsidian
 */.obsidian
