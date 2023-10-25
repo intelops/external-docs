@@ -6,11 +6,11 @@
   HUGO_VERSION = "0.115.0"
   HUGO_BASEURL = "/"
 
-[[redirects]]
-  from = "/latest/*"
-  to = "/1.0.1/:splat"
-  status = 301
-  force = true
+# [[redirects]]
+#   from = "/latest/*"
+#   to = "/1.0.1/:splat"
+#   status = 301
+#   force = true
 
 [[headers]]
   for = "/*" # This defines which paths this specific [[headers]] block will cover.
