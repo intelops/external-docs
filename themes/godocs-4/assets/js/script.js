@@ -11,10 +11,10 @@ $(preloader);
   let copyEl = document.querySelector(".copy-url");
   if (copyEl !== null) {
     let pageUrl = window.location.href;
-    let latestDocVer = copyEl.getAttribute("data-latest-doc-ver");
-    if (pageUrl.includes(latestDocVer)) {
-      pageUrl = pageUrl.replace(latestDocVer, "latest");
-    }
+    // let latestDocVer = document.querySelector("[latest-data-version]")?.getAttribute("latest-data-version");
+    // if (pageUrl.includes(latestDocVer)) {
+    //   pageUrl = pageUrl.replace(latestDocVer, "latest");
+    // }
     
     copyEl.addEventListener("click", function () {
       this.classList.add("done");

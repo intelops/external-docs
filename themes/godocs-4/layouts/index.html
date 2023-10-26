@@ -70,7 +70,7 @@
   </section>
   <!-- /topics -->
 
-  {{ if site.Params.faq }}
+  {{/*  {{ if site.Params.faq }}
     <!-- faq -->
     {{ $faq := add (add `/` (string site.Params.latestDocVersion)) `/faq` }}
     {{ with site.GetPage $faq }}
@@ -84,6 +84,5 @@
       </section>
     {{ end }}
     <!-- /faq -->
-  {{ end }}
-
+  {{ end }}  */}}
 {{ end }}

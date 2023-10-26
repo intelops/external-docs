@@ -1,8 +1,7 @@
-{{ $isHome := .IsHome }}
 {{ $currentPageVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
-{{ if site.Params.docVersion }}
+{{ if and (site.Params.docVersion) (ne .RelPermalink "/changelog/")}}
   <span class="dropdown dropdown-doc-version">
-    {{ if not $isHome }}
+    {{ if not .IsHome }}
       <button
         class="bg-transparent border-0 me-0 px-0 doc-version-toggler d-none"
         id="{{ $currentPageVersion }}"
@@ -35,17 +34,17 @@
         {{ else }}
           {{ $index = 2 }}
         {{ end }}
-
-
         <ul class="dropdown-menu dropdown-menu-right shadow rounded-1 border-0">
           {{ $currentSection := string (delimit (first $index (split .RelPermalink "/")) "/") }}
           {{ $latest_version := string (site.GetPage (string $currentSection)).Params.latest_version }}
+          {{ $currentPermalink := .RelPermalink }}
 
           {{ with site.GetPage $currentSection }}
             {{ $withoutLatestVerion := slice }}
             {{ range $i, $ele := .Sections }}
               {{ $currentRangeVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
               {{ $currentRangeSection := delimit (first $index (split .RelPermalink "/")) "/" }}
+              {{ $updatedPermalink := replaceRE `(\d+\.\d+\.\d+)` $currentRangeVersion $currentPermalink }}
 
               {{ if eq $currentRangeVersion $latest_version }}
                 <li>
@@ -53,7 +52,7 @@
                     class="dropdown-item inactive"
                     id="{{ $currentRangeVersion }}"
                     aria-current="true"
-                    href="{{ .Permalink | relLangURL }}">
+                    href="{{ $updatedPermalink }}">
                     Latest (v{{ $currentRangeVersion }})
                   </a>
                 </li>
@@ -65,11 +64,12 @@
             {{ range $i, $items := $withoutLatestVerion }}
               {{ $currentRangeVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
               {{ $currentRangeSection := delimit (first $index (split .RelPermalink "/")) "/" }}
+              {{ $updatedPermalink := replaceRE `(\d+\.\d+\.\d+)` $currentRangeVersion $currentPermalink }}
               <li>
                 <a
                   class="dropdown-item inactive"
                   id="{{ $currentRangeVersion }}"
-                  href="{{ .Permalink | relLangURL }}">
+                  href="{{ $updatedPermalink }}">
                   v{{ $currentRangeVersion }}
                 </a>
               </li>

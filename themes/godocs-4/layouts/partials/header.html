@@ -1,13 +1,23 @@
 <script>
-  let url = new URL(window.location.href);
-  let extractVersion = (String(url.pathname).match(/\d+\.\d+\.\d+/));
+  let extractVersion = (String(new URL(window.location.href).pathname).match(/\d+\.\d+\.\d+/));
   let urlVersion = extractVersion ? extractVersion[0] : "{{site.Params.latestDocVersion}}";
 </script>
 
-<!-- prettier-ignore -->
-{{ $path := replace (path.Dir .RelPermalink) "/" "" }}
-{{ $version := .Params.version }}
-<!-- prettier-ignore -->
+<!-- Redirects to the latest version of topic page if the user is on the topic's root page, e.g., "/compage" -->
+{{ if .Params.redirect_to_latest }}
+  {{ if or (not (index (split .RelPermalink "/") 2)) (not (index (split .RelPermalink "/") 3)) }}
+    <script>window.location.replace(window.location.pathname + "/" + "{{.Params.latest_version}}");</script>
+  {{ end }}
+{{ end }}
+
+{{ $index := "" }}
+{{ if eq (index (split .RelPermalink "/") 3) "" }}
+  {{ $index = 3 }}
+{{ else }}
+  {{ $index = 2 }}
+{{ end }}
+{{ $currentSection := string (delimit (first $index (split .RelPermalink "/")) "/") }}
+{{ $latest_version := (string (site.GetPage (string $currentSection)).Params.latest_version) }}
 
 {{ "<!-- navigation -->" | safeHTML }}
 <header class="sticky-top navigation {{ if .IsHome }}home-nav{{ end }}">
@@ -76,7 +86,7 @@
       </div>
 
       {{ if ne .Params.ignoreSearch true }}
-        {{ if and (not .IsHome) (ne $path $version) .IsSection }}
+        {{ if and (not .IsHome) .IsSection }}
           <form
             class="search-wrapper search-wrapper-sm d-none d-lg-block order-3 order-lg-2"
             data-bs-toggle="modal"
@@ -144,6 +154,7 @@
             </svg>
           </button>
         {{ end }}
+
 
         <!-- if doc version enable show changelog -->
         <a

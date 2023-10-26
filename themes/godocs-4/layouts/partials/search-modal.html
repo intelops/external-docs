@@ -60,10 +60,6 @@
 {{ $latest_version := (string (site.GetPage (string $currentSection)).Params.latest_version) }}
 
 <script>
-  const bodyVersion = document.querySelector("body").getAttribute("data-version");
-  const versonUrl = new URL(window.location.href);
-  const versonUrlOne = ((String(versonUrl.pathname).match(/\d+\.\d+\.\d+/))) ? ((String(versonUrl.pathname).match(/\d+\.\d+\.\d+/)))[0] : "{{site.Params.latestDocVersion}}";
-
   const searchModal = document.getElementById('searchModal');
   const searchInput = document.getElementById('searchInput');
   const searchResult = document.getElementById("search-result-body");
