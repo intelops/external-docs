@@ -1,0 +1,41 @@
+[
+  {{- $len := sub (len site.Pages) 1 -}}
+  {{ $links := slice }}
+  {{- range $i, $ele := site.Pages -}}
+    {{- if .Params.latest_version -}}
+        {{- with site.GetPage (string (add .RelPermalink .Params.latest_version "/")) -}}
+          {{ $links = $links | append . }}
+        {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{ range $i, $ele := $links }}
+    {{- $is_last_index := eq $i (sub (len $links) 1) -}}
+    {{- $with_latest := replaceRE `(\d+\.\d+\.\d+)` "latest" .RelPermalink -}}
+    {
+      "url": "{{ $with_latest }}",
+      "main_url": "{{ .RelPermalink }}"
+    },
+    {{- if and (.Pages) $is_last_index -}}
+      {{- template "item" (dict "context" . "is_last_index" $is_last_index) -}}
+    {{- else -}}
+      {{- template "item" (dict "context" . "is_last_index" "") -}}
+    {{- end -}}
+  {{ end }}
+  
+  {{- define "item" -}}
+    {{- with .context -}}
+        {{- $len := sub (len .Pages) 1 -}}
+        {{- range $i, $ele := .Pages -}}
+          {{- $with_latest := replaceRE `(\d+\.\d+\.\d+)` "latest" .RelPermalink -}}
+          {
+            "url": "{{ $with_latest }}",
+            "main_url": "{{.RelPermalink}}"
+          }{{ if $.is_last_index }}{{ if ne $i $len }},{{ end }}{{ else }},{{ end }}
+          {{- if .Pages -}}
+            {{- template "item" (dict "context" .) -}}
+          {{- end -}}
+        {{- end -}}
+    {{- end -}}
+  {{- end -}} 
+]

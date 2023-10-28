@@ -1,8 +1,3 @@
-<script>
-  let extractVersion = (String(new URL(window.location.href).pathname).match(/\d+\.\d+\.\d+/));
-  let urlVersion = extractVersion ? extractVersion[0] : "{{site.Params.latestDocVersion}}";
-</script>
-
 <!-- Redirects to the latest version of topic page if the user is on the topic's root page, e.g., "/compage" -->
 {{ if .Params.redirect_to_latest }}
   {{ if or (not (index (split .RelPermalink "/") 2)) (not (index (split .RelPermalink "/") 3)) }}
@@ -193,4 +188,38 @@
 </header>
 {{ "<!-- /navigation -->" | safeHTML }}
 
-{{ partial "search-modal" . }}
+<script>
+  let extractVersion = String(new URL(window.location.href).pathname).match(
+    /\d+\.\d+\.\d+/,
+  );
+  let urlVersion = extractVersion ? extractVersion[0] : "";
+  let linksJsonData = [];
+  let link = window.location.pathname;
+  let updatedLink = "";
+  let linksJSON = {{"links.json" | relURL}};
+
+  const loadLinksJsonData = async () => {
+    try {
+      const res = await fetch(linksJSON);
+      linksJsonData = await res.json();
+
+      linksJsonData.forEach((item) => {
+        {{/*  console.log(`${item.url}`);  */}}
+        console.log(`${link}`);
+        {{/*  console.log(item.url);  */}}
+        if (item.url == link) {
+          updatedLink = item.main_url;
+        };
+      })
+
+
+      if(updatedLink){
+        window.location.replace(updatedLink);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  loadLinksJsonData();
+</script> {{ partial "search-modal" . }}

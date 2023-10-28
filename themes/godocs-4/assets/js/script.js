@@ -7,6 +7,36 @@ $(preloader);
 (function ($) {
   "use strict";
 
+  let versions = [
+    {
+      "url": "/compage/latest/1-docs-structure/",
+      "main_url": "/compage/0.0.1/1-docs-structure/"
+    },
+    {
+      "url": "/kubviz/latest/4-community/",
+      "main_url": "/kubviz/1.0.1/4-community/"
+    },
+    {
+      "url": "/capten/latest/",
+      "main_url": "/capten/1.0.1/"
+    },
+    {
+      "url": "/changelog/compage/latest/compage-project-changelog/",
+      "main_url": "/changelog/compage/1.0.7/compage-project-changelog/"
+    },
+    {
+      "url": "/changelog/capten/latest/capten-project-changelog/",
+      "main_url": "/changelog/capten/1.0.5/capten-project-changelog/"
+    },
+  ];
+
+  let url = "/capten/latest/";
+  versions.forEach((item) => {
+    if (item.url === url) {
+      url = item.main_url;
+    }
+  })
+
   // copy-to-clipboard
   let copyEl = document.querySelector(".copy-url");
   if (copyEl !== null) {
@@ -15,7 +45,7 @@ $(preloader);
     // if (pageUrl.includes(latestDocVer)) {
     //   pageUrl = pageUrl.replace(latestDocVer, "latest");
     // }
-    
+
     copyEl.addEventListener("click", function () {
       this.classList.add("done");
 
@@ -50,7 +80,7 @@ $(preloader);
     });
 
     let modalOpen = false;
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
       if (e.key === "Escape") {
         searchModal.hide();
       } else if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
@@ -69,7 +99,7 @@ $(preloader);
       modalOpen = false;
     });
   }
-  
+
   // Code Copy
   // ----------------------------------------
   let blocks = document.querySelectorAll(".code-highlight");
@@ -240,8 +270,8 @@ $(preloader);
         title = $(this).attr("title");
       navTabs.append(
         '<li class="nav-item"><a class="nav-link" href="#">' +
-          title +
-          "</a></li>"
+        title +
+        "</a></li>"
       );
     });
 

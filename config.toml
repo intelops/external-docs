@@ -12,13 +12,18 @@ enableGitInfo = true
 # hugo outputs
 [outputFormats]
 [outputFormats.JSON]
-isPlainText = false
+  isPlainText = false
+
+[outputFormats.LINKS]
+  baseName = 'links'
+  isPlainText = true
+  mediaType = 'application/json'
 
 [minify]
   disableHTML = true
 
 [outputs]
-home = ["HTML", "JSON"]
+home = ["HTML", "JSON","LINKS"]
 
 # render unsafe html
 [markup.goldmark.renderer]

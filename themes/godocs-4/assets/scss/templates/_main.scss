@@ -1215,3 +1215,12 @@ object {
     }
   }
 }
+
+.overlay-white {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  top: 0px;
+  z-index: 99999;
+}
