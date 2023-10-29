@@ -7,44 +7,25 @@ $(preloader);
 (function ($) {
   "use strict";
 
-  let versions = [
-    {
-      "url": "/compage/latest/1-docs-structure/",
-      "main_url": "/compage/0.0.1/1-docs-structure/"
-    },
-    {
-      "url": "/kubviz/latest/4-community/",
-      "main_url": "/kubviz/1.0.1/4-community/"
-    },
-    {
-      "url": "/capten/latest/",
-      "main_url": "/capten/1.0.1/"
-    },
-    {
-      "url": "/changelog/compage/latest/compage-project-changelog/",
-      "main_url": "/changelog/compage/1.0.7/compage-project-changelog/"
-    },
-    {
-      "url": "/changelog/capten/latest/capten-project-changelog/",
-      "main_url": "/changelog/capten/1.0.5/capten-project-changelog/"
-    },
-  ];
-
-  let url = "/capten/latest/";
-  versions.forEach((item) => {
-    if (item.url === url) {
-      url = item.main_url;
+  // Show temporary white overlay (for better user experience) if user want to navigate to url that contains "latest" word
+  let overlay404 = document.querySelector(".overlay-404");
+  let url = window.location.pathname;
+  let DoesLatestWordExist = url.match(/(^|\/)latest($|\/)/);
+  let DoesVersionExist = url.match(/\d+\.\d+\.\d+/);
+  if (overlay404) {
+    if (!DoesLatestWordExist || DoesVersionExist) {
+      overlay404?.classList.add("d-none");
     }
-  })
+  }
 
   // copy-to-clipboard
   let copyEl = document.querySelector(".copy-url");
   if (copyEl !== null) {
     let pageUrl = window.location.href;
-    // let latestDocVer = document.querySelector("[latest-data-version]")?.getAttribute("latest-data-version");
-    // if (pageUrl.includes(latestDocVer)) {
-    //   pageUrl = pageUrl.replace(latestDocVer, "latest");
-    // }
+    let latestDocVer = document.querySelector("[latest-data-version]")?.getAttribute("latest-data-version");
+    if (pageUrl.includes(latestDocVer)) {
+      pageUrl = pageUrl.replace(latestDocVer, "latest");
+    }
 
     copyEl.addEventListener("click", function () {
       this.classList.add("done");
@@ -327,7 +308,7 @@ $(preloader);
   // table of content
   if ($("#TableOfContents li").length > 0) {
     new ScrollMenu("#TableOfContents a", {
-      duration: 400,
+      duration: 100,
       activeOffset: 40,
       scrollOffset: 10,
     });

@@ -5,6 +5,7 @@
   {{ end }}
 {{ end }}
 
+<!-- Get Latest verison of the topic or changelog -->
 {{ $index := "" }}
 {{ if eq (index (split .RelPermalink "/") 3) "" }}
   {{ $index = 3 }}
@@ -188,6 +189,7 @@
 </header>
 {{ "<!-- /navigation -->" | safeHTML }}
 
+<!-- Generate json data of all (Topic & changelog) latest version pages & subpages with latest word. (Redirect user if they want to navigate a link that contain "latest" word) -->
 <script>
   let extractVersion = String(new URL(window.location.href).pathname).match(
     /\d+\.\d+\.\d+/,
@@ -203,18 +205,19 @@
       const res = await fetch(linksJSON);
       linksJsonData = await res.json();
 
-      linksJsonData.forEach((item) => {
-        {{/*  console.log(`${item.url}`);  */}}
-        console.log(`${link}`);
-        {{/*  console.log(item.url);  */}}
-        if (item.url == link) {
-          updatedLink = item.main_url;
-        };
-      })
+      let DoesLatestWordExist = link.match(/(^|\/)latest($|\/)/);
+      if(DoesLatestWordExist){
+        linksJsonData.forEach((item) => {
+          if (item.url == link) {
+            updatedLink = item.main_url;
+          };
+        })
 
-
-      if(updatedLink){
-        window.location.replace(updatedLink);
+        if(updatedLink){
+          window.location.replace(updatedLink);
+        } else {
+          document.querySelector(".overlay-404")?.remove();
+        }
       }
     } catch (err) {
       console.error(err);
@@ -222,4 +225,5 @@
   };
 
   loadLinksJsonData();
-</script> {{ partial "search-modal" . }}
+</script> 
+{{ partial "search-modal" . }}
