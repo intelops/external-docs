@@ -1,47 +1,38 @@
 {{ $currentNode := . }}
 {{ $isChangelogSection := eq .Section "changelog" }}
 {{ $currentChangelogNode := site.GetPage "/changelog/" }}
-{{ $currentTopic := delimit (first 3 (split .RelPermalink "/")) "/" }}
-{{ $currentPageVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 | default site.Params.latestDocVersion }}
+{{ $currentRelPermalink := delimit (first 3 (split .RelPermalink "/")) "/" }}
+{{ $currentPageVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
 
-<ul
-  id="{{ $currentPageVersion }}"
-  class="version-tree menu d-none py-4 pe-4 ps-0 border-end border-default mb-0">
+
+<ul class="menu py-4 pe-4 ps-0 border-end border-default mb-0">
   <!-- For Topics -->
   {{- range (where site.Pages ".Params.Type" "==" "docs") }}
     {{ $sectionNode := delimit (first 3 (split .RelPermalink "/")) "/" }}
 
-    {{ if eq $currentTopic $sectionNode }}
+    {{ if eq $currentRelPermalink $sectionNode }}
       {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode }}
     {{ end }}
   {{- end }}
 
+  {{ if $isChangelogSection }}
+    {{ $changelogs := slice }}
+    {{ range $currentChangelogNode.Sections }}
+      {{ $clg_latestVerison := .Params.latest_version }}
 
-  <!-- For Changelog -->
-  {{- range (where site.Pages ".Params.Type" "==" "changelog") }}
-    {{ $sectionNode := delimit (first 4 (split .RelPermalink "/")) "/" }}
+      {{ range (where .Data.Pages ".Params.Type" "==" "changelog") }}
+        {{ $versin := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
+        {{ $section :=  delimit (first 3 (split .RelPermalink "/")) "/" }}
 
-    {{ if findRE $currentPageVersion $sectionNode }}
-      {{ if $isChangelogSection }}
-        {{- template "section-tree-nav" dict "sect" . "currentnode" $currentChangelogNode }}
+        {{ if and (eq $section $currentRelPermalink) (eq $versin $currentPageVersion) }}
+          {{- template "section-tree-nav" dict "sect" . "currentnode" $currentChangelogNode }}
+        {{ else if and (eq $versin $clg_latestVerison) (ne $section $currentRelPermalink) }}
+          {{- template "section-tree-nav" dict "sect" . "currentnode" $currentChangelogNode }}
+        {{ end }}
       {{ end }}
     {{ end }}
-  {{- end }}
+  {{ end }}
 </ul>
-
-<script>
-  let versionTree = document.querySelectorAll(".version-tree");
-  versionTree.forEach((el, i) => {
-    let id = el.getAttribute("id");
-    if (id == urlVersion) {
-      el.classList.remove("d-none");
-    } else {
-      if (el.classList.contains("version-tree")) {
-        el.remove();
-      }
-    }
-  });
-</script>
 
 <!-- templates -->
 {{- define "section-tree-nav" }}
@@ -49,7 +40,7 @@
   {{- with .sect }}
     {{- if .IsSection }}
       {{- $numberOfPages := (add (len .Pages) (len .Sections)) }}
-      {{- safeHTML .Params.head }}
+      {{/* {{- safeHTML .Params.head }} */}}
       <li
         data-nav-id="{{ .Permalink }}"
         class="sidenav-item  {{ if ne $numberOfPages 0 }}haschildren{{ end }}">

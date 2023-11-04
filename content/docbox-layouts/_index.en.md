@@ -2,7 +2,6 @@
 title: "Docbox Layouts"
 date: 2023-07-24
 description: ""
-type : "docs"
 draft: true
 ignoreSearch: true
 weight: 3

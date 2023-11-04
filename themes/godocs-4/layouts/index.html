@@ -1,5 +1,4 @@
 {{ define "main" }}
-
   <section class="section pb-0" id="banner">
     <div class="container">
       <div class="row justify-content-between align-items-center">
@@ -40,9 +39,11 @@
       <h2 class="section-title">{{ i18n `topics` }}</h2>
       <div class="row masonry-wrapper">
         {{ range (where site.Pages "Type" "==" "docs") }}
-          {{ $version := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
+          {{ $currentRangeVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
+          {{ $currentRangeSection := delimit (first 2 (split .RelPermalink "/")) "/" }}
+          {{ $latest_version := (site.GetPage (string $currentRangeSection)).Params.latest_version }}
 
-          {{ if eq $version site.Params.latestDocVersion }}
+          {{ if eq $currentRangeVersion $latest_version }}
             <div class="col-lg-4 col-sm-6 mb-4">
               <div class="card match-height- text-center">
                 <div class="card-body">
@@ -56,9 +57,9 @@
                   </ul>
                   <a
                     href="{{ .Permalink }}"
-                    class="btn btn-sm btn-outline-primary"
-                    >{{ i18n "details" }}</a
-                  >
+                    class="btn btn-sm btn-outline-primary">
+                    {{ i18n "details" }}
+                  </a>
                 </div>
               </div>
             </div>
@@ -84,5 +85,4 @@
     {{ end }}
     <!-- /faq -->
   {{ end }}
-
 {{ end }}
