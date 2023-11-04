@@ -3,7 +3,7 @@
   {{ $links := slice }}
   {{- range $i, $ele := site.Pages -}}
     {{- if .Params.latest_version -}}
-        {{- with site.GetPage (string (add .RelPermalink .Params.latest_version "/")) -}}
+        {{- with site.GetPage (string (add (add .RelPermalink .Params.latest_version) "/")) -}}
           {{ $links = $links | append . }}
         {{- end -}}
     {{- end -}}
