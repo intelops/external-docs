@@ -1,6 +1,6 @@
 ######################## default configuration ####################
-# baseURL = "https://docs.intelops.ai"
-baseURL = "/"
+baseURL = "https://docs.intelops.ai"
+# baseURL = "/"
 title = "Intelops Docs"
 theme = "godocs-4"
 # google analytics
@@ -51,23 +51,30 @@ docVersion = true
 # frequently asked question in homepage
 faq = true
 # github edit button url
-githubEditURL = "https://github.com/tfsumon/external-docs/tree/chandu"
+githubEditURL = "https://github.com/intelops/external-docs/tree/main"
 
 # google tag manager, see https://developers.google.com/tag-manager/
 google_tag_manager = "GTM-PVRN5BQ"
 
-# seo meta data for OpenGraph / Twitter Card
+# seo metadata for OpenGraph / Twitter Card
 [params.metadata]
 keywords = [
   "Intelops",
-  "Cloud-Native",
-  "Ai",
+  "Cloud Native",
+  "AI",
   "DevOps",
+  "DevSecOps",
   "SRE",
   "Kubernetes",
-  "Talent",
+  "Container",
+  "Docker",
+  "Auto Generate", 
+  "Software Supply Chain Security",
+  "Engineering Enablement", 
+  "Enabling Engineering", 
   "Democratize",
-  "Next-Gen",
+  "Next Gen",
+  "Gen AI"
 ]
 description = "Next-Gen Ai based solution to democratize cloud native."
 author = "Intelops"
