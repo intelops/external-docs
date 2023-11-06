@@ -7,15 +7,26 @@ $(preloader);
 (function ($) {
   "use strict";
 
+  // Show temporary white overlay (for better user experience) if user want to navigate to url that contains "latest" word
+  let overlay404 = document.querySelector(".overlay-404");
+  let url = window.location.pathname;
+  let DoesLatestWordExist = url.match(/(^|\/)latest($|\/)/);
+  let DoesVersionExist = url.match(/\d+\.\d+\.\d+/);
+  if (overlay404) {
+    if (!DoesLatestWordExist || DoesVersionExist) {
+      overlay404?.classList.add("d-none");
+    }
+  }
+
   // copy-to-clipboard
   let copyEl = document.querySelector(".copy-url");
   if (copyEl !== null) {
     let pageUrl = window.location.href;
-    let latestDocVer = copyEl.getAttribute("data-latest-doc-ver");
+    let latestDocVer = document.querySelector("[latest-data-version]")?.getAttribute("latest-data-version");
     if (pageUrl.includes(latestDocVer)) {
       pageUrl = pageUrl.replace(latestDocVer, "latest");
     }
-    
+
     copyEl.addEventListener("click", function () {
       this.classList.add("done");
 
@@ -50,7 +61,7 @@ $(preloader);
     });
 
     let modalOpen = false;
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
       if (e.key === "Escape") {
         searchModal.hide();
       } else if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
@@ -69,7 +80,7 @@ $(preloader);
       modalOpen = false;
     });
   }
-  
+
   // Code Copy
   // ----------------------------------------
   let blocks = document.querySelectorAll(".code-highlight");
@@ -240,8 +251,8 @@ $(preloader);
         title = $(this).attr("title");
       navTabs.append(
         '<li class="nav-item"><a class="nav-link" href="#">' +
-          title +
-          "</a></li>"
+        title +
+        "</a></li>"
       );
     });
 
@@ -297,7 +308,7 @@ $(preloader);
   // table of content
   if ($("#TableOfContents li").length > 0) {
     new ScrollMenu("#TableOfContents a", {
-      duration: 400,
+      duration: 100,
       activeOffset: 40,
       scrollOffset: 10,
     });

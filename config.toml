@@ -1,5 +1,6 @@
 ######################## default configuration ####################
 baseURL = "https://docs.intelops.ai"
+# baseURL = "/"
 title = "Intelops Docs"
 theme = "godocs-4"
 # google analytics
@@ -12,13 +13,18 @@ enableGitInfo = true
 # hugo outputs
 [outputFormats]
 [outputFormats.JSON]
-isPlainText = false
+  isPlainText = false
+
+[outputFormats.LINKS]
+  baseName = 'links'
+  isPlainText = true
+  mediaType = 'application/json'
 
 [minify]
   disableHTML = true
 
 [outputs]
-home = ["HTML","JSON"]
+home = ["HTML", "JSON","LINKS"]
 
 # render unsafe html
 [markup.goldmark.renderer]
@@ -36,6 +42,8 @@ ordered = false
 contact_form_action = "#" # contact form works with https://formspree.io
 # feedback form action
 feedback_form_action = "#" # contact form works with https://formspree.io
+# all doc version
+docVersions = []  # Each version should consist of three parts: major version, minor version, and patches. Example of a correct version: ["1.0.0"]. Examples of incorrect versions: ["1.0", "1"].
 # current doc version [folder_name]
 latestDocVersion = "1.0.1"
 # enable/disable Doc Version
@@ -48,9 +56,26 @@ githubEditURL = "https://github.com/intelops/external-docs/tree/main"
 # google tag manager, see https://developers.google.com/tag-manager/
 google_tag_manager = "GTM-PVRN5BQ"
 
-# seo meta data for OpenGraph / Twitter Card
+# seo metadata for OpenGraph / Twitter Card
 [params.metadata]
-keywords = ["Intelops", "Cloud-Native", "Ai", "DevOps", "SRE", "Kubernetes", "Talent", "Democratize", "Next-Gen"]
+keywords = [
+  "Intelops",
+  "Cloud Native",
+  "AI",
+  "DevOps",
+  "DevSecOps",
+  "SRE",
+  "Kubernetes",
+  "Container",
+  "Docker",
+  "Auto Generate", 
+  "Software Supply Chain Security",
+  "Engineering Enablement", 
+  "Enabling Engineering", 
+  "Democratize",
+  "Next Gen",
+  "Gen AI"
+]
 description = "Next-Gen Ai based solution to democratize cloud native."
 author = "Intelops"
 image = "images/og-image.jpg" # this image will be used as fallback if a page has no image of its own
@@ -188,7 +213,6 @@ url = "https://github.com/intelops/"
 weight = 3
 
 
-
 ############################# Plugins ##############################
 
 # CSS Plugin
@@ -248,7 +272,7 @@ light = "#FBFBFB"
 
 # Font Variables
 primary_font = "Poppins:wght@300;400;500;600"
-primary_font_type = "sans-serif"                         # [serif/sans-serif]
+primary_font_type = "sans-serif"              # [serif/sans-serif]
 secondary_font = ""
-secondary_font_type = ""                                 # [serif/sans-serif]
+secondary_font_type = ""                      # [serif/sans-serif]
 icon_font = "Font Awesome 5 Free"

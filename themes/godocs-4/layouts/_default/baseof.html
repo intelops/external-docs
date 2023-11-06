@@ -1,16 +1,24 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
-<head>
-	{{- partial "head.html" . -}}
-	{{- partialCached "style.html" . -}}
-</head>
+  <head>
+    {{- partial "head.html" . -}}
+    {{- partialCached "style.html" . -}}
+  </head>
 
-<body {{if .IsHome}}data-version="{{site.Params.latestDocVersion}}"{{end}}>
-	{{- partialCached "preloader.html" . -}}
-	{{- partial "header.html" . -}}
-	{{- block "main" . }}{{- end }}
-	{{- partialCached "footer.html" . -}}
-	{{- partialCached "script.html" . -}}
-</body>
-
+  {{ $currentPageVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
+  {{ $index := "" }}
+  {{ if eq (index (split .RelPermalink "/") 3) $currentPageVersion }}
+    {{ $index = 3 }}
+  {{ else }}
+    {{ $index = 2 }}
+  {{ end }}
+  {{ $currentSection := string (delimit (first $index (split .RelPermalink "/")) "/") }}
+  {{ $latest_version := (string (site.GetPage (string $currentSection)).Params.latest_version) }}
+  <body {{ if $latest_version }}latest-data-version="{{ $latest_version }}"{{ end }}>
+    {{- partialCached "preloader.html" . -}}
+    {{- partial "header.html" . -}}
+    {{- block "main" . }}{{- end }}
+    {{- partialCached "footer.html" . -}}
+    {{- partialCached "script.html" . -}}
+  </body>
 </html>
