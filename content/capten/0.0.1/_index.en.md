@@ -1,10 +1,9 @@
 ---
 title: "Capten"
-date: 2023-03-31
+date: 2023-11-15
 description: "Capten User Guide doc"
 type : "docs"
 draft: true
+ignoreSearch: false
 weight: 3
 ---
-
-capten - 0.0.1
