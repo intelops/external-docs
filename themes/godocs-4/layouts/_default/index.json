@@ -14,9 +14,9 @@
 
     {{- if .Section -}}
       {{- $section := (where site.Pages "Section" .Section) | intersect (where site.Pages ".Title" "!=" .Title) -}}
-      {{- $sectionLen := len (where site.Pages "Section" .Section) -}}
+      {{- $sectionLen := len $section -}}
 
-      {{- $sectionLenTotal := sub $sectionLen 2 -}}
+      {{- $sectionLenTotal := sub $sectionLen 1 -}}
 
       {{- range $i, $page := $section -}}
         {{- $currentPageVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 -}}
@@ -31,13 +31,15 @@
 
         {{- if and (not .Params.ignoreSearch) (ne $page.Type "json") (eq $latest_version $currentPageVersion) -}}
           {
+            "$sectionLenTotal": "{{$sectionLenTotal}}",
+            "$i": "{{$i}}",
             "version": "{{index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0}}",
             "url": "{{ $page.Permalink }}",
             "title": "{{ with $page.Params.bannertext }}{{htmlEscape .}}{{else}}{{htmlEscape $page.Title}}{{end}}",
             "description": "{{ htmlEscape .Description}}",
             "searchKeyword": "{{ htmlEscape .Params.searchKeyword}}",
             "content": {{$page.Plain | jsonify}}
-          }{{- if eq $item $len -}}{{- if ne (add $i 1) $sectionLenTotal -}},{{- end -}}{{- else -}},{{- end -}}
+          }{{- if eq $item $len -}}{{- if ne $i $sectionLenTotal -}},{{- end -}}{{- else -}},{{- end -}}
       {{- end -}}
     {{- end -}}
 
