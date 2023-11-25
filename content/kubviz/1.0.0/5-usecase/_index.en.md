@@ -21,7 +21,7 @@ Use KubViz to monitor your cluster events, including:
 
 ### Git Repository Events Tracking
 
-- KubViz allows you to track and observe all the events in your git repository..
+- KubViz allows you to track and observe all the events in your git repository.
 
 - By capturing events such as commits, merges, and other Git activities, KubViz provides valuable insights into the evolution of your code. This comprehensive change tracking capability allows you to analyze the effects of code modifications on your development and deployment workflows, facilitating efficient collaboration among teams.With this feature, you can easily identify the root causes of issues, ensure code integrity, and maintain a clear understanding of the changes happening within your Git repositories
 

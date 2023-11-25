@@ -9,36 +9,25 @@ draft: false
 ![kubviz](./logowithName.png)
 
 
-This section is a high-level overview of how the KubViz Documentation is structured. It will help you use the documentation more effectively by guiding you on where to look for specific information.
+Welcome to the KubViz Documentation! This guide is designed to provide you with comprehensive insights into KubViz and its functionalities, enabling you to effectively navigate through its features. The documentation is structured into five main sections:
 
-The KubViz Documentation covers everything you need to know about KubViz. It made up of four main sections which are:
+### Overview
 
-- [Getting started](../3-installation)
-- [Contributing](../6-contribution)
-- [FAQs](../7-faq) 
+[Overview](../2-overview): Discover a comprehensive overview of the KubViz project, where seamless solutions for Kubernetes and DevSecOps workflows await. Explore how KubViz transforms complexities into ease, offering a suite of user-friendly features crafted to enhance and simplify your tasks.
 
+### Installation
 
-## Introduction
+[Getting started](../3-installation): The starting point to set up KubViz on your cluster. Follow the instructions here to get KubViz up and running efficiently.
 
-In the `introduction` section, you will find the three pages below. Head over to the `Installation` page to get the KubViz up and running on your cluster.
-The `usecase` page summarizes the goals and features of the KubViz project.
+### Usecase
 
-- [What is KubViz?](../2-overview)
-- [Community](../4-community)
-- [Installation](../3-installation)
+[Usecase](../5-usecase): This section we illuminate the powerful capabilities designed to streamline your Kubernetes and DevSecOps workflows. Discover how KubViz simplifies complex tracking tasks across various crucial aspects of your infrastructure.
 
-## Contributing
+### Contribution
 
-KubViz is written in `Golang` and is `Apache License` - contributions are always welcome whether that means providing feedback, be it through GitHub, through the `#feedback` channel on our [Discord server](https://intelops.ai/) or testing existing and new features. All the relevant information below:
+[Contributing](../6-contribution): KubViz, developed using Golang under the Apache License, enthusiastically invites contributions from individuals like you. Your input is invaluable, whether it's providing feedback on GitHub, engaging in discussions within our Discord server's `#feedback` channel, or actively participating in feature testing. Your involvement greatly enriches the KubViz community and development efforts.
 
-- [Contribute](../6-contribution)
+### FAQs
 
-## Guides
+[FAQs](../7-faq) : Have questions about KubViz? Check out our FAQ section, where we aim to address common queries. Your suggestions for additional questions are always welcome. Find answers to frequently asked questions about KubViz.
 
-We want to be able to give KubViz users the tips and guidance necessary to be able to get the most value from the tool as quickly as possible. That's why we will be continuously adding and updating informative guides and series in which try to relay valuable and actionable advice.
-
-## FAQs
-
-Find all the answers to all the KubViz related questions you might have. Feel free to reach out via the `#feedback` channel on [Discord](https://intelops.ai/) to request the inclusion of additional questions.
-
-- [FAQs](../8-faq)
