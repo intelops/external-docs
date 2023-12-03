@@ -1,8 +1,8 @@
 {
-  "name": "gethugothemes-boilerplate",
+  "name": "intelops-docs",
   "version": "2.1.3",
   "license": "UNLICENSED",
-  "author": "gethugothemes",
+  "author": "Intelops",
   "scripts": {
     "dev": "cd exampleSite; hugo server || hugo server --themesDir ../..",
     "test": "cd exampleSite; hugo server --disableFastRender --navigateToChanged --templateMetrics --templateMetricsHints --buildExpired --buildFuture --watch --forceSyncStatic -e production --minify || hugo server --themesDir ../.. --disableFastRender --navigateToChanged --templateMetrics --templateMetricsHints --buildExpired --buildFuture --watch --forceSyncStatic -e production --minify",
@@ -10,9 +10,6 @@
     "update": "hugo mod clean && hugo mod get -u ./... && hugo mod tidy"
   },
   "devDependencies": {
-    "@fullhuman/postcss-purgecss": "^5.0.0",
-    "postcss": "^8.4.31",
-    "postcss-cli": "^10.1.0",
     "prettier": "^3.0.3",
     "prettier-plugin-go-template": "^0.0.15"
   }

@@ -8,7 +8,7 @@ $(preloader);
   "use strict";
 
   // Show temporary white overlay (for better user experience) if user want to navigate to url that contains "latest" word
-  let overlay404 = document.querySelector(".overlay-404");
+  let overlay404 = document.querySelector(".overlay-white");
   let url = window.location.pathname;
   let DoesLatestWordExist = url.match(/(^|\/)latest($|\/)/);
   let DoesVersionExist = url.match(/\d+\.\d+\.\d+/);

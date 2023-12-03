@@ -1,37 +1,73 @@
 {{ $currentNode := . }}
-{{ $isChangelogSection := eq .Section "changelog" }}
-{{ $currentChangelogNode := site.GetPage "/changelog/" }}
-{{ $currentRelPermalink := delimit (first 3 (split .RelPermalink "/")) "/" }}
+{{ $isSeparateChangelogPage := findRE "changelog" (index (split .RelPermalink "/") 1) }}
+{{ $changelogTopics := slice }}
+{{ $currentChangelogNode := site.GetPage .Section }}
+{{ $currentRelPermalink := delimit (first 2 (split .RelPermalink "/")) "/" }}
+{{ $currentRelChangelogPermalink := delimit (first 2 (split .RelPermalink "/")) "/" }}
 {{ $currentPageVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
 
+{{/*  {{ range site.Sections }}
+  {{ if (findRE "-changelog" .Section) }}
+    {{ $changelogTopics = $changelogTopics | append .Section }}
+  {{ end }}
+{{ end }}
+  */}}
 
 <ul class="menu py-4 pe-4 ps-0 border-end border-default mb-0">
-  <!-- For Topics -->
-  {{- range (where site.Pages ".Params.Type" "==" "docs") }}
-    {{ $sectionNode := delimit (first 3 (split .RelPermalink "/")) "/" }}
+  {{- range (where site.Sections ".Params.Type" "==" "docs-root") }}
+    <!-- For Nested Changelog & Topics -->
+    {{ $latest_version := .Params.latest_version }}
+    {{ range .Pages }}
+      {{ $sectionNode := delimit (first 2 (split .RelPermalink "/")) "/" }}
+      {{ $isChangelog := index (first 4 (split .RelPermalink "/")) 2}}
+      {{ $currentRangeVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
+      {{ $currentRangeClgVersion := findRE `(\d+\.\d+\.\d+)` .RelPermalink }}
 
-    {{ if eq $currentRelPermalink $sectionNode }}
-      {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode }}
-    {{ end }}
-  {{- end }}
+      {{ if eq $currentRelPermalink $sectionNode }}
+        {{ if and (ne $isChangelog "changelog") (eq $currentPageVersion $currentRangeVersion) }}
+          {{ if eq $latest_version $currentRangeVersion }}
+            {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode }}
+          {{ else if ne $latest_version $currentRangeVersion }}
+            {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode }}
+          {{ end }}
+        {{ end }}
 
-  {{ if $isChangelogSection }}
-    {{ $changelogs := slice }}
-    {{ range $currentChangelogNode.Sections }}
-      {{ $clg_latestVerison := .Params.latest_version }}
+        {{ if and (eq $isChangelog "changelog") }}
+          {{ $latest_version := .Params.latest_version }}
+    
+          {{ range .Pages }}
+            {{ $sectionNode := delimit (first 2 (split .RelPermalink "/")) "/" }}
+            {{ $isChangelog := index (first 4 (split .RelPermalink "/")) 2}}
+            {{ $currentRangeVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
 
-      {{ range (where .Data.Pages ".Params.Type" "==" "changelog") }}
-        {{ $versin := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
-        {{ $section :=  delimit (first 3 (split .RelPermalink "/")) "/" }}
-
-        {{ if and (eq $section $currentRelPermalink) (eq $versin $currentPageVersion) }}
-          {{- template "section-tree-nav" dict "sect" . "currentnode" $currentChangelogNode }}
-        {{ else if and (eq $versin $clg_latestVerison) (ne $section $currentRelPermalink) }}
-          {{- template "section-tree-nav" dict "sect" . "currentnode" $currentChangelogNode }}
+            {{ if and (eq $isChangelog "changelog") (eq $currentPageVersion $currentRangeVersion) }}
+            {{ range .Pages }}
+              {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode }}
+            {{ end }}
+            {{ end }}
+          {{ end }}
         {{ end }}
       {{ end }}
     {{ end }}
-  {{ end }}
+  {{- end }}
+
+  {{ if $isSeparateChangelogPage }}
+    <!-- For Separate Changelogs -->
+    {{ $changelogs := slice }}
+    {{ range (where site.Pages ".Params.Type" "==" "changelog") }}
+      {{ $latest_version := .Params.latest_version }}
+      
+      {{ if and $latest_version (eq .Params.type "changelog") }}
+        {{ range .Pages }}
+        {{ $currentRangeVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
+          {{ if eq $latest_version $currentRangeVersion }}
+            {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+
+    {{ end }}
+  {{- end }}
 </ul>
 
 <!-- templates -->
