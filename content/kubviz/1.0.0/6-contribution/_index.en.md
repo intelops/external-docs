@@ -5,31 +5,31 @@ weight: 6
 draft: false
 ---
 
-If you are willing to contribute to KubViz, kindly follow the guidelines
-here [contributors](https://github.com/intelops/kubviz/blob/main/docs/CONFIGURATION.md). Thank you for your contribution!
+If you're interested in contributing to KubViz, we appreciate your help! Here's a guide to get you started:
 
-## Contributing to the docs
+## Contribution Guidelines
 
-- The best way to get started is by reading
-  the [Contributor Guidelines](https://github.com/intelops/kubviz/blob/main/docs/CONFIGURATION.md).
-- Afterwards, go ahead and **fork** the compage [repository](https://github.com/intelops/kubviz.git). Make any changes you
-  want to your fork, and when you're ready to send those changes to us, go to your fork and create a new pull request.
+Please follow our Contributor Guidelines to ensure a smooth contribution process. Thank you for being part of our community!
 
-- If it takes longer than expected to get feedback from the `KubViz by IntelOps` team, head over to
-  the [Discord Server](https://intelops.ai/) and **ping** a IntelOps staff member either in the `#general`
-  or `#feedback` channel, unless you are a member of the private `contributor` channel. You can always request access to
-  this channel.
+1. Begin by reviewing our [Contributor Guidelines](https://github.com/intelops/kubviz/blob/main/docs/CONTRIBUTING.md).
+2. Fork the KubViz [repository](https://github.com/intelops/kubviz.git).
+3. Make desired changes in your forked repository.
+4. When ready, create a new pull request from your fork to submit your changes for review.
 
-- Once your pull request has been opened, it will be assigned to one or more reviewers. Those reviewers will do a
-  thorough code review, looking for correctness, bugs, opportunities for improvement, documentation, comments, and
-  style.
+## Seeking Feedback or Assistance
 
-- Make sure you include relevant updates or additions to documentation when creating or modifying features. Once you’ve
-  received review and approval, your commits are squashed, and your PR is ready for merging.
+If you need prompt feedback from the KubViz by Intelops team, head to our [Discord Server](https://intelops.ai/) and contact an Intelops staff member in the `#general` or `#feedback` channels. You can request access to the private contributor channel if needed.
 
-- Congrats you’re officially a KubViz contributor 🎊
+### Review Process
+
+1. Once your pull request is open, it will be assigned to one or more reviewers.
+2. Reviewers will carefully assess your changes for correctness, bugs, enhancements, documentation, comments, and style.
+
+### Final Steps
+
+- Ensure any updates or additions to documentation accompany your feature modifications.
+- After receiving review and approval, your commits will be consolidated (squashed), preparing your pull request for merging.
+- Congratulations! You're now officially a KubViz contributor! 🎉
 
 ---
-If you're in need of any assistance at any stage of your contributing journey please don't hesitate to reach out to
-anybody in the `#general` or `#feedback` discord channels, also let us know if you want to be added to the
-private `#contributors` channel too.
+If you require guidance or support at any point during your contribution journey, feel free to reach out to anyone in the `#general` or `#feedback` Discord channels. Additionally, let us know if you wish to be added to the private `#contributors` channel for further assistance and collaboration. Your contributions are greatly valued!
