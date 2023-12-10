@@ -37,7 +37,7 @@
         {{ end }}
 
         <ul
-          class="dropdown-menu text-dark dropdown-menu-right shadow rounded-1 border-0">
+          class="dropdown-menu dropdown-menu-right shadow rounded-1 border-0 py-0 mt-1">
           {{ $currentSection := string (delimit (first $index (split .RelPermalink "/")) "/") }}
           {{ $latest_version := string (site.GetPage (string $currentSection)).Params.latest_version }}
           {{ $currentPermalink := .RelPermalink }}
@@ -60,7 +60,7 @@
                 {{ if $currentRangeVersion }}
                   <li>
                     <a
-                      class="dropdown-item inactive"
+                      class="dropdown-item py-1 inactive"
                       id="{{ $currentRangeVersion }}"
                       aria-current="true"
                       href="{{ $updatedPermalink }}">
@@ -76,10 +76,9 @@
               {{ $currentRangeVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
               {{ $currentRangeSection := delimit (first $index (split .RelPermalink "/")) "/" }}
               {{ $updatedPermalink := replaceRE `(\d+\.\d+\.\d+)` $currentRangeVersion $currentPermalink }}
-              <li><hr class="dropdown-divider" /></li>
               <li>
                 <a
-                  class="dropdown-item inactive"
+                  class="dropdown-item py-1 inactive border-top border-gray border-muted-50"
                   id="{{ $currentRangeVersion }}"
                   href="{{ $updatedPermalink }}">
                   v{{ $currentRangeVersion }}

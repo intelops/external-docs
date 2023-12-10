@@ -1,7 +1,7 @@
 {{- $len := sub (len (.Pages.GroupBy "Section")) 1 -}}
 [{{- range $item, $el := .Pages.GroupBy "Section" -}}
   {{- range $i, $e := .Pages -}}
-    {{- if and (not .Params.ignoreSearch) (.Params.visible) (ne $e.Type "json") -}}
+    {{- if and (not .Params.ignoreSearch) (ne $e.Type "json") -}}
       {
         "version": "",
         "url": "{{ $e.Permalink }}",
@@ -16,9 +16,24 @@
       {{- $section := (where site.Pages "Section" .Section) | intersect (where site.Pages ".Title" "!=" .Title) -}}
       {{- $sectionLen := len $section -}}
 
-      {{- $sectionLenTotal := sub $sectionLen 1 -}}
+      {{- $filteredSections := slice -}}
+      {{- range $in, $page := $section -}}
+        {{- $currentPageVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 -}}
+        {{- $index := "" -}}
+        {{- if eq (index (split .RelPermalink "/") 3) $currentPageVersion -}}
+          {{- $index = 3 -}}
+        {{- else -}}
+          {{- $index = 2 -}}
+        {{- end -}}
+        {{- $currentSection := string (delimit (first $index (split .RelPermalink "/")) "/") -}}
+        {{- $latest_version := (string (site.GetPage (string $currentSection)).Params.latest_version) -}}
+        {{- if and (not .Params.ignoreSearch) (ne $page.Type "json") (eq $latest_version $currentPageVersion) -}}
+          {{- $filteredSections = $filteredSections | append $page -}}
+        {{- end -}}
+      {{- end -}}
 
-      {{- range $i, $page := $section -}}
+      {{- $filteredSectionLen := sub (len $filteredSections) 1 -}}
+      {{- range $rangeIndex, $page := $filteredSections -}}
         {{- $currentPageVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 -}}
         {{- $index := "" -}}
         {{- if eq (index (split .RelPermalink "/") 3) $currentPageVersion -}}
@@ -29,20 +44,15 @@
         {{- $currentSection := string (delimit (first $index (split .RelPermalink "/")) "/") -}}
         {{- $latest_version := (string (site.GetPage (string $currentSection)).Params.latest_version) -}}
 
-        {{- if and (not .Params.ignoreSearch) (ne $page.Type "json") (eq $latest_version $currentPageVersion) -}}
-          {
-            "$sectionLenTotal": "{{$sectionLenTotal}}",
-            "$i": "{{$i}}",
-            "version": "{{index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0}}",
-            "url": "{{ $page.Permalink }}",
-            "title": "{{ with $page.Params.bannertext }}{{htmlEscape .}}{{else}}{{htmlEscape $page.Title}}{{end}}",
-            "description": "{{ htmlEscape .Description}}",
-            "searchKeyword": "{{ htmlEscape .Params.searchKeyword}}",
-            "content": {{$page.Plain | jsonify}}
-          }{{- if eq $item $len -}}{{- if ne $i $sectionLenTotal -}},{{- end -}}{{- else -}},{{- end -}}
+        {
+          "version": "{{index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0}}",
+          "url": "{{ $page.Permalink }}",
+          "title": "{{ with $page.Params.bannertext }}{{htmlEscape .}}{{else}}{{htmlEscape $page.Title}}{{end}}",
+          "description": "{{ htmlEscape .Description}}",
+          "searchKeyword": "{{ htmlEscape .Params.searchKeyword}}",
+          "content": {{$page.Plain | jsonify}}
+          }{{- if eq $item $len -}}{{- if ne $rangeIndex $filteredSectionLen -}},{{- end -}}{{- else -}},{{- end -}}
       {{- end -}}
-    {{- end -}}
-
     {{- end -}}
   {{- end -}}
 {{- end -}}]
