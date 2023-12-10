@@ -6,19 +6,14 @@ draft: false
 ---
 
 
-The `KubViz by IntelOps` community consists of people having industry experience we rally around
-one mission though which is:
+The KubViz community, brought together by Intelops, comprises industry-experienced individuals united by a singular mission: "Sharing is caring!"
 
-> Sharing is caring!
-
-You can participate and/or [contribute](../6-contribution) to the community.
+Engage and [contribute](../6-contribution/_index.en.md) to our community, where collaboration and shared knowledge thrive.
 
 ## Discord Server
 
-For any assistance, please reach out to use on [Discord Server](https://intelops.ai/), it is an open and
-inclusive place, you can interact with the maintainers.
+For any queries or support, feel free to join our [Discord Server](https://intelops.ai/). It's an open, inclusive space where you can interact directly with the maintainers.
 
 ## Community calls
 
-We will soon have a few slots open for one-to-one connect with our core-developers. We encourage you to book time with
-the developers to understand the `KubViz by IntelOps` better or share the idea. 
+Soon, we'll be opening up slots for personalized one-on-one sessions with our core developers. We encourage you to reserve time to either gain a better understanding of `KubViz by Intelops` or share your ideas and insights. Your involvement fuels our growth and innovation!

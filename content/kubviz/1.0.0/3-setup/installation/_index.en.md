@@ -7,9 +7,9 @@ draft: false
 
 ## How KubViz works
 
-Kubviz client can be installed on any Kubernetes cluster. Kubviz agent runs in a kubernetes cluster where the changes/events need to be tracked. The agent detects the changes in real time and send those events via NATS JetStream and the same is received in the kubviz client. 
+KubViz client can be installed on any Kubernetes cluster. KubViz agent runs in a kubernetes cluster where the changes/events need to be tracked. The agent detects the changes in real time and send those events via NATS JetStream and the same is received in the KubViz client. 
 
-Kubviz client receives the events and passes it to Clickhouse database. The events present in the Clickhouse database can be visualized through Grafana.
+KubViz client receives the events and passes it to Clickhouse database. The events present in the Clickhouse database can be visualized through Grafana.
 
 KubViz's event tracking component provides comprehensive visibility into the changes and events occurring within your Kubernetes clusters.
 
@@ -19,7 +19,7 @@ KubViz also monitors changes in your container registry, providing visibility in
 
 It comprehensively scans Kubernetes containers for security flaws, such as vulnerabilities and misconfigurations, and creates an SBOM (Software Bill of Materials).
 
-## How to install and run Kubviz
+## How to install and run KubViz
 
 #### Prerequisites
 * A Kubernetes cluster 
@@ -56,6 +56,12 @@ helm upgrade -i kubviz-client kubviz/client -n kubviz --set "nats.auth.token=$to
 **NOTE:** 
 - If you want to enable Grafana with the client deployment, add `--set grafana.enabled=true` to the helm upgrade command.
 
+- Kubviz provides a setup for Grafana with Postgres data persistence, ensuring that even if the grafana pod/service goes down, the data will persist, safeguarding crucial information for visualization and analysis.
+
+```bash
+helm upgrade -i kubviz-client kubviz/client -n kubviz --set "nats.auth.token=$token" --set grafana.enabled=true --set grafana.postgresql=true
+```
+
 - If grafana already exist use the same upgrade command without --set grafana.enabled=true flag. 
 
 ```bash
@@ -65,6 +71,7 @@ helm upgrade -i kubviz-client kubviz/client -n kubviz --set "nats.auth.token=$to
 Parameter | Description | Default
 --------- | ----------- | -------
 `grafana.enabled` | If true, create grafana | `false`
+`grafana.postgresql` | If true, create postgresql | `false`
 
 - The KubViz client will also install NATS and Clickhouse. The NATS service is exposed as a LoadBalancer, and you need to note the external IP of the service **kubviz-client-nats-external** and pass it during the KubViz agent installation.
 
@@ -157,7 +164,7 @@ Once everything is up and running, you need to perform additional configurations
 
 To ensure that these events are sent to KubViz, you need to create a webhook for your repository. This webhook will transmit the event data of the specific repository or registry to KubViz.
 
-To set up a webhook in your repository, [please follow these steps](./configuration.md)
+To set up a webhook in your repository, [please follow these steps](../configuration/_index.en.md)
 
 #### How to View Event Data in Grafana
 

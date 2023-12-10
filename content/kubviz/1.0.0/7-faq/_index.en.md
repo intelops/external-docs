@@ -6,19 +6,19 @@ draft: false
 ---
 
 
-## What can Kubviz help me with?
+## What can KubViz help me with?
 
-Visualize Kubernetes & DevSecOps Workflows. Tracks changes/events real-time across your entire K8s clusters, git repos, container registries, etc. , analyzing their effects and providing you with the context you need to troubleshoot efficiently. Get the Observability you need, easily.
+Visualize Kubernetes & DevSecOps Workflows. Tracks changes/events real-time across your entire K8s clusters, git repos, container registries, etc. , analyzing their effects and providing you with the context you need to troubleshoot efficiently. Get the observability you need, easily.
 
 ## Is Kubviz regularly maintained?
 
-Kubviz is an open-source project that is actively maintained by the IntelOps team. The tool is currently in alpha state and will go in major breaking changes in near future.
+KubViz is an open-source project that is actively maintained by the Intelops team. The tool is currently in alpha state and will go in major breaking changes in near future.
 
 ## How can I request a new feature?
 
-If you would like to request a feature to be added to Kubviz, feel free to do so through any of the following channels:
+If you would like to request a feature to be added to KubViz, feel free to do so through any of the following channels:
 
-- GitHub [issues](https://github.com/intelops/kubviz/issues)
+- GitHub [issues](https://github.com/intelops/kubviz/issues).
 
 ## Where can I see the upcoming features?
 
