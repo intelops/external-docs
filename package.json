@@ -4,6 +4,7 @@
   "license": "UNLICENSED",
   "author": "Intelops",
   "scripts": {
+    "update-submodules": "git submodule update --init --recursive --remote",
     "dev": "cd exampleSite; hugo server || hugo server --themesDir ../..",
     "test": "cd exampleSite; hugo server --disableFastRender --navigateToChanged --templateMetrics --templateMetricsHints --buildExpired --buildFuture --watch --forceSyncStatic -e production --minify || hugo server --themesDir ../.. --disableFastRender --navigateToChanged --templateMetrics --templateMetricsHints --buildExpired --buildFuture --watch --forceSyncStatic -e production --minify",
     "build": "cd exampleSite; hugo --gc --minify --templateMetrics --templateMetricsHints --buildExpired --buildFuture --forceSyncStatic || hugo --themesDir ../.. --gc --minify --templateMetrics --templateMetricsHints --buildExpired --buildFuture --forceSyncStatic",
