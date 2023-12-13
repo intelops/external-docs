@@ -6,37 +6,41 @@ draft: false
 ---
 
 
+### Cluster Creation:
 
-### Cluster Event Tracking
+Developers use Capten to create Kubernetes clusters on a cloud provider of their choice (as of supporting  AWS or Azure) with minimal manual intervention. Capten leverages infrastructure as code principles to provision the required resources.
 
-Use KubViz to monitor your cluster events, including:
+### Cluster Configuration:
 
-- State changes 
-- Errors
-- Other messages that occur in the cluster
-- Visualize Deprecated Kubernetes APIs: KubViz provides a clear visualization of deprecated Kubernetes APIs, allowing users to easily identify and update their usage to comply with the latest Kubernetes versions
-- Track Outdated Images: With KubViz, you can track and monitor outdated images within your clusters, ensuring that you are using the most up-to-date and secure versions.
-- Identify Deleted APIs: KubeViz helps you identify any deleted APIs in your clusters, guiding you to find alternative approaches or replacements to adapt to changes in Kubernetes APIs.
+After the cluster is created, Capten may handle the configuration of the Kubernetes cluster. This could include setting up networking, configuring cluster settings, and preparing it for the deployment of applications.
 
+### Application Deployment:
 
-### Git Repository Events Tracking
+The development team uses Capten to deploy necessary applications within the clusters. For example, they deploy Prometheus for monitoring, OpenEBS for storage, and Traefik for load balancing. Capten handles the deployment process, ensuring that applications are correctly configured and integrated into the Kubernetes environment.
 
-- KubViz allows you to track and observe all the events in your git repository.
+### Dynamic Application Support:
 
-- By capturing events such as commits, merges, and other Git activities, KubViz provides valuable insights into the evolution of your code. This comprehensive change tracking capability allows you to analyze the effects of code modifications on your development and deployment workflows, facilitating efficient collaboration among teams.With this feature, you can easily identify the root causes of issues, ensure code integrity, and maintain a clear understanding of the changes happening within your Git repositories
+Capten allows developers to easily extend the list of supported applications. If a new project requires a specific application or service, developers can integrate it into Capten's modular framework.
 
-### Container Registry Events Tracking
+### Configuration Management:
 
-- Using KubViz you can also monitors changes in your container registry, providing visibility into image updates. By tracking these changes, KubViz helps you proactively manage container registries.
+Developers manage configurations through Capten's configuration files or command-line options. This provides a centralized and easy-to-understand way of defining cluster and application settings.
 
-### Kubernetes Container Security Tracking
+### Cluster Destruction:
 
-Using KubViz you can comprehensively scan the kubernetes containers for the security flaws such as vulnerabilities and misconfigurations.
+Once a project is completed or a testing phase concludes, developers use Capten to destroy the Kubernetes clusters, freeing up resources and preventing unnecessary costs.
 
-Detects comprehensive vulnerabilities in OS packages (Alpine, Red Hat Universal Base Image, Red Hat Enterprise Linux, CentOS, Oracle Linux, Debian, Ubuntu, Amazon Linux, openSUSE Leap, SUSE Enterprise Linux, Photon OS and Distroless).
+### Integration with External Tools:
 
-Detects configuration issues in Kubernetes cluster
+Capten seamlessly integrates with external tools such as Terraform, Talos, Grafana, Loki, and more, enhancing the capabilities of the Kubernetes clusters.
 
-### SBOM
+### User Interaction:
 
-- Generate reports for Software Bill of Materials (SBOM) from images within your Kubernetes cluster using KubViz in the CycloneDX format. These reports will be available in JSON format.
+Developers interact with Capten using its command-line interface (CLI) or configuration files. This allows for a straightforward and scriptable experience.
+
+### Efficiency and Resource Optimization:
+
+Capten ensures efficient resource usage by creating clusters on-demand and destroying them when no longer needed. This leads to cost savings and prevents resource wastage.
+Documentation and Support:
+
+The development team relies on Capten's documentation for guidance on installation, configuration, and troubleshooting. Community support forums and channels are available for assistance.
