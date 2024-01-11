@@ -183,4 +183,31 @@ export POD_NAME=$(kubectl get pods --namespace kubviz -l "app.kubernetes.io/name
 kubectl --namespace kubviz port-forward $POD_NAME 3000
 ```
 
-3. Access "localhost:3000" in your web browser, where you'll be prompted to enter your credentials. Utilize the username "admin" and the password obtained from step 1 to proceed.   
+3. Access "localhost:3000" in your web browser, where you'll be prompted to enter your credentials. Utilize the username "admin" and the password obtained from step 1 to proceed.
+
+#### TTL - Time-To-Live Feature
+
+We've implemented a Time-To-Live (TTL) feature to streamline the management of data within your ClickHouse tables. With TTL, historical data can be automatically relocated to alternative storage or purged to optimize storage space. This feature is particularly valuable for scenarios like time-series data or logs where older data gradually loses its relevance over time.
+
+#### Configuring TTL
+
+The TTL value is customizable, empowering you to define the specific duration after which data is marked as 'expired'.
+
+To guide you through the process of setting up a TTL, please follow below steps:
+
+##### Configuring TTL: Guidelines and Instructions
+
+- **TTL_INTERVAL**: This parameter sets the numeric value for the TTL duration. For instance, if you wish for data to expire after a duration of 2 time units, set this value to 2. The default value is 1.
+
+- **TTL_UNIT**: This parameter specifies the time unit for the TTL duration. It accepts valid values such as SECOND, MINUTE, HOUR, DAY, MONTH, and more. For example, to set a TTL of 2 hours, you would set TTL_INTERVAL to 2 and TTL_UNIT to HOUR. The default unit is MONTH.
+
+#### Usage
+
+##### Setting Environment Variables
+
+To configure TTL for your application, set the desired environment variables. Here's an example of how to do this:
+
+```bash
+export TTL_INTERVAL=5
+export TTL_UNIT=MINUTE
+```
