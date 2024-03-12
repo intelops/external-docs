@@ -1,5 +1,5 @@
 {{ $currentPageVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
-{{ if and (site.Params.docVersion) (ne .RelPermalink "/changelog/")}}
+{{ if and (site.Params.docVersion) (ne .RelPermalink "/changelog/") }}
   <span class="dropdown dropdown-doc-version">
     {{ if not .IsHome }}
       <button
@@ -27,35 +27,47 @@
         </span>
       </button>
 
+      {{ $isChangelog := findRE "changelog" (index (first 4 (split .RelPermalink "/")) 2)}}
       {{ if $currentPageVersion }}
         {{ $index := "" }}
-        {{ if eq (index (split .RelPermalink "/") 3) $currentPageVersion }}
+        {{ if $isChangelog }}
           {{ $index = 3 }}
         {{ else }}
           {{ $index = 2 }}
         {{ end }}
-        <ul class="dropdown-menu dropdown-menu-right shadow rounded-1 border-0">
+
+        <ul
+          class="dropdown-menu dropdown-menu-right shadow rounded-1 border-0 py-0 mt-1">
           {{ $currentSection := string (delimit (first $index (split .RelPermalink "/")) "/") }}
           {{ $latest_version := string (site.GetPage (string $currentSection)).Params.latest_version }}
           {{ $currentPermalink := .RelPermalink }}
-
+          
           {{ with site.GetPage $currentSection }}
             {{ $withoutLatestVerion := slice }}
-            {{ range $i, $ele := .Sections }}
+            {{ $iterateSections := "" }}
+            {{ if $isChangelog }}
+              {{ $iterateSections = (where .Sections ".Params.Type" "==" "changelog") }}
+            {{ else }}
+              {{ $iterateSections = (where .Sections ".Params.Type" "==" "docs") }}
+            {{ end }}
+
+            {{ range $i, $ele := $iterateSections }}
               {{ $currentRangeVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
               {{ $currentRangeSection := delimit (first $index (split .RelPermalink "/")) "/" }}
               {{ $updatedPermalink := replaceRE `(\d+\.\d+\.\d+)` $currentRangeVersion $currentPermalink }}
 
               {{ if eq $currentRangeVersion $latest_version }}
-                <li>
-                  <a
-                    class="dropdown-item inactive"
-                    id="{{ $currentRangeVersion }}"
-                    aria-current="true"
-                    href="{{ $updatedPermalink }}">
-                    Latest (v{{ $currentRangeVersion }})
-                  </a>
-                </li>
+                {{ if $currentRangeVersion }}
+                  <li>
+                    <a
+                      class="dropdown-item py-1 inactive"
+                      id="{{ $currentRangeVersion }}"
+                      aria-current="true"
+                      href="{{ $updatedPermalink }}">
+                      Latest (v{{ $currentRangeVersion }})
+                    </a>
+                  </li>
+                {{ end }}
               {{ else }}
                 {{ $withoutLatestVerion = $withoutLatestVerion | append . }}
               {{ end }}
@@ -64,10 +76,9 @@
               {{ $currentRangeVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
               {{ $currentRangeSection := delimit (first $index (split .RelPermalink "/")) "/" }}
               {{ $updatedPermalink := replaceRE `(\d+\.\d+\.\d+)` $currentRangeVersion $currentPermalink }}
-              <li><hr class="dropdown-divider" /></li>
               <li>
                 <a
-                  class="dropdown-item inactive"
+                  class="dropdown-item py-1 inactive border-top border-gray border-muted-50"
                   id="{{ $currentRangeVersion }}"
                   href="{{ $updatedPermalink }}">
                   v{{ $currentRangeVersion }}
