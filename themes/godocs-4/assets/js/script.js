@@ -18,32 +18,6 @@ $(preloader);
     }
   }
 
-  // copy-to-clipboard
-  let copyEl = document.querySelector(".copy-url");
-  if (copyEl !== null) {
-    let pageUrl = window.location.href;
-    let latestDocVer = document.querySelector("[latest-data-version]")?.getAttribute("latest-data-version");
-    if (pageUrl.includes(latestDocVer)) {
-      pageUrl = pageUrl.replace(latestDocVer, "latest");
-    }
-
-    copyEl.addEventListener("click", function () {
-      this.classList.add("done");
-
-      let textarea = document.createElement("textarea");
-      textarea.value = pageUrl;
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand("copy");
-      document.body.removeChild(textarea);
-
-    });
-
-    copyEl.addEventListener("mouseleave", function () {
-      this.classList.remove("done");
-    });
-  }
-
   if ($('.search-wrapper').length > 0) {
     // searchToggler keyboard shortcut
     const searchToggler = document.querySelectorAll('[data-search-toggler]');
@@ -83,8 +57,18 @@ $(preloader);
 
   // Code Copy
   // ----------------------------------------
-  let blocks = document.querySelectorAll(".code-highlight");
-
+  let blocks = document.querySelectorAll("pre");
+  blocks.forEach((block) => {
+    if (navigator.clipboard) {
+      let button = document.createElement("span");
+      button.innerText = "copy";
+      button.className = "copy-to-clipboard";
+      block.appendChild(button);
+      button.addEventListener("click", async () => {
+        await copyCode(block, button);
+      });
+    }
+  });
   async function copyCode(block, button) {
     let code = block.querySelector("code");
     let text = code.innerText;
@@ -94,18 +78,6 @@ $(preloader);
       button.innerText = "copy";
     }, 700);
   }
-
-  blocks.forEach((block) => {
-    if (navigator.clipboard) {
-      let button = document.createElement("span");
-      button.innerText = "copy";
-      button.className = "copy";
-      block.appendChild(button);
-      button?.addEventListener("click", async () => {
-        await copyCode(block, button);
-      });
-    }
-  });
 
   // scroll function
   $(window).scroll(function () {
