@@ -5,7 +5,7 @@ weight: 6
 draft: false
 ---
 
-If you're interested in contributing to KubViz, we appreciate your help! Here's a guide to get you started:
+If you're interested in contributing to capten, we appreciate your help! Here's a guide to get you started:
 
 ## Contribution Guidelines
 
