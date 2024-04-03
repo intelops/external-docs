@@ -7,15 +7,12 @@ draft: false
 
 This document covers about how to set up and configure Capten on your machine.
 
-#### Note
-
-An addition to this,Capten also supports teams and slack integration for alerting in case when node goes down or when pod is in crashloopbackoff state and in many cases.
 
 ## How to install and run Capten
 
 #### Prerequisites
 
-* Cloud Provider Account- As of now ,capten supports creating cluster in AWS and Azure. You'll need an account for that cloud provider. Ensure that you have permissions to create and manage resources.
+* Cloud Provider Account- As of now ,capten supports creating cluster in AWS and Azure.Ensure that you have permissions to create and manage resources.
 
 * Azure CLI (Needed in case of using Azure cloud for cluster setup)
 
@@ -26,25 +23,25 @@ An addition to this,Capten also supports teams and slack integration for alertin
 
 #### Capten Installation
 
-As of now,we are supporting CLI for cluster creation and destruction for linux os.For supporting in any environment or any os,we have also containerized the process of cluster creation and destruction.
+As of now,we are supporting CLI for cluster creation and destruction for linux os.For supporting in any environment irrespective of os,we have  containerized the process of cluster creation .
 
 #### Setting up the cluster Through Capten CLI:
 
 1.Extract the latest release from the capten repo.
 
-2.Confifure the specification need for creating the cluster.Before installation,please do the necessary configuration ,as explained [here]()
+2.Confifure the specification need for creating the cluster.Before installation,please do the necessary configuration ,as explained [here](../configuration/_index.en.md)
 
-3.Then use the below commands to create cluster ,setup application and destroying the cluster.
+3.Then use the below commands to create cluster ,setup application and to destroy the cluster.
 
 * For creating the cluster
-
-Based on your requirement,you can specify the cloud type as either **aws** or **azure**
 
 ```bash
 ./capten create cluster --cloud=<cloudtype> --type=talos
 ```
-###### verification of cluster creation
-Verify the cluster creation process by checking whether the kubeconfig is created or not under config directory in capten folder.If the kubeconfig is created,export the kubeconfig and check the status of node by using below command.
+Based on your requirement,you can specify the cloud type as either **aws** or **azure**
+
+##### verification of cluster creation
+Verify the cluster creation process by checking whether the kubeconfig is created or not under config directory in capten folder.And also you can verify by checking [capten-lb-endpoint.yaml](https://github.com/intelops/capten/blob/main/config/capten-lb-endpoint.yaml) updated with load balancer ip.If the kubeconfig is created,export the kubeconfig and check the status of node by using below command.
 
 ```bash
 kubectl get nodes
@@ -54,17 +51,25 @@ kubectl get nodes
 ```bash
 ./capten setup apps
 ```
-In default,it'll install all application.
+In default,it'll install all the applications related to security,storage,certificate management and much more.
 
-If you need any selected application,You can install the required or specific application by removing the application name in the yaml file which is under capten/apps/default_group_apps.yaml.
+##### Note:
+Capten also provides flexibility to deploy the specific applications as needed.You can install the required application by removing or commenting out  the application name in the [default-groups.yaml](https://github.com/intelops/capten/blob/main/apps/default_group_apps.yaml)
 
 * For destroying the cluster
+
+```bash
+./capten destroy cluster
+```
+
+* For showing the cluster Information
 
 ```bash
 ./capten show cluster info
 ```
 
-#### Through Docker Container:
+
+#### Cluster Creation through Docker Container:
 
 For creating the cluster,run the below command
 
@@ -78,13 +83,17 @@ In order to verify the cluster creation,you can see the kubeconfig file inside t
 #### Note: 
 After installation,need to update the DNS entry for the cluster domain in aws console or on any cloud provider.
 
+Before Updating the dns,please make sure to configure the domain name in the `capten.yaml` as specified [here](../configuration/_index.en.md)
+
+Update the domain Name in dns as specified in the `capten.yaml` and also lbip [capten-lb-endpoint.yaml](https://github.com/intelops/capten/blob/main/config/capten-lb-endpoint.yaml)
+
 The DNS entry update allows users to access applications like Grafana and Loki through the specified domain.
 
 #### How to verify the successful updation of dns?
 
-Consider the domain name as `aws.intelops.com`,once after the updation,use the nslookup command to verify
+Consider the domain name as `aws.intelops.com`,once after the updation,use the nslookup command to verify the successful domain updation.
 ```bash
-nslookup capten.awsagent.optimizor.app
+nslookup capten.aws.intelops.apps
 ```
 
 
