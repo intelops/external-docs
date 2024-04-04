@@ -6,7 +6,7 @@ draft: false
 ---
 
 
-The KubViz community, brought together by Intelops, comprises industry-experienced individuals united by a singular mission: "Sharing is caring!"
+The capten community, brought together by Intelops, comprises industry-experienced individuals united by a singular mission: "Sharing is caring!"
 
 Engage and [contribute](../6-contribution/_index.en.md) to our community, where collaboration and shared knowledge thrive.
 
@@ -16,4 +16,4 @@ For any queries or support, feel free to join our [Discord Server](https://intel
 
 ## Community calls
 
-Soon, we'll be opening up slots for personalized one-on-one sessions with our core developers. We encourage you to reserve time to either gain a better understanding of `KubViz by Intelops` or share your ideas and insights. Your involvement fuels our growth and innovation!
+Soon, we'll be opening up slots for personalized one-on-one sessions with our core developers. We encourage you to reserve time to either gain a better understanding of `Capten by Intelops` or share your ideas and insights. Your involvement fuels our growth and innovation!
