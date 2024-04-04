@@ -85,7 +85,7 @@ After installation,need to update the DNS entry for the cluster domain in aws co
 
 Before Updating the dns,please make sure to configure the domain name in the `capten.yaml` as specified [here](../configuration/_index.en.md)
 
-Update the domain Name in dns as specified in the `capten.yaml` and also lbip [capten-lb-endpoint.yaml](https://github.com/intelops/capten/blob/main/config/capten-lb-endpoint.yaml)
+Update the domain Name and lbip in dns as specified in the `capten.yaml` and in`capten-lb-endpoint.yaml` 
 
 The DNS entry update allows users to access applications like Grafana and Loki through the specified domain.
 
