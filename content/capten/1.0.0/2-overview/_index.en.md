@@ -6,7 +6,7 @@ draft: false
 ---
 
 
-![Capten](./logowithName.png)
+![Capten](./logo.png)
 
 **Capten** is the `open-source` project by Intelops.
 

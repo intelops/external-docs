@@ -6,7 +6,7 @@ draft: false
 ---
 
 
-![capten](./logowithName.png)
+![capten](./logo.png)
 
 
 Welcome to the capten Documentation! This guide is designed to provide you with comprehensive insights into capten and its functionalities, enabling you to effectively navigate through its features. The documentation is structured into five main sections:
