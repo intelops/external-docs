@@ -17,20 +17,20 @@ The all-in-one DevSecOps platform facilitates close collaboration to build and m
 
 ## Problem
 
-1.Manual Cluster Setup Complexity
-2.Limited Visibility and Monitoring
-3.Lack of Cluster Destruction Automation
-4.Security Risks
-5.Inefficiency in Development and Testing
-6.Disconnect Between Dev, Sec, Ops & SRE
+1. Manual Cluster Setup Complexity
+2. Limited Visibility and Monitoring
+3. Lack of Cluster Destruction Automation
+4. Security Risks
+5. Inefficiency in Development and Testing
+6. Disconnect Between Dev, Sec, Ops & SRE
 
 
-## Solution: Capten
+## Solution
 
 Say goodbye to the trade-off between speed and security with Capten.Capten stack is an orchestration platform for engineering enablement and seamless collaboration while eliminating complexities of self-service implementation for agile DevSecOps, Developers Portal and Platform Engineering.
 
 By providing automation, Capten addresses common challenges associated with manual cluster management, ensuring consistency, reducing errors, and improving overall efficiency in development and operations.
--------------------------
+
 
 ### How Capten solves the problem:
 
