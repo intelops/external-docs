@@ -8,7 +8,7 @@ draft: false
 
 The KubViz community, brought together by Intelops, comprises industry-experienced individuals united by a singular mission: "Sharing is caring!"
 
-Engage and [contribute](../6-contribution/_index.en.md) to our community, where collaboration and shared knowledge thrive.
+Engage and [contribute](../6-contribution) to our community, where collaboration and shared knowledge thrive.
 
 ## Discord Server
 
