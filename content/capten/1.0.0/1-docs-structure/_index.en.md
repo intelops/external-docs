@@ -13,7 +13,7 @@ Welcome to the capten Documentation! This guide is designed to provide you with 
 
 ### Overview
 
-[Overview](../2-overview/_index.en.md): Discover a comprehensive overview of the capten project,where automates the cluster creation ,destruction and deploying the application. Explore how capten transforms complexities into ease, offering a suite of user-friendly features crafted to enhance and simplify your tasks.
+[Overview](../2-overview/_index.en.md): Discover a comprehensive overview of the capten project,where automates the cluster creation,destruction and deploying the application. Explore how capten transforms complexities into ease, offering a suite of user-friendly features crafted to enhance and simplify your tasks.
 
 ### Installation
 
