@@ -33,7 +33,7 @@ These reports will be available in JSON format, and you can visualize this data 
 
 You can customize the security scans by changing the chart values.
 
-- To [Disable](https://github.com/intelops/kubviz/blob/main/charts/agent/values.yaml#L189) the cluster scan you can pass 0 or empty string
+- To [Disable](https://github.com/intelops/kubviz/blob/main/charts/agent/values.yaml#L186) the cluster scan you can pass 0 or empty string
 
 ```yaml
 schedule:
@@ -51,4 +51,4 @@ schedule:
 ...
 ```
 
-Same you can change for [image-scan](https://github.com/intelops/kubviz/blob/main/charts/agent/values.yaml#L187) and [sbom](https://github.com/intelops/kubviz/blob/main/charts/agent/values.yaml#L188) 
+Same you can change for [image-scan](https://github.com/intelops/kubviz/blob/main/charts/agent/values.yaml#L184) and [sbom](https://github.com/intelops/kubviz/blob/main/charts/agent/values.yaml#L185) 
