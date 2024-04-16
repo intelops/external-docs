@@ -164,7 +164,7 @@ Once everything is up and running, you need to perform additional configurations
 
 To ensure that these events are sent to KubViz, you need to create a webhook for your repository. This webhook will transmit the event data of the specific repository or registry to KubViz.
 
-To set up a webhook in your repository, [please follow these steps](../configuration/_index.en.md)
+To set up a webhook in your repository, [please follow these steps](../configuration)
 
 #### How to View Event Data in Grafana
 
