@@ -15,9 +15,25 @@ Welcome to the capten Documentation! This guide is designed to provide you with 
 
 [Overview](../2-overview/_index.en.md): Discover a comprehensive overview of the capten project,where automates the cluster creation,destruction and deploying the application. Explore how capten transforms complexities into ease, offering a suite of user-friendly features crafted to enhance and simplify your tasks.
 
-### Installation
+###  Installation of Capten Controlplane Cluster
 
 [Getting started](../3-setup/installation/_index.en.md): The starting point to set up capten for bringing up your cluster. Follow the instructions here to use capten efficiently.
+
+#### Capten UI
+[Capten UI](../3-setup/capten-ui/_index.en.md): The starting point to connect with capten UI for registering the cluster in capten UI.
+
+
+#### Capten SDK
+
+[Capten-SDK](../3-setup/capten-sdk/_index.en.md): Follow the instructionsCapten SDK to develop and deploy applications on capten cluster
+
+#### Capten Crossplane Plugin
+
+[Capten-SDK](../3-setup/capten-sdk/_index.en.md):Follow the steps mentioned here  to develop and deploy applications on capten cluster using capten sdk
+
+#### Capten Tekton Plugin
+
+[Capten-Tekton](../3-setup/capten-tekton/_index.en.md):Follow the steps given here to configure tekton and to create CI/CD pipelines
 
 ### Usecase
 
