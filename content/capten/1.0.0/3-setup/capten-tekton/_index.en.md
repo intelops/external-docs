@@ -14,15 +14,15 @@ This document covers about how to set up and configure tekton and to create CI/C
    
 2. Onboarding git project in to capten
 
-   ![GitOnboarding](.readme_assets/onboarding-git.png)
-   ![NewGitOnboarding](.readme_assets/new-git-onboarding.png)
+   ![GitOnboarding](./onboarding-git.png)
+   ![NewGitOnboarding](./new-git-onboarding.png)
 
    * select the `add git repo` from the **git** section
    * add the git repo url,access token and label for the customer repo (label is tekton) and the tekton ci/cd repo (label is IntelopsCi)
 3. Onboarding container registry in to capten
 
-  ![ContainerRegisterOnboarding](.readme_assets/onboarding-container.png)
-  ![NewContainerRegisterOnboarding](.readme_assets/new-container-onboarding.png)  
+  ![ContainerRegisterOnboarding](./onboarding-container.png)
+  ![NewContainerRegisterOnboarding](./new-container-onboarding.png)  
 
    * select `add container registry` from **container registry** section
    * add  the registry url,username,access token and label to which the built image needs to be pushed (labels is "tekton")
@@ -31,9 +31,9 @@ This document covers about how to set up and configure tekton and to create CI/C
 
    Go to the *capten-->platform engineering* ,select on the tekton plugin setup and then select the `sync` option under the  **configure** section and this will configure the tekton and the neccessary floders will be created in the customer's repo
 
-   ![TektonPlugin](.readme_assets/tek-plugin.png)
+   ![TektonPlugin](./tek-plugin.png)
 
-   ![TektonPlugin](.readme_assets/tek-plugin-new.png)
+   ![TektonPlugin](./tek-plugin-new.png)
 
    
 # Pre-requisite For Tekton CI/CD Pipeline Creation
@@ -208,11 +208,11 @@ This document covers about how to set up and configure tekton and to create CI/C
 Now commit the required pipeline,rbac,triggers and ingress in the customer repo under the directory *cicd-->tekton-pipelines-->templates*.
 once done the argocd will update this changes to the cluster and the pipeline,triggers,rbac and ingress will be created in the controlplane cluster
 
- ![PipelineResource](.readme_assets/infra.png)
+ ![PipelineResource](./infra.png)
 
 # Triggering Tekton Pipeline
  
  Now add the **webhook url** to the tekton ci/cd repo on which the tekton pipeline needs to be executed upon trigger.
 once all the setup is done and now when a changes is commited in the tekton ci/cd repo the tekton pipeline will get executed and the image gets built and pushed to the container registry ,finally the built image will get deployed in the bussiness cluster.
 
- ![WebhookImage](.readme_assets/webhook-img.png)
+ ![WebhookImage](./webhook-img.png)
