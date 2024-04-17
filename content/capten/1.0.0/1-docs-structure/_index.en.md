@@ -29,7 +29,7 @@ Welcome to the capten Documentation! This guide is designed to provide you with 
 
 #### Capten Crossplane Plugin
 
-[Capten-CrossPlane-Plugin](../3-setup/capten-sdk/_index.en.md):Follow the steps mentioned here  to configure business cluster
+[Capten-CrossPlane-Plugin](../3-setup/capten-crossplane/_index.en.md):Follow the steps mentioned here  to configure business cluster
 
 #### Capten Tekton Plugin
 
