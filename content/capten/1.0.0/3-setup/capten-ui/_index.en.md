@@ -11,31 +11,30 @@ This document covers about how to access and register the control plane cluster 
 
 ### How to Access the UI?
 
-1. For a new user, register in the Intelops  UI to create a new account by signing up .
+1. For a new user, sign up on Intelops UI (https://alpha.intelops.app/)
 
-2. For an already registered user,just login with user credentials
+2. For existing user, login with user credentials
 
 ![Inteloops-Login-UI](./itelops-login-ui.png)
 
-3. After registering as a new user, popup screen will be displayed for creating organisation. Create organisation and assign the specific role.
+3. After login to Intelops UI, for new user, popup screen will be displayed for creating organisation. Create organisation and assign the roles, add cluster admin role to register new cluster
 
-Note:
 
-For registering the cluster in UI,cluster admin role is needed.
 
 ### Registering Controlplane cluster
 
 ![Capten-cluster-Registration](./cluster-register.png)
 
-1. Provide the cluster name and upload the certificates created when apps are deployed.
+1. Provide the cluster name and upload the client certificates created by Capten CLI.
 
-2. Follow this format for providing cluster agent endpoint
+2. Provide the cluster agent endpoint, Domainname configured in capten.yaml to be used for accessing the cluster
+
 
 ```bash
 https://captenagent.<domainname>
 ```
 
-For eg,if specific domain nam is provided ,consider as 'aws.eg.com',then cluster agent endpoint will be
+For example agent endpoint, if 'aws.eg.com' Domainname is configure in capten.yaml,
 
 ```bash
 https://captenagent.aws.eg.com
@@ -46,7 +45,10 @@ https://captenagent.aws.eg.com
 
 ### Capten Cluster Applications Management
 
-Capten have launched UI for applications like grafana,signoz,argocd and tekton.
+Capten supports Web UI luanch for supportted applications, Web UI launch supported for default applications like grafana, signoz.
+
+Navigate for Capten controlplane cluster by clicking on the Registered cluster.
+Web UI launch applications listed on "Tools" tab
 
 ![Capten-Tools](./tools.png)
 
@@ -55,22 +57,15 @@ So once after logging in grafana via SSO,certain dashoards will be displayed
 
 ![Capten-GrafanaLandingPage](./grafanalanding.png)
 
+Launching the grafana Web UI and access grafana dashboards
+Click on "Prometheus" Icon to launch grafana Web UI. Web UI will be launched with single sign-on and show grafana landing page, from there navigate to view dashboards
 
-With the help of dashboards,following operations could be performed
-- monitoring tha applications using logs
-- monitoring and collecting the metrics of each applications in the cluster like node usage,cpu usage,memory usage,cluster health, resource utilizations etc.
-
-One of the cluster-overview metrics dashboards is shown below
+One of the cluster-overview metrics dashboards is as shown below
 
 ![Capten-GrafanaDashboard](./grafanadashboard.png)
 
-
-
-\*\*Note:
-separate dashboards are present for each application for monitoring purpose
-
-
 ### DeRegistering the Controlplane cluster
 
-Click the remove button to deregister the controlPlane cluster.
+Navigate for Capten controlplane cluster, Click the remove button to deregister the controlPlane cluster, it will delete registration data from Intelops cluster, to delete cluster, Capten CLI will have to be used.
+
 ![DeRegistering-Control-Plane-Cluster](./deregister-modified.png)
