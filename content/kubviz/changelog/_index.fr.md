@@ -2,6 +2,6 @@
 title: "Capten"
 date: 2023-03-31
 description: "this is meta description"
-type : "changelog"
+type: "changelog"
 draft: true
 ---
