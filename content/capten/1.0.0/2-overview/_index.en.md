@@ -14,6 +14,7 @@ Capten streamlines the management of Kubernetes clusters, making it an ideal sol
 
 The all-in-one DevSecOps platform facilitates close collaboration to build and manage cloud-native ecosystems for application and infrastructure modernization, automation, and security.
 
+![Capten-Architecture](./Capten.png)
 
 ## Problem
 
@@ -42,3 +43,4 @@ By providing automation, Capten addresses common challenges associated with manu
 6. Backup and recovery capabilities to safeguard your control cluster(s) data and applications.
 7. Kubernetes native tool kits streamlined CI pipelines, enabling automated and efficient software delivery.
 8. Automated secure software supply chain measures.
+

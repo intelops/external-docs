@@ -6,10 +6,11 @@ draft: false
 ---
 
 
-1. Unified orchestration platform for engineering enablement.
-2. Support for GitOps, Chaos Engineering, and platform engineering.
-3. Self-service capabilities for developers.
-4. Automation of security measures throughout the development lifecycle.
-5. Collaboration tools like distributed tracing and CI/CD integration.
-6. Standardization of security practices.
-7. Acceleration of release velocity through streamlined pipelines and automation.
+1. One place for teams to manage their Kubernetes clusters and applications.
+2. Support for experimenting with different ways of doing DevOps.
+3. Providing a self-service solution for developers.
+4. Automating security measures throughout the development process.
+5. Tools to help teams collaborate and integrate with their CI/CD tools.
+6. Standardizing security practices across the team.
+7. Helping teams release code faster by simplifying pipelines and automating tasks.
+
