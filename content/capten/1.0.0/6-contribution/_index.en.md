@@ -5,30 +5,45 @@ weight: 6
 draft: false
 ---
 
-If you're interested in contributing to capten, we appreciate your help! Here's a guide to get you started:
+# Contribution Guidelines
+Please read this guide if you plan to contribute to the Capten. We welcome any kind of contribution. No matter if you are an experienced programmer or just starting, we are looking forward to your contribution.
 
-## Contribution Guidelines
+## Reporting Issues
 
-Please follow our Contributor Guidelines to ensure a smooth contribution process. Thank you for being part of our community!
+If you find a bug while working with the Capten, please open an issue on GitHub with the label `bug` and let us know what went wrong. We will try to fix it as quickly as we can.
 
-1. Fork the Capten [repository](https://github.com/intelops/capten.git).
-2. Make desired changes in your forked repository.
-3. When ready, create a new pull request from your fork to submit your changes for review.
+## Feature Requests
 
-## Seeking Feedback or Assistance
+We're always open to new ideas and improvements. If you have a feature in mind that you'd like to see implemented, please feel free to suggest it by opening an issue for Capten Plugins, kad, or Capten.
 
-If you need prompt feedback from the capten by Intelops team, head to our [Discord Server](https://intelops.ai/) and contact an Intelops staff member in the `#general` or `#feedback` channels. You can request access to the private contributor channel if needed.
+You are more than welcome to open issues to the below projects 
 
-### Review Process
+[suggest new features for Capten CLI](https://github.com/intelops/capten/issues/new?labels=kind%2Ffeature&template=feature-request.md&title=Feature%20Request:)
 
-1. Once your pull request is open, it will be assigned to one or more reviewers.
-2. Reviewers will carefully assess your changes for correctness, bugs, enhancements, documentation, comments, and style.
 
-### Final Steps
+[suggest new features for kad](https://github.com/kube-tarian/kad/issues/new?labels=kind%2Ffeature&template=feature-request.md&title=Feature%20Request:)
 
-- Ensure any updates or additions to documentation accompany your feature modifications.
-- After receiving review and approval, your commits will be consolidated (squashed), preparing your pull request for merging.
-- Congratulations! You're now officially a Capten contributor! 🎉
+[suggest new features for capten-plugins](https://github.com/intelops/capten-plugins/issues/new?labels=kind%2Ffeature&template=feature-request.md&title=Feature%20Request:)
+
+ 
+
+## Contributing Code
+This project is written in Golang 
+
+To contribute code.
+1. Ensure you are running golang version 1.21 or greater for go module support
+2. Set the following environment variables:
+    ```
+    GO111MODULE=on
+    GOFLAGS=-mod=vendor
+    ```
+
+3. Go ahead and **fork** the repository.Make any changes you want to your fork, and when you're ready to send  those changes to us, go to your fork and create a new pull request.
+
+4. Once your pull request has been opened, it will be assigned to one or more reviewers. Those reviewers will do a thorough code review, looking for correctness, bugs, opportunities for improvement, documentation, comments, and style.
+
+5. Make sure you include relevant updates or additions to documentation when creating or modifying features. Once you’ve received review and approval, your commits are squashed, and your PR is ready for merging.
+
+- Congrats you’re officially a Capten contributor 🎊
 
 ---
-If you require guidance or support at any point during your contribution journey, feel free to reach out to anyone in the `#general` or `#feedback` Discord channels. Additionally, let us know if you wish to be added to the private `#contributors` channel for further assistance and collaboration. Your contributions are greatly valued!
