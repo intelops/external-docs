@@ -15,13 +15,13 @@ Welcome to the capten Documentation! This guide is designed to provide you with 
 
 [Overview](../2-overview/_index.en.md): Discover a comprehensive overview of the capten project,where automates the cluster creation,destruction and deploying the application. Explore how capten transforms complexities into ease, offering a suite of user-friendly features crafted to enhance and simplify your tasks.
 
-###  Installation of Capten Controlplane Cluster
+###  Installation of Capten 
 
+#### Capten Controlplane Cluster
 [Getting started](../3-setup/installation/_index.en.md): The starting point to set up capten for bringing up your cluster. Follow the instructions here to use capten efficiently.
 
 #### Capten UI
 [Capten UI](../3-setup/capten-ui/_index.en.md): The starting point to connect with capten UI for registering the cluster in capten UI.
-
 
 #### Capten SDK
 
@@ -38,11 +38,11 @@ Welcome to the capten Documentation! This guide is designed to provide you with 
 
 #### Capten ArgoCD Plugin
 
-[Capten-ArgoCD](../3-setup/capten-argocd/_index.en.md):Follow the steps given here to deploy argocd and its role in capten
+[Capten-ArgoCD](../3-setup/capten-argocd/_index.en.md):Follow the steps given here to deploy argocd and to know how argocd plays an important role in capten
 
 ### Usecase
 
-[Usecase](../5-usecase/_index.en.md): This section we illuminate the powerful capabilities designed to streamline your Kubernetes and DevSecOps workflows. Discover how capten simplifies complex tracking tasks across various crucial aspects of your infrastructure.
+[Usecase](../5-usecase/_index.en.md): This section explains the powerful capabilities designed to streamline your Kubernetes and DevSecOps workflows. Discover how capten simplifies complex tracking tasks across various crucial aspects of your infrastructure.
 
 ### Contribution
 
