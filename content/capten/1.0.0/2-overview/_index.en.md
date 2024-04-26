@@ -28,10 +28,7 @@ The all-in-one DevSecOps platform facilitates close collaboration to build and m
 
 ## Solution
 
-Say goodbye to the trade-off between speed and security with Capten.Capten stack is an orchestration platform for engineering enablement and seamless collaboration while eliminating complexities of self-service implementation for agile DevSecOps, Developers Portal and Platform Engineering.
-
-By providing automation, Capten addresses common challenges associated with manual cluster management, ensuring consistency, reducing errors, and improving overall efficiency in development and operations.
-
+Capten is a platform that makes it easy for teams to work together on software projects without sacrificing speed or security. It helps manage tasks like setting up servers and coordinating efforts between different team members. This means less room for mistakes and more time to focus on actually building and improving software.
 
 ### How Capten solves the problem:
 

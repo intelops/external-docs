@@ -35,13 +35,18 @@ Welcome to the capten Documentation! This guide is designed to provide you with 
 
 [Capten-Tekton](../3-setup/capten-tekton/_index.en.md):Follow the steps given here to configure tekton and to create CI/CD pipelines
 
+
+#### Capten ArgoCD Plugin
+
+[Capten-ArgoCD](../3-setup/capten-argocd/_index.en.md):Follow the steps given here to deploy argocd and its role in capten
+
 ### Usecase
 
 [Usecase](../5-usecase/_index.en.md): This section we illuminate the powerful capabilities designed to streamline your Kubernetes and DevSecOps workflows. Discover how capten simplifies complex tracking tasks across various crucial aspects of your infrastructure.
 
 ### Contribution
 
-[Contributing](../6-contribution/_index.en.md): Capten, developed using Golang under the Apache License, enthusiastically invites contributions from individuals like you. Your input is invaluable, whether it's providing feedback on GitHub, engaging in discussions within our Discord server's `#feedback` channel, or actively participating in feature testing. Your involvement greatly enriches the capten community and development efforts.
+[Contributing](../6-contribution/_index.en.md): Capten, developed using Golang under the Apache License, enthusiastically invites contributions from individuals like you. Your input is invaluable, whether it's providing feedback on GitHub or actively participating in feature testing. Your involvement greatly enriches the capten community and development efforts.
 
 ### FAQs
 
