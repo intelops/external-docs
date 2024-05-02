@@ -60,13 +60,16 @@ This document covers about how to set up and configure tekton and to create CI/C
                tokenSecretRef:
                  name: "tekton-vault-token"
                  key: "token"
-                 namespace: tekton
+                 
 
-  Here, the **tekton-vault-token** is the secret created in tekton namespace to access the vault
+  Here, the **tekton-vault-token** is the secret created in tekton namespace to access the vault.Copy-paste the **tekton-vault-token** secret in the required namespace where the tekton pipeline will be present and then create the above secretstore.
+
 
 * Git secret
  
   Go to *onboarding-->git* under the respective git project  the path of the vault where the credentials of git  stored can be viewed.copy the path and add it to the path in the external secret yaml as given below
+
+ ## Note
 
   Annotate the external-secret to specify the domains for which Tekton can use the credentials.
 
@@ -105,6 +108,8 @@ This document covers about how to set up and configure tekton and to create CI/C
          apiVersion: external-secrets.io/v1beta1
          kind: ExternalSecret
          metadata:
+           annotations:
+             tekton.dev/git-0: "https://github.com"
            name: docker-external
            namespace: tekton-pipelines
          spec:
@@ -129,6 +134,8 @@ This document covers about how to set up and configure tekton and to create CI/C
       apiVersion: external-secrets.io/v1beta1
       kind: ExternalSecret
       metadata:
+        annotations:
+          tekton.dev/git-0: "https://github.com"
         name: cosign-docker-external
         namespace: tekton-pipelines
       spec:
@@ -183,6 +190,8 @@ This document covers about how to set up and configure tekton and to create CI/C
       apiVersion: external-secrets.io/v1beta1
       kind: ExternalSecret
       metadata:
+        annotations:
+          tekton.dev/git-0: "https://github.com"
         name: extraconfig-external
         namespace: tekton-pipelines
       spec:
