@@ -25,8 +25,7 @@ This document covers about how to access and register the control plane cluster 
 
 ![Capten-cluster-Registration](./cluster-register.png)
 
-1. Provide the cluster name and upload the client certificates created by Capten CLI.
-
+1. Provide the cluster name and upload the client certificates (./cert/capten-client-auth-certs.zip) created by Capten CLI.
 2. Provide the cluster agent endpoint, Domainname configured in capten.yaml to be used for accessing the cluster
 
 

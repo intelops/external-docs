@@ -19,17 +19,17 @@ Capten controlplane cluster creation supported on public cloud providers like AW
 
 - Azure CLI (Needed in case of using Azure cloud for cluster setup)
 
-- Docker (Needed in case of using Capten CLI distribution on Windows or MacOS)
+- Docker (Needed in case of using Capten CLI distribution on MacOS)
 
 - kubectl tool to access Capten controlplane cluster
 
 #### Setting up the cluster
 
-1. Download and Extract Capten package from Capten github repoistory [release page](https://github.com/intelops/capten/releases).
+1. Download and Extract the latest Capten package from Capten github repoistory [release page](https://github.com/intelops/capten/releases).
 
 ```bash
-wget https://github.com/intelops/capten/releases/download/v1.0.0/capten-v1.0.0.tar.gz
-tar -xvf capten-v1.0.0.tar.gz
+wget https://github.com/intelops/capten/releases/download/<latest-release>/capten_linux.zip
+unzip capten_linux.zip && cd capten
 ```
 
 2. Preparted the cluster installation parameters
@@ -59,6 +59,8 @@ For AWS cluster, update cluster installation parameters in the `aws_config.yaml`
 | TraefikLbName          | Name of the Elastic Load Balancer (ELB) used by Traefik                           |
 | TerraformBackendConfigs| Configuration settings for Terraform backend (bucket name and DynamoDB table name)| 
 
+**Note:**
+For a terraform backend,create the bucket and dynamoDB table in aws console.
 
 For Azure cluster, update cluster installation parameters in the `azure_config.yaml` in `config` folder.
 
@@ -142,6 +144,9 @@ helm list -A
 ```bash
 ./capten show cluster info
 ```
+#### Update DNS entry 
+
+Add record updating the domain name in `./config/capten.yaml` and LB host in `./config/capten-lb-endpoint.yaml` to  any dns so that applications could be exposed.
 
 #### Destroying the cluster
 

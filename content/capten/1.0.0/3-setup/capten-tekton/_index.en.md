@@ -40,7 +40,7 @@ This document covers about how to set up and configure tekton and to create CI/C
 
 * Use the already created **tekton-pipelines** namespace for the creation of pipeline.
 
-* Create a Clustersecretstore from the yaml given below.Replace the server with the url which can be obtained from the **kubectl** command given below.
+* Create a secretstore from the yaml given below.Replace the server with the url which can be obtained from the **kubectl** command given below.
 
   ```bash
   kubectl get ingress -n capten
@@ -62,7 +62,7 @@ This document covers about how to set up and configure tekton and to create CI/C
                  key: "token"
                  
 
-  Here, the **tekton-vault-token** is the secret created in tekton namespace to access the vault.Copy-paste the **tekton-vault-token** secret in the required namespace where the tekton pipeline will be present and then create the above secretstore.
+Here, the **tekton-vault-token** is the secret created in tekton namespace to access the vault.Copy-paste the **tekton-vault-token** secret in the required namespace where the tekton pipeline will be present and then create the above secretstore.
 
 
 * Git secret
@@ -214,14 +214,52 @@ This document covers about how to set up and configure tekton and to create CI/C
 
 # Prepare Pipeline Resources For The Tekton Pipeline
 
-Now commit the required pipeline,rbac,triggers and ingress in the customer repo under the directory *cicd-->tekton-pipelines-->templates*.
-once done the argocd will update this changes to the cluster and the pipeline,triggers,rbac and ingress will be created in the controlplane cluster
+Now commit the required pipeline,rbac,triggers and ingress in the customer repo under the directory *cicd-->tekton-pipelines-->templates*.Now go to the **argocd ui** and sync the tekton-pipelines application manually.
 
  ![PipelineResource](./infra.png)
 
 # Triggering Tekton Pipeline
  
- Now add the **webhook url** to the tekton ci/cd repo on which the tekton pipeline needs to be executed upon trigger.
-once all the setup is done and now when a changes is commited in the tekton ci/cd repo the tekton pipeline will get executed and the image gets built and pushed to the container registry ,finally the built image will get deployed in the bussiness cluster.
+Now add the **webhook url** to the tekton ci/cd repo on which the tekton pipeline needs to be executed upon trigger.Also create a new folder **qt_test** in the root directory and place the qt test.yaml file which contains the testcases to test the deployed application inside the floder so that the tekton pipeline can run the testcases when the qt task is triggered   
+
+once all the setup is done and now when a changes is commited in the tekton ci/cd repo the tekton pipeline will get executed and the image gets built and pushed to the container registry ,the built image is then signed using cosign and finally once the application is deployed in the bussiness cluster the qt task in the pipeline will run the testcase to test the application.
 
  ![WebhookImage](./webhook-img.png)
+
+
+# What is Proact and how to use it?
+
+Proact is CLI/CI Tool for Automating Vulnerability Management for Enhancing Software Supply Chain Security Measures.
+
+After selecting proact from the installed apps, you will be treated with a list of schedules, if there are any. To create a new schedule click on Schedule Scan repo.
+
+![proact create schedule](.readme_assets/proact-create-schedule.png)
+
+Fill all the details for the schedule and config
+
+| Attribute   | Description                           |
+| ----------- | ------------------------------------- |
+| Schedule Name  | Name of the schedule               |
+| Select Container Registry | Select the container registry        |
+| Cron Schedule    | Schedule for the job in crontab expression           |
+| Scan Config        | Config details for the job             |
+
+![proact schedule details](.readme_assets/proact-schedule-details.png)
+proact-schedule-details
+
+<b>sample config</b>
+```json
+[
+    {
+        "docker_image_name": "arunnintelops/qt-test-application:latest", // Docker image name
+        "pyroscope_enabled": "true", // To enable pyroscope
+        "pyroscope_url": "https://pyroscope.awsdemo.optimizor.app", //Url for pyroscope
+        "pyroscope_app_name": "qt.test.application", //Application name in pyroscope
+        "rebuild_image": "false" //Option to enable or disable rebuild image after scanning
+    }
+]
+```
+Afet successful scan you can view the result of the scan.
+
+proact-schedule-results
+![proact schedule results](.readme_assets/proact-schedule-results.jpg)
