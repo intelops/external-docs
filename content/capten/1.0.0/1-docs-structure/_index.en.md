@@ -40,6 +40,10 @@ Welcome to the capten Documentation! This guide is designed to provide you with 
 
 [Capten-ArgoCD](../3-setup/capten-argocd/_index.en.md):Follow the steps given here to deploy argocd and to know how argocd plays an important role in capten
 
+#### Capten Proact
+
+[Capten-Proact](../3-setup/capten-proact/_index.en.md):Follow the steps given here to configure proact for scanning vulnerabilities
+
 ### Usecase
 
 [Usecase](../5-usecase/_index.en.md): This section explains the powerful capabilities designed to streamline your Kubernetes and DevSecOps workflows. Discover how capten simplifies complex tracking tasks across various crucial aspects of your infrastructure.

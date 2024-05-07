@@ -70,3 +70,4 @@ ArgoCD is a popular tool used in continuous delivery (CD) pipelines, particularl
    Whenever a trigger is made in the application repo the pipeline gets triggered and the deploy task in the pipeline uses the argocd to sync the changes made in the repo to the cluster
 
 
+
