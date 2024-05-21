@@ -35,3 +35,175 @@ For both the agent and client, you need to set up the configuration for publishi
 
 
 Finally, you need to create a schema based on your JSON output and write an insert function to store the data in the ClickHouse database.
+
+### A Quick Demo
+
+#### Step 1
+
+Consider the below json data you received from the plugin.
+
+```bash
+{
+  "event": {
+    "eventId": "evt-001",
+    "eventType": "NodeStatus",
+    "eventTime": "2024-05-21T12:30:00Z",
+    "node": {
+      "nodeId": "node-01",
+      "nodeName": "WorkerNode1",
+      "status": "Healthy",
+      "cpuUsage": 45.2,
+      "memoryUsage": 67.8,
+      "diskUsage": 70.5
+    }
+  }
+}
+```
+
+#### Step 2
+
+Create a Go struct in the [model](https://github.com/intelops/kubviz/tree/main/model) folder to represent the JSON data. This model will be used for both publishing and receiving data from NATS, as well as for storing the data in the database.
+
+```bash
+package model
+
+import "time"
+
+type Node struct {
+	NodeID      string  `json:"nodeId"`
+	NodeName    string  `json:"nodeName"`
+	Status      string  `json:"status"`
+	CPUUsage    float64 `json:"cpuUsage"`
+	MemoryUsage float64 `json:"memoryUsage"`
+	DiskUsage   float64 `json:"diskUsage"`
+}
+
+type Event struct {
+	EventID   string    `json:"eventId"`
+	EventType string    `json:"eventType"`
+	EventTime time.Time `json:"eventTime"`
+	Node      Node      `json:"node"`
+}
+```
+
+#### Step 3
+
+Once you've finished creating the model, you can proceed to create the publish function. To publish data, you'll use this model. Additionally, you'll need to utilize NATS JetStream to publish the data. Both the model and NATS JetStream will be passed as arguments to your publish function.
+
+To publish the data effectively, you'll require a specific [subject name](https://github.com/intelops/kubviz/blob/main/constants/constants.go). This subject name will serve as the identifier for where our data will be published to NATS. NATS will use this subject name to consume the data.
+
+```bash
+package event
+
+import (
+	"encoding/json"
+	"log"
+
+	"github.com/nats-io/nats.go"
+)
+
+func PublishEvent(event model.Event, js nats.JetStreamContext) error {
+	eventJson, err := json.Marshal(event)
+	if err != nil {
+		return err
+	}
+
+	_, err = js.Publish(constants.EventSubject, eventJson)
+	if err != nil {
+		return err
+	}
+
+	log.Printf("Event with ID %s has been published", event.EventID)
+	return nil
+}
+```
+
+#### Step 4
+
+Now that your data is with NATS, you need to consume it from the client side. Remember the subject name in the constants folder we created for our plugin. Use that subject name and the corresponding consumer name to get the data.
+
+Do you need to create a brand new struct to get the data? No, you can use the same struct we used in the publish function.
+
+Below is the [subscription function](https://github.com/intelops/kubviz/blob/main/client/pkg/clients/kubviz_client.go) to get the data from NATS to the client.
+
+```bash
+func SubscribeEvent(js nats.JetStreamContext, conn *database.Connection, cfg Config) error {
+	subscription, err := js.QueueSubscribe(constants.EventSubject, cfg.EventConsumer, func(msg *nats.Msg) {
+		msg.Ack()
+		var event model.Event
+		err := json.Unmarshal(msg.Data, &event)
+		if err != nil {
+			log.Fatal(err)
+		}
+		log.Printf("Event Received: %#v", event)
+		conn.InsertEvent(event)
+		log.Println()
+	})
+	if err != nil {
+		return err
+	}
+
+	log.Printf("Subscribed to subject: %s with consumer: %s", constants.EventSubject, cfg.EventConsumer)
+	return nil
+}
+```
+
+#### Step 5
+
+Finally, use the [insert function](https://github.com/intelops/kubviz/blob/main/client/pkg/clickhouse/db_client.go) to store your data in ClickHouseDB for further evaluation and visualization.
+
+```bash
+package clickhouse
+
+import (
+	"log"
+	"time"
+	"github.com/intelops/kubviz/model"
+)
+
+const InsertEventQuery = `
+INSERT INTO events (event_id, event_type, event_time, node_id, node_name, status, cpu_usage, memory_usage, disk_usage)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+`
+
+type DBClient struct {
+	conn *sql.DB // Assuming you're using the standard library database/sql package
+}
+
+// InsertEvent inserts an Event into the database
+func (c *DBClient) InsertEvent(event model.Event) {
+
+	tx, err := c.conn.Begin()
+	if err != nil {
+		log.Fatalf("error beginning transaction, clickhouse connection not available: %v", err)
+	}
+
+	stmt, err := tx.Prepare(InsertEventQuery)
+	if err != nil {
+		log.Fatalf("error preparing statement: %v", err)
+	}
+	defer stmt.Close()
+
+	currentTime := time.Now().UTC()
+
+	if _, err := stmt.Exec(
+		event.EventID,
+		event.EventType,
+		event.EventTime,
+		event.Node.NodeID,
+		event.Node.NodeName,
+		event.Node.Status,
+		event.Node.CPUUsage,
+		event.Node.MemoryUsage,
+		event.Node.DiskUsage,
+	); err != nil {
+		log.Fatalf("error executing statement: %v", err)
+	}
+
+	if err := tx.Commit(); err != nil {
+		log.Fatalf("error committing transaction: %v", err)
+	}
+}
+```
+
+Hurray! Finally, you've received the data on your client side and stored it in the database. Execute the database and confirm that your data is indeed stored in the database.
