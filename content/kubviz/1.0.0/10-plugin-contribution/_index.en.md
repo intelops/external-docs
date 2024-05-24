@@ -90,7 +90,7 @@ type Event struct {
 
 Once you've finished creating the model, you can proceed to create the publish function. To publish data, you'll use this model. Additionally, you'll need to utilize NATS JetStream to publish the data. Both the model and NATS JetStream will be passed as arguments to your publish function.
 
-To publish the data effectively, you'll require a specific [subject name](https://github.com/intelops/kubviz/blob/main/constants/constants.go). This subject name will serve as the identifier for where our data will be published to NATS. NATS will use this subject name to consume the data.
+To publish the data effectively, you'll require a specific [subject name](https://github.com/intelops/kubviz/blob/main/constants/constants.go). This subject name will serve as the identifier for where our data will be published to NATS. NATS will use this subject name and a consumer name (client side) to consume the data.
 
 ```bash
 package event
@@ -108,7 +108,9 @@ func PublishEvent(event model.Event, js nats.JetStreamContext) error {
 		return err
 	}
 
-	_, err = js.Publish(constants.EventSubject, eventJson)
+	Eventsubject := "METRICS.events"
+
+	_, err = js.Publish(Eventsubject, eventJson)
 	if err != nil {
 		return err
 	}
@@ -128,7 +130,7 @@ Below is the [subscription function](https://github.com/intelops/kubviz/blob/mai
 
 ```bash
 func SubscribeEvent(js nats.JetStreamContext, conn *database.Connection, cfg Config) error {
-	subscription, err := js.QueueSubscribe(constants.EventSubject, cfg.EventConsumer, func(msg *nats.Msg) {
+	subscription, err := js.QueueSubscribe("METRICS.events", "EventConsumer", func(msg *nats.Msg) {
 		msg.Ack()
 		var event model.Event
 		err := json.Unmarshal(msg.Data, &event)
