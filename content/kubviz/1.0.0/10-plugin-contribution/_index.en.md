@@ -234,25 +234,6 @@ Finally, you need to create a schema based on your JSON output and write an inse
     ├── README.md
     ├── script
     │   └── wait-for-clickhouse.sh
-    ├── sdk
-    │   ├── example
-    │   │   └── main.go
-    │   └── pkg
-    │       ├── clickhouse
-    │       │   ├── client.go
-    │       │   ├── config.go
-    │       │   └── utils.go
-    │       ├── nats
-    │       │   ├── client.go
-    │       │   ├── config.go
-    │       │   └── utils.go
-    │       └── sdk
-    │           ├── clickhouse_insert.go
-    │           ├── listdata.go
-    │           ├── nats_consumer.go
-    │           ├── nats_publisher.go
-    │           ├── nats_stream.go
-    │           └── sdk.go
     ├── SECURITY.md
     └── sql
 ```
