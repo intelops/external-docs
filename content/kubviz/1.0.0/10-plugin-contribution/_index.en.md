@@ -38,6 +38,225 @@ Finally, you need to create a schema based on your JSON output and write an inse
 
 ### A Quick Demo
 
+#### Directory Structure
+
+```
+└── kubviz
+    ├── agent
+    │   ├── config
+    │   │   └── config.go
+    │   ├── container
+    │   │   ├── api
+    │   │   │   └── agent.gen.go
+    │   │   ├── cfg.yaml
+    │   │   ├── main.go
+    │   │   ├── openapi.yaml
+    │   │   └── pkg
+    │   │       ├── application
+    │   │       │   ├── application.go
+    │   │       │   ├── github.go
+    │   │       │   ├── githubmodule.go
+    │   │       │   └── handlers.go
+    │   │       ├── clients
+    │   │       │   └── nats_client.go
+    │   │       ├── config
+    │   │       │   └── configuration.go
+    │   │       └── handler
+    │   │           ├── api_handler.go
+    │   │           ├── azure_container.go
+    │   │           ├── docker_event_dockerhub.go
+    │   │           ├── jfrog_container.go
+    │   │           └── quay_handler.go
+    │   ├── git
+    │   │   ├── api
+    │   │   │   └── agent.gen.go
+    │   │   ├── cfg.yaml
+    │   │   ├── info.txt
+    │   │   ├── main.go
+    │   │   ├── openapi.yaml
+    │   │   └── pkg
+    │   │       ├── application
+    │   │       │   ├── application.go
+    │   │       │   └── handlers.go
+    │   │       ├── clients
+    │   │       │   └── nats_client.go
+    │   │       └── config
+    │   │           └── configuration.go
+    │   ├── kubviz
+    │   │   ├── application
+    │   │   │   └── application.go
+    │   │   ├── k8smetrics_agent.go
+    │   │   ├── plugins
+    │   │   │   ├── events
+    │   │   │   │   └── event_metrics_utils.go
+    │   │   │   ├── ketall
+    │   │   │   │   ├── ketall.go
+    │   │   │   │   └── ketall_test.go
+    │   │   │   ├── kubepreupgrade
+    │   │   │   │   └── kubePreUpgrade.go
+    │   │   │   ├── kuberhealthy
+    │   │   │   │   ├── kuberhealthy.go
+    │   │   │   │   └── kuberhealthy_test.go
+    │   │   │   ├── kubescore
+    │   │   │   │   ├── kube_score.go
+    │   │   │   │   └── kubescore_test.go
+    │   │   │   ├── outdated
+    │   │   │   │   ├── outdated.go
+    │   │   │   │   └── outdated_test.go
+    │   │   │   ├── rakkess
+    │   │   │   │   ├── rakees_agent.go
+    │   │   │   │   ├── rakkess.go
+    │   │   │   │   └── rakkes_test.go
+    │   │   │   └── trivy
+    │   │   │       ├── trivy.go
+    │   │   │       ├── trivy_image.go
+    │   │   │       ├── trivy_sbom.go
+    │   │   │       └── trivy_test.go
+    │   │   └── scheduler
+    │   │       ├── scheduler.go
+    │   │       └── scheduler_watch.go
+    │   └── server
+    │       └── server.go
+    ├── charts
+    │   ├── agent
+    │   │   ├── Chart.yaml
+    │   │   ├── templates
+    │   │   └── values.yaml
+    │   └── client
+    │       ├── Chart.yaml
+    │       ├── templates
+    │       └── values.yaml
+    ├── client
+    │   ├── main.go
+    │   └── pkg
+    │       ├── application
+    │       │   └── application.go
+    │       ├── clickhouse
+    │       │   ├── db_client.go
+    │       │   └── statements.go
+    │       ├── clients
+    │       │   ├── bridge_client.go
+    │       │   ├── clients.go
+    │       │   ├── container_client.go
+    │       │   └── kubviz_client.go
+    │       ├── config
+    │       │   └── config.go
+    │       └── storage
+    │           └── store.go
+    ├── cmd
+    │   └── cli
+    │       ├── commands
+    │       │   └── sql.go
+    │       ├── config
+    │       │   ├── config.go
+    │       │   └── utils.go
+    │       └── main.go
+    ├── CODE_OF_CONDUCT.md
+    ├── constants
+    │   └── constants.go
+    ├── dockerfiles
+    │   ├── agent
+    │   │   ├── container
+    │   │   │   └── Dockerfile
+    │   │   ├── git
+    │   │   │   └── Dockerfile
+    │   │   └── kubviz
+    │   │       └── Dockerfile
+    │   ├── client
+    │   │   └── Dockerfile
+    │   └── migration
+    │       └── Dockerfile
+    ├── docker-registry-config.yaml
+    ├── docs
+    │   ├── CODE_OF_CONDUCT.md
+    │   ├── CONFIGURATION_HEALTHCHECK.md
+    │   ├── CONFIGURATION.md
+    │   ├── CONFIGURATION_MTLS.md
+    │   ├── CONFIGURATION_TTL.md
+    │   ├── CONTRIBUTING.md
+    │   └── LICENSE.md
+    ├── gitmodels
+    │   ├── azuremodel
+    │   │   └── azuremodel.go
+    │   └── dbstatement
+    │       └── dbstatement.go
+    ├── go.mod
+    ├── go.sum
+    ├── grafana
+    │   ├── azure-dashboard.json
+    │   ├── bitBucket-dashboard.json
+    │   ├── containerBridge-dashboard.json
+    │   ├── giTea-dashboard.json
+    │   ├── gitHub-dashboard.json
+    │   ├── gitLab-dashboard.json
+    │   ├── kubeData-dashboard.json
+    │   ├── kuberhealthy-dashboard.json
+    │   ├── kubeScore-dashboard.json
+    │   ├── kubvizDsahboard.json
+    │   ├── kubvizFeatures-dashboard.json
+    │   └── trivy-dashboard.json
+    ├── mocks
+    │   └── trivy_client_mock.go
+    ├── model
+    │   ├── azurecontainer.go
+    │   ├── db_event.go
+    │   ├── depricatedapi.go
+    │   ├── dockercontainerevents.go
+    │   ├── gitbridge.go
+    │   ├── githubcontainer.go
+    │   ├── github_docker.go
+    │   ├── jfrogcontainer.go
+    │   ├── ketall.go
+    │   ├── kuberhealthy.go
+    │   ├── kubescore.go
+    │   ├── metrics.go
+    │   ├── outdated.go
+    │   ├── quay.go
+    │   ├── rakees.go
+    │   ├── trivy.go
+    │   ├── trivy_image.go
+    │   └── trivy_sbom.go
+    ├── pkg
+    │   ├── mtlsnats
+    │   │   └── mtlsnats.go
+    │   └── opentelemetry
+    │       └── opentelemetry.go
+    ├── quickstart
+    │   ├── config
+    │   └── dockerfiles
+    │       ├── agent
+    │       │   ├── Dockerfile.Container
+    │       │   ├── Dockerfile.Git
+    │       │   └── Dockerfile.Kubviz
+    │       └── client
+    │           └── Dockerfile.Clients
+    ├── quickstart.yml
+    ├── README.md
+    ├── script
+    │   └── wait-for-clickhouse.sh
+    ├── sdk
+    │   ├── example
+    │   │   └── main.go
+    │   └── pkg
+    │       ├── clickhouse
+    │       │   ├── client.go
+    │       │   ├── config.go
+    │       │   └── utils.go
+    │       ├── nats
+    │       │   ├── client.go
+    │       │   ├── config.go
+    │       │   └── utils.go
+    │       └── sdk
+    │           ├── clickhouse_insert.go
+    │           ├── listdata.go
+    │           ├── nats_consumer.go
+    │           ├── nats_publisher.go
+    │           ├── nats_stream.go
+    │           └── sdk.go
+    ├── SECURITY.md
+    └── sql
+```
+
 #### Step 1
 
 Consider the below json data you received from the plugin.
