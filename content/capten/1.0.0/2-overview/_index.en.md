@@ -8,7 +8,7 @@ draft: false
 
 ![Capten](./logo.png)
 
-**Capten** is the `open-source` project by Intelops.
+**Capten** is the `open-source` project by Capten.AI team.
 
 Capten streamlines the management of Kubernetes clusters, making it an ideal solution for teams or individuals who require automated cluster provisioning, application deployment, and lifecycle management in their development and testing workflows.
 

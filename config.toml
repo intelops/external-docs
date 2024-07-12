@@ -1,7 +1,7 @@
 ######################## default configuration ####################
-baseURL = "https://docs.intelops.ai"
+baseURL = "https://docs.capten.ai"
 # baseURL = "/"
-title = "Intelops Docs"
+title = "Capten.AI Docs"
 theme = "godocs-4"
 # google analytics
 googleAnalytics = "" # example : UA-123-45
@@ -60,6 +60,7 @@ google_tag_manager = "GTM-PVRN5BQ"
 [params.metadata]
 keywords = [
   "Intelops",
+  "Capten",
   "Cloud Native",
   "AI",
   "DevOps",
@@ -77,16 +78,16 @@ keywords = [
   "Gen AI"
 ]
 description = "Next-Gen Ai based solution to democratize cloud native."
-author = "Intelops"
+author = "Capten"
 image = "images/og-image.jpg" # this image will be used as fallback if a page has no image of its own
 
 
 # logo
 [params.logo]
-main = "images/new-logos/png/new-fulllogo-dark-largepng.png"
+main = "images/new-logos/Capten_logo_full.svg"
 favicon = "images/new-logos/new-intelops-fav-icon.png"
-main_site_link = "https://intelops.ai/"
-site_logo = "images/new-logos/new-dark-logo-icon.svg"
+main_site_link = "https://capten.ai/"
+site_logo = "images/new-logos/Capten Outline Logo Icon.svg" # logo on homepage
 docs_logo = "images/docs-logo.svg"
 
 # Preloader
@@ -129,11 +130,11 @@ languageName = "En"
 languageCode = "en-us"
 weight = 1
 # copyright
-copyright = "Intelops, Inc. TX USA"
+copyright = "Outfit Labs, Inc. TX USA"
 
 # banner
 [Languages.en.params.banner]
-title = "Documentation for IntelOps's Projects"
+title = "Documentation for Capten.AI projects"
 subtitle = "Democratizing Cloud Native Technology. Imaginiation is your Limit!"
 image = "images/undraw_homepage_image3.svg"
 
@@ -172,7 +173,7 @@ languageName = "Fr"
 languageCode = "fr-fr"
 weight = 2
 # copyright
-copyright = "Intelops, Inc. TX USA"
+copyright = "Outfit Labs, Inc. TX USA"
 
 # banner
 [Languages.fr.params.banner]

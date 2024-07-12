@@ -24,7 +24,7 @@ Capten SDK provides a simple way to onboard the Capten Plugin Applications (Plug
 
 ### Central Plugin Store
 
-Intelops manages the central plugin store Git repository (https://github.com/intelops/capten-plugin) to onboard and manage Capten Plugin applications. This is an open-source repository for the Capten community to onboard and manage Capten Plugin applications.
+Our Team manages the central plugin store in the Git repository (https://github.com/intelops/capten-plugin) to onboard and manage Capten Plugin applications. This is an open-source repository for the Capten community to onboard and manage Capten Plugin applications.
 
 This Central Plugin Store is integrated with Capten Stack by default, and Plugins available in the Central Plugin Store can be deployed on the Capten cluster from the Capten UI.
 
