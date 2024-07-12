@@ -20,3 +20,46 @@
   X-XSS-Protection = "1; mode=block"
   Referrer-Policy = "same-origin"
   Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+# below is the permanent redirect from old domain name intelops.ai to new domain name capten.ai
+[[redirects]]
+  from = "https://intelops-public-docs-prod.netlify.app/"
+  to = "https://docs.capten.ai/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://docs.intelops.ai/*"
+  to = "https://docs.capten.ai/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://docs.intelops.ai/"
+  to = "https://docs.capten.ai/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.docs.intelops.ai/"
+  to = "https://docs.capten.ai/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.docs.intelops.ai/*"
+  to = "https://docs.capten.ai/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "www.docs.intelops.ai"
+  to = "https://docs.capten.ai/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "docs.intelops.ai"
+  to = "https://docs.capten.ai/"
+  status = 301
+  force = true
