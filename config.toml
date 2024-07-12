@@ -79,7 +79,7 @@ keywords = [
 ]
 description = "Next-Gen Ai based solution to democratize cloud native."
 author = "Capten"
-image = "images/og-image.jpg" # this image will be used as fallback if a page has no image of its own
+image = "images/metadata-images/Capten_logo_full.jpg" # this image will be used as fallback if a page has no image of its own. metadata image.
 
 
 # logo
@@ -88,7 +88,7 @@ main = "images/new-logos/Capten_logo_full.svg"
 favicon = "images/new-logos/new-intelops-fav-icon.png"
 main_site_link = "https://capten.ai/"
 site_logo = "images/new-logos/Capten Outline Logo Icon.svg" # logo on homepage
-docs_logo = "images/docs-logo.svg"
+docs_logo = "images/docs-logo.png"
 
 # Preloader
 [params.preloader]
