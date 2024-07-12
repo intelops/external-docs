@@ -1,0 +1,5 @@
+[submodule "content/compage"]
+	path = content/compage
+	url = https://github.com/intelops/compage-docs/
+	branch = chandu
+	ignore = dirty

@@ -1,37 +1,113 @@
 {{ $currentNode := . }}
-{{ $isChangelogSection := eq .Section "changelog" }}
-{{ $currentChangelogNode := site.GetPage "/changelog/" }}
-{{ $currentRelPermalink := delimit (first 3 (split .RelPermalink "/")) "/" }}
+{{ $isSeparateChangelogPage := findRE "changelog" (index (split .RelPermalink "/") 1) }}
+{{ $currentPageRoot := site.GetPage .Section }}
+{{ $currentRelPermalink := delimit (first 2 (split .RelPermalink "/")) "/" }}
 {{ $currentPageVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
+{{ $isChangelog := eq (index (first 4 (split .RelPermalink "/")) 2) "changelog" }}
 
 
 <ul class="menu py-4 pe-4 ps-0 border-end border-default mb-0">
-  <!-- For Topics -->
-  {{- range (where site.Pages ".Params.Type" "==" "docs") }}
-    {{ $sectionNode := delimit (first 3 (split .RelPermalink "/")) "/" }}
+  {{ $docLatestVersion := "empty" }}
+  {{ $clgLatestVersion := "empty" }}
+  {{ $docSlice := slice }}
+  {{ $clgSlice := slice }}
 
-    {{ if eq $currentRelPermalink $sectionNode }}
-      {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode }}
+
+  <!-- Iterate through sections where front matter "Type" field value "docs-root" -->
+  {{- range (where site.Sections ".Params.Type" "==" "docs-root") }}
+    <!-- Get current navigated docs latest version & save it to show latest version docs in sidebar menu while current page is changelog page -->
+    {{ if eq $currentPageRoot.RelPermalink .RelPermalink }}
+      <!-- If the current node's permalink matches, update versions -->
+      {{ $docLatestVersion = .Params.latest_version }}
     {{ end }}
-  {{- end }}
 
-  {{ if $isChangelogSection }}
-    {{ $changelogs := slice }}
-    {{ range $currentChangelogNode.Sections }}
-      {{ $clg_latestVerison := .Params.latest_version }}
+    {{ range .Pages }}
 
-      {{ range (where .Data.Pages ".Params.Type" "==" "changelog") }}
-        {{ $versin := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
-        {{ $section :=  delimit (first 3 (split .RelPermalink "/")) "/" }}
+      <!-- Get only current navigated page section like "content/doc_name/_index.md" -->
+      {{ $sectionNode := delimit (first 2 (split .RelPermalink "/")) "/" }}
+      {{ if eq $currentRelPermalink $sectionNode }}
+        <!-- If the current permalink matches a section, check type -->
 
-        {{ if and (eq $section $currentRelPermalink) (eq $versin $currentPageVersion) }}
-          {{- template "section-tree-nav" dict "sect" . "currentnode" $currentChangelogNode }}
-        {{ else if and (eq $versin $clg_latestVerison) (ne $section $currentRelPermalink) }}
-          {{- template "section-tree-nav" dict "sect" . "currentnode" $currentChangelogNode }}
+        <!-- Exclude all docs page -->
+        {{ $currentRangeIsChangelog := eq (index (first 4 (split .RelPermalink "/")) 2) "changelog" }}
+
+        {{ if $currentRangeIsChangelog }}
+
+          <!-- Get current navigated changelog latest version & save it to show latest version changelog in sidebar menu while current page is docs page -->
+          {{ $clgLatestVersion = .Params.latest_version }}
+
+
+          <!-- iterate through all changelog root page "content/doc_name/changelog/changelog_version/_index.md" -->
+          {{ range .Pages }}
+            <!-- iterate over all changelog main page and include it to changelog slice variable "content/doc_name/changelog/changelog_version/changelog_name/_index.md" -->
+            {{ range .Pages }}
+              {{ $clgSlice = $clgSlice | append . }}
+            {{ end }}
+          {{ end }}
+        {{ else }}
+          <!-- if not changelog page then include it to doc slice variable - save all doc page like "content/docs_name/docs_version/_index.md" -->
+          {{ $docSlice = $docSlice | append . }}
         {{ end }}
       {{ end }}
     {{ end }}
+  {{- end }}
+
+
+  <!-- Show doc latest verison page & current navigated page in "First Position" in sidebar menu  -->
+  {{ if $isChangelog }}
+    <!-- If the current page is a changelog page then show latest version doc page in sidebar menu -->
+    {{ range $docSlice }}
+      {{ if eq (index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0) $docLatestVersion }}
+        {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode }}
+      {{ end }}
+    {{ end }}
+  {{ else }}
+    <!-- If the current page is not a changelog page then show current navigated docs page in sidebar menu -->
+    {{ range $docSlice }}
+      {{ if eq (index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0) $currentPageVersion }}
+        {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode }}
+      {{ end }}
+    {{ end }}
   {{ end }}
+
+
+  <!-- Show changelog latest verison page & current navigated page in first position in sidebar menu  -->
+  {{ if $isChangelog }}
+    <!-- If the current page is a changelog page then show current navigated changelog page in sidebar menu -->
+    {{ range $clgSlice }}
+      {{ if eq (index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0) $currentPageVersion }}
+        {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode }}
+      {{ end }}
+    {{ end }}
+  {{ else }}
+    <!-- If the current page is not a changelog page then show latest version changelog page in sidebar menu -->
+    {{ range $clgSlice }}
+      {{ if eq (index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0) $clgLatestVersion }}
+        {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
+
+  <!-- For Separate Changelog Page like "siteurl.com/changelog" -->
+  {{ if $isSeparateChangelogPage }}
+    <!-- Get all nested changelog page from all docs folder -->
+    {{ range (where site.Pages ".Params.Type" "==" "changelog") }}
+      {{ $latest_version := .Params.latest_version }}
+
+
+      <!-- Show Only latest version changelog page with its parent -->
+      {{ if and $latest_version (eq .Params.type "changelog") }}
+        {{ range .Pages }}
+          {{ $currentRangeVersion := index (findRE `(\d+\.\d+\.\d+)` .RelPermalink) 0 }}
+          {{ if eq $latest_version $currentRangeVersion }}
+            {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+
+    {{ end }}
+  {{- end }}
 </ul>
 
 <!-- templates -->

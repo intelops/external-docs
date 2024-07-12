@@ -6,12 +6,6 @@
   HUGO_VERSION = "0.118.2"
   GO_VERSION = "1.20.5"
 
-# [[redirects]]
-#   from = "/latest/*"
-#   to = "/1.0.1/:splat"
-#   status = 301
-#   force = true
-
 [[headers]]
   for = "/*" # This defines which paths this specific [[headers]] block will cover.
 
