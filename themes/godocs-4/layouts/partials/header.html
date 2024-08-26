@@ -5,6 +5,7 @@
   {{ end }}
 {{ end }}
 
+
 <!-- Get Latest verison of the topic or changelog -->
 {{ $index := "" }}
 {{ if eq (index (split .RelPermalink "/") 3) "" }}
@@ -189,6 +190,7 @@
 </header>
 {{ "<!-- /navigation -->" | safeHTML }}
 
+
 <!-- Generate json data of all (Topic & changelog) latest version pages & subpages with latest word. (Redirect user if they want to navigate a link that contain "latest" word) -->
 <script>
   let extractVersion = String(new URL(window.location.href).pathname).match(
@@ -216,7 +218,7 @@
         if(updatedLink){
           window.location.replace(updatedLink);
         } else {
-          document.querySelector(".overlay-404")?.remove();
+          document.querySelector(".overlay-white")?.remove();
         }
       }
     } catch (err) {
@@ -225,5 +227,4 @@
   };
 
   loadLinksJsonData();
-</script> 
-{{ partial "search-modal" . }}
+</script> {{ partial "search-modal" . }}

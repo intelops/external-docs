@@ -218,3 +218,9 @@ mark {
 .gap-20 {
   gap: 20px;
 }
+.dropdown-doc-version .dropdown-item:not(.inactive), .dropdown-doc-version .dropdown-item.active {
+  background-position: .4rem 50% !important;
+}
+.border-muted-50 {
+  border-color: rgba(0, 0, 0, 0.05) !important;
+}
